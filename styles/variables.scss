@@ -1,0 +1,22 @@
+// COLORS
+$grey: #616262;
+$orange: #D66633;
+
+$lighting-page-color: $orange;
+$building-page-color: $grey;
+
+// FONTS
+$lausanne: ('Lausanne-300', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Oxygen',
+'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif);
+$mazius: ('Mazius-Italic', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Oxygen',
+'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif);
+
+$body-font: $lausanne;
+$title-font: $mazius;
+
+// BREAKPOINTS
+$breakpoints: (
+  'small': (max-width: 550px),
+  'medium': (min-width: 551px) and (max-width: 849px),
+  'extralarge': (min-width: 1200px),
+);
