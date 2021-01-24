@@ -30,5 +30,5 @@ yarn-error.log*
 .env.production.local
 
 # local image files
-/public/photos
+# /public/photos
 

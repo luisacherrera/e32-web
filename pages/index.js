@@ -2,6 +2,7 @@ import Footer from '../components/Footer'
 import Image from 'next/image'
 import styles from './Home.module.scss'
 import { useState } from 'react'
+import { useRouter } from 'next/router'
 
 export default function Home() {
   const blocks = {
@@ -25,6 +26,8 @@ export default function Home() {
     updateBlock(blocks[block])
   }
 
+  const router = useRouter()
+
   return (
     <>
       <div className={currentBlock.title === "L" ? `${styles.container} ${styles.container_lighting}`: (currentBlock.title === "B" ? `${styles.container} ${styles.container_building}` : styles.container)}>
@@ -33,7 +36,7 @@ export default function Home() {
         </div>
         <p className={styles.intro_text}>E32 is a trans-disciplinary studio that strives to enhance integrated projects with a "Human centric" approach.</p>
         <div className={styles.image_container}>
-          <Image className={currentBlock.title === "L" ? styles.image__lighting_variant : (currentBlock.title === "B" ? styles.image__building_variant : "")} src={currentBlock.image} width={currentBlock.title === "L" ? 2670 : 1920} height={currentBlock.title === "L" ? 1920 : 2670} layout="responsive" />
+          <Image className={currentBlock.title === "L" ? styles.image__lighting_variant : (currentBlock.title === "B" ? styles.image__building_variant : "")} src={currentBlock.image} width={1920} height={2670} layout="responsive" />
         </div>
         <address className={styles.address_info_container}>
           Nº02 C/Energía, 32 Planta 1<br/>
@@ -48,11 +51,11 @@ export default function Home() {
           08940 Cornellà de Llobregat<br/>
           Barcelona
         </address>
-        <p className={styles.footer_middle}>About</p>
+        <p className={styles.footer_middle} onClick={()=>router.push('/about')}>About</p>
         <ul className={styles.footer_home__navbar}>
-          <li onMouseLeave={()=>setBlock("architecture")} onMouseEnter={()=>setBlock("architecture")}>Architecture</li>
-          <li onMouseLeave={()=>setBlock("architecture")} onMouseEnter={()=>setBlock("lighting")}>Lighting</li>
-          <li onMouseLeave={()=>setBlock("architecture")} onMouseEnter={()=>setBlock("building")}>Building</li>
+          <li onClick={()=>router.push('/architecture')} onMouseLeave={()=>setBlock("architecture")} onMouseEnter={()=>setBlock("architecture")}>Architecture</li>
+          <li onClick={()=>router.push('/lighting')} onMouseLeave={()=>setBlock("architecture")} onMouseEnter={()=>setBlock("lighting")}>Lighting</li>
+          <li onClick={()=>router.push('/building')} onMouseLeave={()=>setBlock("architecture")} onMouseEnter={()=>setBlock("building")}>Building</li>
         </ul>
       </div>
     </>
