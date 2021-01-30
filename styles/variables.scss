@@ -1,9 +1,15 @@
+$site-spacing: 20px;
+$mobile-spacing: 150px;
+
 // COLORS
+$black: #000;
+$white: #fff;
 $grey: #616262;
 $orange: #D66633;
 
 $lighting-page-color: $orange;
 $building-page-color: $grey;
+$about-page-color: $black;
 
 // FONTS
 $lausanne: ('Lausanne-300', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Oxygen',
