@@ -20,7 +20,9 @@ export default function About() {
             <p onClick={()=>router.back()}>&#9587;</p>
           </div>
           <div className={styles.header_address_info_container}>
-            <p>Maps</p>
+            <p className={styles.header_address_info_container__map_link}>
+              <a href="https://goo.gl/maps/fDdTYNgfMrgtNWCS8">Maps</a>
+            </p>
             <address>
               Nº02 C/Energía, 32 Planta 1<br/>
               08940 Cornellà de Llobregat<br/>
@@ -34,7 +36,9 @@ export default function About() {
             info@e32.studio
           </h3>
           <p className={styles.footer_middle}>Email us!</p>
-          <p className={styles.footer_middle}>IG</p>
+          <p className={styles.footer_middle}>
+            <a href="https://www.instagram.com/e32studio/">IG</a>
+          </p>
           <ul className={styles.footer_home__navbar}>
             <li>Architecture</li>
             <li>Lighting</li>
