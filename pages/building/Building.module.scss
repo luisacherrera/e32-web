@@ -1,0 +1,124 @@
+@import "variables.scss";
+@import "mixins.scss";
+
+.container {
+  padding-top: 80px;
+  padding-bottom: 20px;
+  height: 100vh;
+  background-color: $building-page-color;
+}
+
+.header_logo {
+  position: absolute;
+  top: 5vh;
+  left: 2vw;
+}
+
+.header_logo__page_variant {
+  position: absolute;
+  top: 5vh;
+  right: 2vw;
+}
+
+.address_info_container {
+  position: absolute;
+  top: 5vh;
+  right: 20vw;
+  display: flex;
+  justify-content: space-between;
+  width: 250px;
+}
+
+.title_style {
+  font-size: 20vw;
+  font-weight: 100;
+  line-height: 0.9;
+  
+  @include media('medium') { font-size: 25vw; }
+  @include media('small') { font-size: 30vw; }
+}
+
+.horizontal_container {
+  height: 80vh;
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+
+  div {
+    position: relative;
+  }
+}
+
+.first_image_container {
+  padding-left: 35vw;
+}
+
+.image_item {
+    padding: 5px;
+}
+
+.image_item__single_spaced {
+  padding-right: 150px;
+}
+
+.image_item__double_spaced {
+  padding-right: 400px;
+}
+
+.image_item__vertical_variant {
+  width: 400px;
+}
+
+.image_item__horizontal_variant {
+  width: 575px;
+  padding-top: 140px;
+}
+
+.image_item__building_variant {
+  border-top-left-radius: 250px;
+  border-top-right-radius: 250px;
+}
+
+.footer {
+  position: absolute;
+  z-index: 100;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.footer__info_container {
+  font-size: 10px;
+}
+
+.footer_middle {
+  font-size: 1.5vw;
+  padding-top: 20px;
+
+  @include media('medium') {
+    font-size: 2.5vw;
+  }
+
+  @include media('small') { display: none; }
+}
+
+.footer_home__navbar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  font-size: 1.5vw;
+
+  li:not(:last-of-type) { margin-right: 10px; }
+
+  @include media('medium') { font-size: 2.5vw; }
+  @include media('small') { display: none; }
+
+  .footer_home__navbar_item_noactive {
+    text-decoration: line-through;
+  }
+}
