@@ -38,17 +38,17 @@ export default function Architecture() {
           </ul>
         </div>
         <div className={styles.horizontal_container}>
-          <div className={styles.first_image_container}><img className={`${styles.image_item} ${styles.image_item__horizontal_variant}`} src="/photos/architecture/1.jpg" /></div>
-          <div className={styles.image_item__double_spaced}><img className={`${styles.image_item} ${styles.image_item__vertical_variant}`} src="/photos/architecture/2.jpg" /></div>
-          <div><img className={`${styles.image_item} ${styles.image_item__vertical_variant}`} src="/photos/architecture/3.jpg" /></div>
-          <div className={styles.image_item__single_spaced}><img className={`${styles.image_item} ${styles.image_item__horizontal_variant}`} src="/photos/architecture/4.jpg" /></div>
-          <div><img className={`${styles.image_item} ${styles.image_item__vertical_variant}`} src="/photos/architecture/5.jpg" /></div>
-          <div><img className={`${styles.image_item} ${styles.image_item__vertical_variant}`} src="/photos/architecture/6.jpg" /></div>
-          <div className={styles.image_item__double_spaced}><img className={`${styles.image_item} ${styles.image_item__vertical_variant}`} src="/photos/architecture/7.jpg" /></div>
-          <div><img className={`${styles.image_item} ${styles.image_item__horizontal_variant}`} src="/photos/architecture/8.jpg" /></div>
-          <div><img className={`${styles.image_item} ${styles.image_item__vertical_variant}`} src="/photos/architecture/9.jpg" /></div>
-          <div><img className={`${styles.image_item} ${styles.image_item__vertical_variant}`} src="/photos/architecture/10.jpg" /></div>
-          <div><img className={`${styles.image_item} ${styles.image_item__horizontal_variant}`} src="/photos/architecture/11.jpg" /></div>
+          <div onClick={()=>{router.push('/architecture/projects')}} className={styles.first_image_container}><img className={`${styles.image_item} ${styles.image_item__horizontal_variant}`} src="/photos/architecture/1.jpg" /></div>
+          <div onClick={()=>{router.push('/architecture/projects')}} className={styles.image_item__double_spaced}><img className={`${styles.image_item} ${styles.image_item__vertical_variant}`} src="/photos/architecture/2.jpg" /></div>
+          <div onClick={()=>{router.push('/architecture/projects')}}><img className={`${styles.image_item} ${styles.image_item__vertical_variant}`} src="/photos/architecture/3.jpg" /></div>
+          <div onClick={()=>{router.push('/architecture/projects')}} className={styles.image_item__single_spaced}><img className={`${styles.image_item} ${styles.image_item__horizontal_variant}`} src="/photos/architecture/4.jpg" /></div>
+          <div onClick={()=>{router.push('/architecture/projects')}}><img className={`${styles.image_item} ${styles.image_item__vertical_variant}`} src="/photos/architecture/5.jpg" /></div>
+          <div onClick={()=>{router.push('/architecture/projects')}}><img className={`${styles.image_item} ${styles.image_item__vertical_variant}`} src="/photos/architecture/6.jpg" /></div>
+          <div onClick={()=>{router.push('/architecture/projects')}} className={styles.image_item__double_spaced}><img className={`${styles.image_item} ${styles.image_item__vertical_variant}`} src="/photos/architecture/7.jpg" /></div>
+          <div onClick={()=>{router.push('/architecture/projects')}}><img className={`${styles.image_item} ${styles.image_item__horizontal_variant}`} src="/photos/architecture/8.jpg" /></div>
+          <div onClick={()=>{router.push('/architecture/projects')}}><img className={`${styles.image_item} ${styles.image_item__vertical_variant}`} src="/photos/architecture/9.jpg" /></div>
+          <div onClick={()=>{router.push('/architecture/projects')}}><img className={`${styles.image_item} ${styles.image_item__vertical_variant}`} src="/photos/architecture/10.jpg" /></div>
+          <div onClick={()=>{router.push('/architecture/projects')}}><img className={`${styles.image_item} ${styles.image_item__horizontal_variant}`} src="/photos/architecture/11.jpg" /></div>
         </div>
       </div>
     </>
