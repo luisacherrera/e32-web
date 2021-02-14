@@ -1,14 +1,18 @@
 @import "variables.scss";
 @import "mixins.scss";
 
-// @keyframes moveSlideshow {
-//   100% { 
-//     transform: translateX(-66.6666%);  
-//   }
-// }
+@keyframes moveSlideshow {
+  100% { 
+    transform: translateX(-66.6666%);  
+  }
+}
 
 .container {
     height: 100vh;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
 }
 
 .header_logo {
@@ -44,10 +48,10 @@
 .horizontal_container {
     height: 100%;
     display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;
+    // overflow-x: auto;
+    // scroll-snap-type: x mandatory;
+    // scroll-behavior: smooth;
+    // -webkit-overflow-scrolling: touch;
     cursor: crosshair;
     // animation: moveSlideshow 15s linear infinite;
 
@@ -77,8 +81,7 @@
 }
 
 .image_item__horizontal_variant {
-    width: 712px;
-    padding-top: 140px;
+    width: 900px;
 }
 
 .image_container_fullscreen_mode {

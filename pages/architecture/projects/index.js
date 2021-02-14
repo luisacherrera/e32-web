@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styles from './architecture_projects.module.scss'
 
 export default function ArchitectureProjects() {
@@ -11,9 +11,15 @@ export default function ArchitectureProjects() {
     toggleFullscreen(!fullScreen)
   }
 
+  useEffect(()=>{
+    // setInterval(()=>{containerRef.current.scrollLeft += 10}, 50)
+  });
+
+  const containerRef = useRef(null);
+
   return (
     <>
-      <div className={styles.container}>
+      <div ref={containerRef} className={styles.container}>
         <div className={styles.footer}>
           <div className={styles.footer__address_container}>
             <h3>Paseo de Gracia</h3>
