@@ -3,19 +3,31 @@ import { useEffect, useRef, useState } from 'react';
 import styles from './architecture_projects.module.scss'
 
 export default function ArchitectureProjects() {
-  const router = useRouter();
-  const [fullScreen, toggleFullscreen] = useState(false);
-  const [fullscreenImage, setFullscreenImage] = useState();
+  const router = useRouter()
+
+  const [fullScreen, toggleFullscreen] = useState(false)
+  const [fullscreenImage, setFullscreenImage] = useState()
+
   const setFullscreen = (image) => {
     setFullscreenImage(`/photos/${image}.jpg`)
     toggleFullscreen(!fullScreen)
   }
 
+  const moveCarrousel = (evt) => {
+    evt.deltaY > 0 ? 
+      containerRef.current.scrollLeft -= 150 : 
+      containerRef.current.scrollLeft += 150
+    
+  }
+
   useEffect(()=>{
-    // setInterval(()=>{containerRef.current.scrollLeft += 10}, 50)
+    window.addEventListener('wheel', moveCarrousel)
+    setInterval(()=>{
+      containerRef.current.scrollLeft += 3
+    }, 50)
   });
 
-  const containerRef = useRef(null);
+  const containerRef = useRef(null)
 
   return (
     <>
