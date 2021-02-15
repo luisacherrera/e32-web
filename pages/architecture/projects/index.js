@@ -25,7 +25,7 @@ export default function ArchitectureProjects() {
     setInterval(()=>{
       containerRef.current.scrollLeft += 3
     }, 50)
-  });
+  })
 
   const containerRef = useRef(null)
 
