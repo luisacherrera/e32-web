@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 import { useEffect, useRef, useState } from 'react';
-import styles from './architecture_projects.module.scss'
+import styles from './ArchitectureProjects.module.scss'
 
 export default function ArchitectureProjects() {
   const router = useRouter()
