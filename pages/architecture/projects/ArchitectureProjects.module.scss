@@ -13,6 +13,11 @@
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
+
+    @include media('small') {
+        width: 102vw;
+        height: 102vh;
+    }
 }
 
 .header_logo {
@@ -48,10 +53,6 @@
 .horizontal_container {
     height: 100%;
     display: flex;
-    // overflow-x: auto;
-    // scroll-snap-type: x mandatory;
-    // scroll-behavior: smooth;
-    // -webkit-overflow-scrolling: touch;
     cursor: crosshair;
     // animation: moveSlideshow 15s linear infinite;
 
@@ -62,6 +63,10 @@
 
 .first_image_container {
     padding-left: 35vw;
+
+    @include media('small') {
+        padding: 0;
+    }
 }
 
 .image_item {
@@ -78,10 +83,18 @@
 
 .image_item__vertical_variant {
     width: 470px;
+
+    @include media('small') {
+        width: 100vw;
+    }
 }
 
 .image_item__horizontal_variant {
     width: 900px;
+
+    @include media('small') {
+        width: 191vw;
+    }
 }
 
 .image_container_fullscreen_mode {
@@ -113,6 +126,20 @@
     h3 {
         font-size: 1vw;
     }
+
+    @include media('small') {
+        height: 75%;
+        padding: 0 30px;
+
+        p {
+            font-size: 1.25em;
+            width: 80vw;
+        }
+
+        h3 {
+            font-size: 1.5em;
+        }
+    }
 }
 
 .footer {
@@ -124,25 +151,42 @@
     display: flex;
     justify-content: space-between;
     padding: 20px;
+
+    @include media('small') {
+        bottom: -10px;
+        padding: 0;
+        padding-top: 10px;
+        border-top: 1px solid black;
+        width: 102%;
+    }
 }
 
 .footer__info_container {
     padding-top: 30px;
     font-size: 10px;
+
+    @include media('small') {
+        position: absolute;
+        right: 5px;
+        bottom: 90px;
+        padding: 0;
+    }
 }
 
 .footer__title {
     font-size: 5em;
+
+    @include media('small') {
+        font-size: 3em;
+    }
 }
 
 .footer__project_counter {
     font-size: 1.25em;
-    padding-top: 20px;
 }
 
 .footer_middle {
     font-size: 1.5vw;
-    padding-top: 20px;
 
     @include media('medium') {
         font-size: 2.5vw;
@@ -151,12 +195,33 @@
     @include media('small') { display: none; }
 }
 
+.footer_middle__mobile {
+    display: none;
+
+    @include media('small') {
+        display: block;
+        font-size: 2em;
+        padding-right: 5px;
+    }
+}
+
 .footer__address_container {
     padding-top: 28px;
+
+    @include media('small') {
+        position: absolute;
+        left: 5px;
+        bottom: 90px;
+        padding: 0;
+    }
 }
 
 .footer__project_counter, .footer_middle {
     padding-top: 45px;
+
+    @include media('small') {
+        padding-top: 20px;
+    }
 }
 
 .footer_home__navbar {
