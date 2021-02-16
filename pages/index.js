@@ -58,6 +58,10 @@ export default function Home() {
           <li onClick={()=>router.push('/building')} onMouseLeave={()=>setBlock("architecture")} onMouseEnter={()=>setBlock("building")}>Building</li>
         </ul>
       </div>
+      <div className={styles.footer_about__mobile} onClick={()=>router.push('/about')}>
+        <h2 className={styles.footer_about__mobile_claim}>See more</h2>
+        <h2>&#x254B;</h2>
+      </div>
     </>
   )
 }

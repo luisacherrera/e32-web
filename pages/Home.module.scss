@@ -150,3 +150,21 @@
 
     @include media('small') { display: none; }
 } 
+
+.footer_about__mobile {
+    display: none;
+
+    @include media('small') {    
+        position: absolute;
+        bottom: 0;
+        display: flex;
+        justify-content: space-between;
+        width: 100vw;
+        padding: 10px 20px;
+        border-top: 1px solid black;
+
+        .footer_about__mobile_claim {
+            padding-top: 5px;
+        }
+    }
+}
