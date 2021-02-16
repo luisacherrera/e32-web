@@ -221,6 +221,10 @@
             background-color: $about-page-color;
             color: $white;
             border: none;
+
+            &:focus {
+                outline: none;
+            }
         }
 
         textarea {
@@ -228,6 +232,10 @@
             background-color: $about-page-color;
             color: $white;
             border: none;
+
+            &:focus {
+                outline: none;
+            }
         }
     }
 
