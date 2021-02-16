@@ -51,6 +51,10 @@ export default function Architecture() {
           <div onClick={()=>{router.push('/architecture/projects')}}><img className={`${styles.image_item} ${styles.image_item__horizontal_variant}`} src="/photos/architecture/11.jpg" /></div>
         </div>
       </div>
+      <div className={styles.footer_about__mobile} onClick={()=>router.push('/about')}>
+        <h2 className={styles.footer_about__mobile_claim}>See more</h2>
+        <h2>&#x254B;</h2>
+      </div>
     </>
   )
 }

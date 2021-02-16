@@ -6,6 +6,11 @@
   padding-bottom: 20px;
   height: 100vh;
   background-color: $lighting-page-color;
+
+  @include media('small') {
+    padding-top: 30px;
+    padding-bottom: 0;
+  }
 }
 
 .header_logo {
@@ -16,7 +21,7 @@
 
 .header_logo__page_variant {
   position: absolute;
-  top: 5vh;
+  top: 3vh;
   right: 2vw;
   font-family: $title-font;
 }
@@ -28,6 +33,10 @@
   display: flex;
   justify-content: space-between;
   width: 250px;
+
+  @include media('small') {
+    display: none;
+  }
 }
 
 .title_style {
@@ -55,6 +64,10 @@
 
 .first_image_container {
   padding-left: 35vw;
+
+  @include media('small') {
+    padding: 0;
+  }
 }
 
 .image_item {
@@ -63,19 +76,36 @@
 
 .image_item__single_spaced {
   padding-right: 150px;
+
+  @include media('small') {
+    padding-right: 75px;  
+  }
 }
 
 .image_item__double_spaced {
   padding-right: 400px;
+
+  @include media('small') {
+    padding-right: 200px;
+  }
 }
 
 .image_item__vertical_variant {
   width: 400px;
+
+  @include media('small') {
+    width: 92.5vw;
+  }
 }
 
 .image_item__horizontal_variant {
   width: 575px;
   margin-top: 140px;
+
+  @include media('small') {
+    width: 100vw;
+    margin-top: 210px;
+  }
 }
 
 .image_item__lighting_variant {
@@ -94,6 +124,10 @@
   display: flex;
   justify-content: space-between;
   padding: 20px;
+
+  @include media('small') {
+    bottom: 50px;
+  }
 }
 
 .footer__info_container {
@@ -124,5 +158,23 @@
 
   .footer_home__navbar_item_noactive {
     text-decoration: line-through;
+  }
+}
+
+.footer_about__mobile {
+  display: none;
+
+  @include media('small') {    
+      position: absolute;
+      bottom: 0;
+      display: flex;
+      justify-content: space-between;
+      width: 100vw;
+      padding: 10px 20px;
+      border-top: 1px solid black;
+
+      .footer_about__mobile_claim {
+          padding-top: 5px;
+      }
   }
 }

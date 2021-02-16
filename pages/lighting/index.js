@@ -45,6 +45,10 @@ export default function Lighting() {
           <div><img className={`${styles.image_item} ${styles.image_item__horizontal_variant} ${styles.image_item__lighting_variant}`} src="/photos/lighting/5.jpg" /></div>
         </div>
       </div>
+      <div className={styles.footer_about__mobile} onClick={()=>router.push('/about')}>
+        <h2 className={styles.footer_about__mobile_claim}>See more</h2>
+        <h2>&#x254B;</h2>
+      </div>
     </>
   )
 }
