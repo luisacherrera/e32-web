@@ -16,7 +16,7 @@ export default function Home() {
     },
     lighting: {
       title: "L",
-      image: "/photos/lighting-main.jpg"
+      image: "/photos/lighting-main.png"
     },
   }
 

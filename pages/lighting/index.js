@@ -38,11 +38,11 @@ export default function Lighting() {
           </ul>
         </div>
         <div className={styles.horizontal_container}>
-          <div className={styles.first_image_container}><img className={`${styles.image_item} ${styles.image_item__horizontal_variant} ${styles.image_item__lighting_variant}`} src="/photos/lighting/1.jpg" /></div>
+          <div className={styles.first_image_container}><img className={`${styles.image_item} ${styles.image_item__horizontal_variant} ${styles.image_item__lighting_variant}`} src="/photos/lighting/Destacada_1.png" /></div>
           <div className={styles.image_item__double_spaced}><img className={`${styles.image_item} ${styles.image_item__vertical_variant}`} src="/photos/lighting/2.jpg" /></div>
           <div><img className={`${styles.image_item} ${styles.image_item__horizontal_variant}`} src="/photos/lighting/3.jpg" /></div>
           <div className={styles.image_item__single_spaced}><img className={`${styles.image_item} ${styles.image_item__vertical_variant}`} src="/photos/lighting/4.jpg" /></div>
-          <div><img className={`${styles.image_item} ${styles.image_item__horizontal_variant} ${styles.image_item__lighting_variant}`} src="/photos/lighting/5.jpg" /></div>
+          <div><img className={`${styles.image_item} ${styles.image_item__horizontal_variant} ${styles.image_item__lighting_variant}`} src="/photos/lighting/Destacada_2.png" /></div>
         </div>
       </div>
       <div className={styles.footer_about__mobile} onClick={()=>router.push('/about')}>

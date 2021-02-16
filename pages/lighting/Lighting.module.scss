@@ -100,19 +100,20 @@
 
 .image_item__horizontal_variant {
   width: 575px;
-  margin-top: 140px;
+  padding-top: 140px;
 
   @include media('small') {
     width: 100vw;
-    margin-top: 210px;
+    padding-top: 210px;
   }
 }
 
 .image_item__lighting_variant {
-  border-top-left-radius: 90%;
-  border-top-right-radius: 30%;
-  border-bottom-left-radius: 30%;
-  border-bottom-right-radius: 90%;
+  padding-top: 90px;
+
+  @include media('small') {
+    padding-top: 180px;
+  }
 }
 
 .footer {
