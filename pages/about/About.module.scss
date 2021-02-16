@@ -262,6 +262,10 @@
         li:not(:last-of-type) { margin-right: 10px; }
     }
 
+    &_home__navbar_mobile {
+        display: none;
+    }
+
     @include media('medium') { 
         &_middle {
             grid-area: footer-right;
@@ -293,6 +297,10 @@
         }
 
         &_home__navbar {
+            display: none;
+        }
+
+        &_home__navbar_mobile {
             grid-area: main-nav;
             display: block;
             font-size: 9vw;

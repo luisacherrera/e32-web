@@ -44,6 +44,11 @@ export default function About() {
             <li>Lighting</li>
             <li>Building</li>
           </ul>
+          <ul className={styles.footer_home__navbar_mobile}>
+            <li onClick={()=>router.push('/architecture')}>Architecture projects</li>
+            <li onClick={()=>router.push('/lighting')}>Lighting projects</li>
+            <li onClick={()=>router.push('/building')}>Building projects</li>
+          </ul>
         </div>
         <div className={styles.horizontal_container}>
           <div className={styles.horizontal_container_secondary}>
