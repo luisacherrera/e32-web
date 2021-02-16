@@ -83,6 +83,10 @@
             justify-self: start;
             align-self: end;
 
+            > p {
+                font-size: 2em;
+            }
+
             address { display: none; } 
         }
 
@@ -287,11 +291,12 @@
         &_home__address_container {
             grid-area: footer-right;
             justify-self: end;
+            font-size: 1.15em;
         }
 
         &_middle {
             grid-area: footer-left;
-            font-size: initial;
+            font-size: 2em;
 
             &:first-of-type { display: none; }
         }
