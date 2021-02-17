@@ -70,7 +70,7 @@
 }
 
 .image_item {
-    padding: 5px;
+    padding: 0 5px;
     cursor: url('/cursor/Open.png'), auto;
 
     @include media('small') {
