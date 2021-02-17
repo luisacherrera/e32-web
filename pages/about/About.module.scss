@@ -3,7 +3,7 @@
 
 .container {
     display: grid;
-    grid-template-columns: 2fr calc(100%/3) 2fr;
+    grid-template-columns: 2.5fr calc(100%/3) 2fr;
     grid-template-rows: 1fr 2fr 4fr 1fr;
     grid-template-areas: 
         "header-logo header-middle header-title"
@@ -153,6 +153,8 @@
 
     img {
         filter: grayscale(100%);
+        margin-left: 4vw;
+        width: 97%;
     }
 
     @include media('medium') {
@@ -176,7 +178,7 @@
 
 .block_sign_container {
     grid-area: first-right;
-    padding-left: $site-spacing;
+    padding-left: 60px;
     font-size: 1.5rem;
 
     .dummy_text { display: none; }

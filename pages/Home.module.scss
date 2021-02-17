@@ -43,8 +43,12 @@
 
 .address_info_container {
     grid-area: header-title;
+    padding-left: 20px;
 
-    @include media('medium') { justify-self: center; }
+    @include media('medium') { 
+        justify-self: center; 
+        padding: 0;
+    }
 
     @include media('small') { display: none; }
 }
