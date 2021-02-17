@@ -159,7 +159,7 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
-    padding: 20px;
+    padding: 20px 20px 0;
 
     @include media('small') {
         bottom: -10px;
@@ -195,11 +195,7 @@
 }
 
 .footer_middle {
-    font-size: 1.5vw;
-
-    @include media('medium') {
-        font-size: 2.5vw;
-    }
+    font-size: 1.25em;
 
     @include media('small') { display: none; }
 }
@@ -238,12 +234,10 @@
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
-    font-size: 1.5vw;
+    font-size: 1.25em;
     padding-bottom: 20px;
 
     li:not(:last-of-type) { margin-right: 10px; }
-
-    @include media('medium') { font-size: 2.5vw; }
 
     @include media('small') { display: none; }
 

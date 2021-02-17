@@ -134,12 +134,8 @@
 }
 
 .footer_middle {
-  font-size: 1.5vw;
+  font-size: 1.25em;
   padding-top: 20px;
-
-  @include media('medium') {
-    font-size: 2.5vw;
-  }
 
   @include media('small') { display: none; }
 }
@@ -148,11 +144,10 @@
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
-  font-size: 1.5vw;
+  font-size: 1.25em;
 
   li:not(:last-of-type) { margin-right: 10px; }
 
-  @include media('medium') { font-size: 2.5vw; }
   @include media('small') { display: none; }
 
   .footer_home__navbar_item_noactive {
