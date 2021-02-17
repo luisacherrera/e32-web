@@ -71,6 +71,7 @@
 
 .image_item {
     padding: 5px;
+    cursor: url('/cursor/Open.png'), auto;
 
     @include media('small') {
         padding: 0;
@@ -110,7 +111,8 @@
     z-index: 100;
 
     img {
-        width: 100%;
+        width: 150%;
+        cursor: url('/cursor/Close.png'), auto;
     }
 }
 
