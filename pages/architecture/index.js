@@ -53,7 +53,7 @@ export default function Architecture() {
       </div>
       <div className={styles.footer_about__mobile} onClick={()=>router.push('/about')}>
         <h2 className={styles.footer_about__mobile_claim}>See more</h2>
-        <h2>&#x254B;</h2>
+        <img onClick={()=>router.push('/about')} src="/cursor/SeeMore.png"/>
       </div>
     </>
   )

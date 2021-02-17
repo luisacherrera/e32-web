@@ -46,7 +46,7 @@ export default function ArchitectureProjects() {
           <p className={styles.footer__project_counter}>01/12</p>
           <h2 onClick={()=>router.push('/architecture')} className={styles.footer__title}>A</h2>
           <p className={styles.footer_middle} onClick={()=>router.push('/about')}>About</p>
-          <p className={styles.footer_middle__mobile} onClick={()=>router.push('/about')}>&#x254B;</p>
+          <img className={styles.footer_middle__mobile} onClick={()=>router.push('/about')} src="/cursor/SeeMore.png"/>
           <ul className={styles.footer_home__navbar}>
             <li className={styles.footer_home__navbar_item}>Architecture</li>
             <li onClick={()=>router.push('/lighting')} className={styles.footer_home__navbar_item_noactive}>Lighting</li>

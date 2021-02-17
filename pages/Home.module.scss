@@ -27,7 +27,7 @@
 
     @include media('small') {
         grid-template-columns: 2fr 1fr;
-        grid-template-rows: 2fr 5fr 1fr 1fr;
+        grid-template-rows: 1fr 5fr 1fr 1fr;
         grid-template-areas: 
             "header-logo header-title"
             "main-middle main-middle"
@@ -153,11 +153,22 @@
         display: flex;
         justify-content: space-between;
         width: 100vw;
-        padding: 10px 20px;
+        height: 65px;
+        padding: 10px;
         border-top: 1px solid black;
 
         .footer_about__mobile_claim {
             padding-top: 5px;
+        }
+
+        h2 {
+            font-size: 2em;
+        }
+
+        img {
+            height: 2em;
+            width: 2em;
+            margin-top: 3px;
         }
     }
 }

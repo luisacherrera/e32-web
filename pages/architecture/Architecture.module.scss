@@ -20,14 +20,14 @@
 
 .header_logo {
     position: absolute;
-    top: 5vh;
-    left: 2vw;
+    top: 20px;
+    left: 20px;
 }
 
 .header_logo__page_variant {
   position: absolute;
-  top: 5vh;
-  right: 2vw;
+  top: 20px;
+  right: 20px;
 }
 
 .address_info_container {
@@ -54,7 +54,7 @@
 
 .horizontal_container {
     height: 75vh;
-    padding-top: 30px;
+    padding-top: 25px;
     display: flex;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
@@ -125,7 +125,8 @@
     padding: 20px;
 
     @include media('small') {
-        bottom: 50px;
+        bottom: 70px;
+        padding: 10px;
     }
 }
 
@@ -170,11 +171,22 @@
         display: flex;
         justify-content: space-between;
         width: 100vw;
-        padding: 10px 20px;
+        height: 65px;
+        padding: 10px;
         border-top: 1px solid black;
 
         .footer_about__mobile_claim {
             padding-top: 5px;
+        }
+
+        h2 {
+            font-size: 2em;
+        }
+
+        img {
+            height: 2em;
+            width: 2em;
+            margin-top: 3px;
         }
     }
 }
