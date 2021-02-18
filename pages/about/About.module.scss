@@ -243,7 +243,7 @@
 
     @include media('small') { 
         grid-area: main-content;
-        margin-bottom: $mobile-spacing;
+        margin-bottom: 15vh;
     }
 }
 

@@ -58,7 +58,10 @@
     font-weight: 100;
     line-height: 0.9;
 
-    &_lighting { font-family: $title-font; }
+    &_lighting {
+        margin-top: -25px; 
+        font-family: $title-font; 
+    }
 
     @include media('medium') { font-size: 25vw; }
 
