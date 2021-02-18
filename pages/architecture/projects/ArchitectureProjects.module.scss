@@ -58,6 +58,10 @@
 
     div {
         position: relative;
+
+        @include media('small') {
+            padding-right: 5px;
+        }
     }
 }
 
