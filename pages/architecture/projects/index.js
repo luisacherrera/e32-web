@@ -1,17 +1,172 @@
 import { useRouter } from 'next/router'
 import { useEffect, useRef, useState } from 'react';
 import styles from './ArchitectureProjects.module.scss'
+import ProjectBlock from '../../../components/ProjectBlock'
 
 export default function ArchitectureProjects() {
+  const dummyData = [
+    {
+      projectId: 1,
+      data: [
+        {
+          imageId: 11,
+          title: "Paseo de Gracia. Residential Apartments",
+          year: "2015",
+          location: "Barcelona",
+          expedient: "123ABC",
+          image: "/photos/pdg/PDG_1.jpg",
+          orientation: "landscape",
+          text: "Lorem Ipsum Dolor Amet"
+        },
+        {
+          imageId: 12,
+          title: "Paseo de Gracia. Residential Apartments",
+          year: "2015",
+          location: "Barcelona",
+          expedient: "123ABC",
+          image: "/photos/pdg/PDG_2.jpg",
+          orientation: "portrait"
+        },
+        {
+          imageId: 13,
+          title: "Paseo de Gracia. Residential Apartments",
+          year: "2015",
+          location: "Barcelona",
+          expedient: "123ABC",
+          image: "/photos/pdg/PDG_3.jpg",
+          orientation: "landscape"
+        },
+        {
+          imageId: 14,
+          title: "Paseo de Gracia. Residential Apartments",
+          year: "2015",
+          location: "Barcelona",
+          expedient: "123ABC",
+          image: "/photos/pdg/PDG_4.jpg",
+          orientation: "portrait"
+        },
+        {
+          imageId: 15,
+          title: "Paseo de Gracia. Residential Apartments",
+          year: "2015",
+          location: "Barcelona",
+          expedient: "123ABC",
+          image: "/photos/pdg/PDG_5.jpg",
+          orientation: "landscape"
+        },    
+        {
+          imageId: 16,
+          title: "Paseo de Gracia. Residential Apartments",
+          year: "2015",
+          location: "Barcelona",
+          expedient: "123ABC",
+          image: "/photos/pdg/PDG_6.jpg",
+          orientation: "landscape",
+          text: "Lorem Ipsum Dolor Amet"
+        },
+        {
+          imageId: 17,
+          title: "Paseo de Gracia. Residential Apartments",
+          year: "2015",
+          location: "Barcelona",
+          expedient: "123ABC",
+          image: "/photos/pdg/PDG_7.jpg",
+          orientation: "landscape",
+          text: "Lorem Ipsum Dolor Amet"
+        },    
+        {
+          imageId: 18,
+          title: "Paseo de Gracia. Residential Apartments",
+          year: "2015",
+          location: "Barcelona",
+          expedient: "123ABC",
+          image: "/photos/pdg/PDG_8.jpg",
+          orientation: "portrait"
+        },
+        {
+          imageId: 19,
+          title: "Paseo de Gracia. Residential Apartments",
+          year: "2015",
+          location: "Barcelona",
+          expedient: "123ABC",
+          image: "/photos/pdg/PDG_9.jpg",
+          orientation: "landscape"
+        },
+        {
+          imageId: 110,
+          title: "Paseo de Gracia. Residential Apartments",
+          year: "2015",
+          location: "Barcelona",
+          expedient: "123ABC",
+          image: "/photos/pdg/PDG_10.jpg",
+          orientation: "landscape"
+        }
+      ]
+    },
+    {
+      projectId: 2,
+      data: [
+        {
+          imageId: 21,
+          title: "Carrer Mallorca",
+          year: "2015",
+          location: "Barcelona",
+          expedient: "123ABC",
+          image: "/photos/mallorca/Mallorca_1.jpg",
+          orientation: "landscape",
+          text: "Lorem Ipsum Dolor Amet"
+        },
+        {
+          imageId: 22,
+          title: "Carrer Mallorca",
+          year: "2015",
+          location: "Barcelona",
+          expedient: "123ABC",
+          image: "/photos/mallorca/Mallorca_2.jpg",
+          orientation: "portrait"
+        },
+        {
+          imageId: 23,
+          title: "Carrer Mallorca",
+          year: "2015",
+          location: "Barcelona",
+          expedient: "123ABC",
+          image: "/photos/mallorca/Mallorca_3.jpg",
+          orientation: "landscape"
+        },
+        {
+          imageId: 24,
+          title: "Carrer Mallorca",
+          year: "2015",
+          location: "Barcelona",
+          expedient: "123ABC",
+          image: "/photos/mallorca/Mallorca_4.jpg",
+          orientation: "portrait"
+        },
+        {
+          imageId: 25,
+          title: "Carrer Mallorca",
+          year: "2015",
+          location: "Barcelona",
+          expedient: "123ABC",
+          image: "/photos/mallorca/Mallorca_5.jpg",
+          orientation: "portrait"
+        },    
+        {
+          imageId: 26,
+          title: "Carrer Mallorca",
+          year: "2015",
+          location: "Barcelona",
+          expedient: "123ABC",
+          image: "/photos/mallorca/Mallorca_6.jpg",
+          orientation: "portrait",
+          text: "Lorem Ipsum Dolor Amet"
+        }
+      ]
+    }
+  ]
+
   const router = useRouter()
-
-  const [fullScreen, toggleFullscreen] = useState(false)
-  const [fullscreenImage, setFullscreenImage] = useState()
-
-  const setFullscreen = (image) => {
-    setFullscreenImage(`/photos/${image}.jpg`)
-    toggleFullscreen(!fullScreen)
-  }
 
   const moveCarrousel = (evt) => {
     evt.deltaY > 0 ? 
@@ -53,46 +208,15 @@ export default function ArchitectureProjects() {
             <li onClick={()=>router.push('/building')} className={styles.footer_home__navbar_item_noactive}>Building</li>
           </ul>
         </div>
-        <div className={styles.horizontal_container}>
-          <div onClick={()=>setFullscreen('pdg/PDG_1')} className={styles.first_image_container}><img className={`${styles.image_item} ${styles.image_item__vertical_variant}`} src="/photos/pdg/PDG_1.jpg" /></div>
-          <div onClick={()=>setFullscreen('pdg/PDG_2')}><img className={`${styles.image_item} ${styles.image_item__horizontal_variant}`} src="/photos/pdg/PDG_2.jpg" /></div>
-          <div onClick={()=>setFullscreen('pdg/PDG_3')}><img className={`${styles.image_item} ${styles.image_item__vertical_variant}`} src="/photos/pdg/PDG_3.jpg" /></div>
-          <div onClick={()=>setFullscreen('pdg/PDG_4')}><img className={`${styles.image_item} ${styles.image_item__horizontal_variant}`} src="/photos/pdg/PDG_4.jpg" /></div>
-          <div onClick={()=>setFullscreen('pdg/PDG_5')}><img className={`${styles.image_item} ${styles.image_item__vertical_variant}`} src="/photos/pdg/PDG_5.jpg" /></div>
-          <div onClick={()=>setFullscreen('pdg/PDG_6')}><img className={`${styles.image_item} ${styles.image_item__vertical_variant}`} src="/photos/pdg/PDG_6.jpg" /></div>
-          <div onClick={()=>setFullscreen('pdg/PDG_7')}><img className={`${styles.image_item} ${styles.image_item__vertical_variant}`} src="/photos/pdg/PDG_7.jpg" /></div>
-          <div onClick={()=>setFullscreen('pdg/PDG_8')}><img className={`${styles.image_item} ${styles.image_item__horizontal_variant}`} src="/photos/pdg/PDG_8.jpg" /></div>
-          <div onClick={()=>setFullscreen('pdg/PDG_9')}><img className={`${styles.image_item} ${styles.image_item__vertical_variant}`} src="/photos/pdg/PDG_9.jpg" /></div>
-          <div onClick={()=>setFullscreen('pdg/PDG_10')}><img className={`${styles.image_item} ${styles.image_item__vertical_variant}`} src="/photos/pdg/PDG_10.jpg" /></div>
-          <div className={styles.project_info_container}>
-            <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ultricies auctor nulla, et mollis augue viverra sit amet. Curabitur bibendum, enim eget consectetur volutpat, est elit tempus arcu, suscipit placerat enim quam lobortis ligula. Morbi egestas libero laoreet massa pellentesque fermentum. Vestibulum sed tempor lorem. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur egestas, lorem quis iaculis dignissim, risus magna ullamcorper turpis, vel porttitor risus tortor id massa. Sed ante sapien, euismod id erat nec, varius luctus nunc. Mauris et sollicitudin tortor. Phasellus luctus nisi augue, vel fermentum dolor viverra vel.</p>
-            <h3>Year: July 2015</h3>
-            <h3>Location: Barcelona</h3>
-          </div>
-          <div onClick={()=>setFullscreen('mallorca/Mallorca_1')}><img className={`${styles.image_item} ${styles.image_item__vertical_variant}`} src="/photos/mallorca/Mallorca_1.jpg" /></div>
-          <div onClick={()=>setFullscreen('mallorca/Mallorca_2')}><img className={`${styles.image_item} ${styles.image_item__horizontal_variant}`} src="/photos/mallorca/Mallorca_2.jpg" /></div>
-          <div onClick={()=>setFullscreen('mallorca/Mallorca_3')}><img className={`${styles.image_item} ${styles.image_item__vertical_variant}`} src="/photos/mallorca/Mallorca_3.jpg" /></div>
-          <div onClick={()=>setFullscreen('mallorca/Mallorca_4')}><img className={`${styles.image_item} ${styles.image_item__horizontal_variant}`} src="/photos/mallorca/Mallorca_4.jpg" /></div>
-          <div onClick={()=>setFullscreen('mallorca/Mallorca_5')}><img className={`${styles.image_item} ${styles.image_item__horizontal_variant}`} src="/photos/mallorca/Mallorca_5.jpg" /></div>
-          <div onClick={()=>setFullscreen('mallorca/Mallorca_6')}><img className={`${styles.image_item} ${styles.image_item__horizontal_variant}`} src="/photos/mallorca/Mallorca_6.jpg" /></div>
-          <div className={styles.project_info_container}>
-            <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ultricies auctor nulla, et mollis augue viverra sit amet.</p>
-            <h3>Year: August 2015</h3>
-            <h3>Location: Barcelona</h3>
-          </div>
-          <div onClick={()=>setFullscreen('cerdanya/Cerdanya_1')}><img className={`${styles.image_item} ${styles.image_item__vertical_variant}`} src="/photos/cerdanya/Cerdanya_1.jpg" /></div>
-          <div onClick={()=>setFullscreen('cerdanya/Cerdanya_3')}><img className={`${styles.image_item} ${styles.image_item__horizontal_variant}`} src="/photos/cerdanya/Cerdanya_3.jpg" /></div>
-          <div onClick={()=>setFullscreen('cerdanya/Cerdanya_5')}><img className={`${styles.image_item} ${styles.image_item__horizontal_variant}`} src="/photos/cerdanya/Cerdanya_5.jpg" /></div>
-          <div onClick={()=>setFullscreen('cerdanya/Cerdanya_6')}><img className={`${styles.image_item} ${styles.image_item__vertical_variant}`} src="/photos/cerdanya/Cerdanya_6.jpg" /></div>
-          <div className={styles.project_info_container}>
-            <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ultricies auctor nulla, et mollis augue viverra sit amet. Curabitur bibendum, enim eget consectetur volutpat, est elit tempus arcu, suscipit placerat enim quam lobortis ligula.</p>
-            <h3>Year: December 2015
-            </h3>
-            <h3>Location: Cerdanya</h3>
-          </div>
-        </div>
+        {
+          dummyData.map((block, i)=>
+            <ProjectBlock key={block.projectId} 
+                          project_data={block.data}
+                          isFirstElement={ i === 0 }>
+            </ProjectBlock>
+          )
+        }
       </div>
-      { fullScreen ? <div onClick={()=>{setFullscreen()}} className={styles.image_container_fullscreen_mode}><img src={fullscreenImage}/></div>: null }
     </>
   )
 }

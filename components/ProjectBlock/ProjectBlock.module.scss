@@ -1,0 +1,16 @@
+@import "variables.scss";
+@import "mixins.scss";
+
+.horizontal_container {
+  height: 100%;
+  display: flex;
+  // animation: moveSlideshow 15s linear infinite;
+}
+
+.first_element {
+  padding-left: 35vw;
+
+  @include media('small') {
+      padding: 0;
+  }
+}
