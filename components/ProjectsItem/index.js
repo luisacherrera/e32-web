@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react'
 import styles from './ProjectsItem.module.scss'
+import VisibilitySensor from 'react-visibility-sensor'
 
-export default function ProjectsItem({item_data}) {
+export default function ProjectsItem({onItemVisible, item_data}) {
   const data = {
     id: item_data.id,
     title: item_data.title,
@@ -24,15 +25,28 @@ export default function ProjectsItem({item_data}) {
   const handleToggleFullScreen = () => {
     toggleFullscreen(!fullScreen)
   }
+  
+  const imageIsInViewport = (isVisible) => {
+    if (isVisible) {
+      onItemVisible({
+        title: data.title,
+        year: data.year,
+        location: data.location,
+        expedient: data.expedient
+      });
+    }
+  }
 
   return (
     <>
-      <div className={ styles.item_container }
-        onClick={()=>setFullscreen(data.imageUrl)}>
-        <img 
-          className={ data.isLandscape ? `${ styles.image_item } ${ styles.image_item__vertical_variant }` : `${ styles.image_item } ${ styles.image_item__horizontal_variant }`} 
-          src={ data.imageUrl } />
-      </div>
+      <VisibilitySensor onChange={imageIsInViewport}>
+        <div className={ styles.item_container }
+          onClick={()=>setFullscreen(data.imageUrl)}>
+          <img 
+            className={ data.isLandscape ? `${ styles.image_item } ${ styles.image_item__vertical_variant }` : `${ styles.image_item } ${ styles.image_item__horizontal_variant }`} 
+            src={ data.imageUrl } />
+        </div>
+      </VisibilitySensor>
       {
           data.text ? 
             <div className={`${ styles.item_container } ${ styles.project_info_container }`}>

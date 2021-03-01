@@ -20,7 +20,7 @@ export default function ArchitectureProjects() {
         },
         {
           imageId: 12,
-          title: "Paseo de Gracia. Residential Apartments",
+          title: "Paseo de Gracia. Residential Apartments 2",
           year: "2015",
           location: "Barcelona",
           expedient: "123ABC",
@@ -29,7 +29,7 @@ export default function ArchitectureProjects() {
         },
         {
           imageId: 13,
-          title: "Paseo de Gracia. Residential Apartments",
+          title: "Paseo de Gracia. Residential Apartments 3",
           year: "2015",
           location: "Barcelona",
           expedient: "123ABC",
@@ -38,7 +38,7 @@ export default function ArchitectureProjects() {
         },
         {
           imageId: 14,
-          title: "Paseo de Gracia. Residential Apartments",
+          title: "Paseo de Gracia. Residential Apartments 4",
           year: "2015",
           location: "Barcelona",
           expedient: "123ABC",
@@ -47,7 +47,7 @@ export default function ArchitectureProjects() {
         },
         {
           imageId: 15,
-          title: "Paseo de Gracia. Residential Apartments",
+          title: "Paseo de Gracia. Residential Apartments 5",
           year: "2015",
           location: "Barcelona",
           expedient: "123ABC",
@@ -56,7 +56,7 @@ export default function ArchitectureProjects() {
         },    
         {
           imageId: 16,
-          title: "Paseo de Gracia. Residential Apartments",
+          title: "Paseo de Gracia. Residential Apartments 6",
           year: "2015",
           location: "Barcelona",
           expedient: "123ABC",
@@ -66,7 +66,7 @@ export default function ArchitectureProjects() {
         },
         {
           imageId: 17,
-          title: "Paseo de Gracia. Residential Apartments",
+          title: "Paseo de Gracia. Residential Apartments 7",
           year: "2015",
           location: "Barcelona",
           expedient: "123ABC",
@@ -76,7 +76,7 @@ export default function ArchitectureProjects() {
         },    
         {
           imageId: 18,
-          title: "Paseo de Gracia. Residential Apartments",
+          title: "Paseo de Gracia. Residential Apartments 8",
           year: "2015",
           location: "Barcelona",
           expedient: "123ABC",
@@ -85,7 +85,7 @@ export default function ArchitectureProjects() {
         },
         {
           imageId: 19,
-          title: "Paseo de Gracia. Residential Apartments",
+          title: "Paseo de Gracia. Residential Apartments 9",
           year: "2015",
           location: "Barcelona",
           expedient: "123ABC",
@@ -94,7 +94,7 @@ export default function ArchitectureProjects() {
         },
         {
           imageId: 110,
-          title: "Paseo de Gracia. Residential Apartments",
+          title: "Paseo de Gracia. Residential Apartments 10",
           year: "2015",
           location: "Barcelona",
           expedient: "123ABC",
@@ -108,7 +108,7 @@ export default function ArchitectureProjects() {
       data: [
         {
           imageId: 21,
-          title: "Carrer Mallorca",
+          title: "Carrer Mallorca 1",
           year: "2015",
           location: "Barcelona",
           expedient: "123ABC",
@@ -118,7 +118,7 @@ export default function ArchitectureProjects() {
         },
         {
           imageId: 22,
-          title: "Carrer Mallorca",
+          title: "Carrer Mallorca 2",
           year: "2015",
           location: "Barcelona",
           expedient: "123ABC",
@@ -127,7 +127,7 @@ export default function ArchitectureProjects() {
         },
         {
           imageId: 23,
-          title: "Carrer Mallorca",
+          title: "Carrer Mallorca 3",
           year: "2015",
           location: "Barcelona",
           expedient: "123ABC",
@@ -136,7 +136,7 @@ export default function ArchitectureProjects() {
         },
         {
           imageId: 24,
-          title: "Carrer Mallorca",
+          title: "Carrer Mallorca 4",
           year: "2015",
           location: "Barcelona",
           expedient: "123ABC",
@@ -145,7 +145,7 @@ export default function ArchitectureProjects() {
         },
         {
           imageId: 25,
-          title: "Carrer Mallorca",
+          title: "Carrer Mallorca 5",
           year: "2015",
           location: "Barcelona",
           expedient: "123ABC",
@@ -154,7 +154,7 @@ export default function ArchitectureProjects() {
         },    
         {
           imageId: 26,
-          title: "Carrer Mallorca",
+          title: "Carrer Mallorca 6",
           year: "2015",
           location: "Barcelona",
           expedient: "123ABC",
@@ -168,19 +168,25 @@ export default function ArchitectureProjects() {
 
   const router = useRouter()
 
-  const moveCarrousel = (evt) => {
-    evt.deltaY > 0 ? 
-      containerRef.current.scrollLeft -= 150 : 
-      containerRef.current.scrollLeft += 150
-    
+  const handleNewItemInformation = (information) => {
+    updateProjectInformation(information)
   }
 
-  useEffect(()=>{
-    // window.addEventListener('wheel', moveCarrousel)
-    // setInterval(()=>{
-    //   containerRef.current.scrollLeft += 3
-    // }, 50)
-  })
+  const [projectInformation, updateProjectInformation] = useState({})
+
+  // const moveCarrousel = (evt) => {
+  //   evt.deltaY > 0 ? 
+  //     containerRef.current.scrollLeft -= 150 : 
+  //     containerRef.current.scrollLeft += 150
+    
+  // }
+
+  // useEffect(()=>{
+  //   window.addEventListener('wheel', moveCarrousel)
+  //   setInterval(()=>{
+  //     containerRef.current.scrollLeft += 3
+  //   }, 50)
+  // })
 
   const containerRef = useRef(null)
 
@@ -189,13 +195,12 @@ export default function ArchitectureProjects() {
       <div ref={containerRef} className={styles.container}>
         <div className={styles.footer}>
           <div className={styles.footer__address_container}>
-            <h3>Paseo de Gracia</h3>
-            <h3>residential Apartments</h3>
+            <h3>{projectInformation.title}</h3>
           </div>
           <div className={styles.footer__info_container}>
-            <h3>Year: July 2015</h3>
-            <h3>Location: Barcelona</h3>
-            <h3>NºEXP: 123ABC</h3>
+            <h3>Year: {projectInformation.year}</h3>
+            <h3>Location: {projectInformation.location}</h3>
+            <h3>NºEXP: {projectInformation.expedient}</h3>
           </div>
           <h2 onClick={()=>router.push('/')} className={styles.footer__title}>E32</h2>
           <p className={styles.footer__project_counter}>01/12</p>
@@ -212,7 +217,8 @@ export default function ArchitectureProjects() {
           dummyData.map((block, i)=>
             <ProjectBlock key={block.projectId} 
                           project_data={block.data}
-                          isFirstElement={ i === 0 }>
+                          isFirstElement={ i === 0 }
+                          updateItemInformation={handleNewItemInformation}>
             </ProjectBlock>
           )
         }
