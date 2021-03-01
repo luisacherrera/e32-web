@@ -4,8 +4,9 @@ import ProjectsItem from '../ProjectsItem'
 export default function ProjectBlock({updateItemInformation, project_data, isFirstElement}) {
   const handleNewVisibleItem = (item) => {
     updateItemInformation(item)
+    // console.log(item)
   }
-  
+
   return (
     <>
       <div className={ isFirstElement ? ` ${styles.first_element} ${styles.horizontal_container}` : `${styles.horizontal_container}` }>

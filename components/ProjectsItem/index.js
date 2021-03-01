@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import styles from './ProjectsItem.module.scss'
 import VisibilitySensor from 'react-visibility-sensor'
+import { useInView } from 'react-intersection-observer'
 
 export default function ProjectsItem({onItemVisible, item_data}) {
   const data = {
@@ -25,28 +26,34 @@ export default function ProjectsItem({onItemVisible, item_data}) {
   const handleToggleFullScreen = () => {
     toggleFullscreen(!fullScreen)
   }
-  
-  const imageIsInViewport = (isVisible) => {
-    if (isVisible) {
-      onItemVisible({
-        title: data.title,
-        year: data.year,
-        location: data.location,
-        expedient: data.expedient
-      });
-    }
+
+  const [ref, inView] = useInView({
+    threshold: 0.5
+  })
+
+  const handleItemVisibility = () => {
+    onItemVisible({
+      title: data.title,
+      year: data.year,
+      location: data.location,
+      expedient: data.expedient
+    })
   }
+
+  useEffect(()=>{
+    if (inView) {
+      handleItemVisibility()
+    }
+  }, [inView])
 
   return (
     <>
-      <VisibilitySensor onChange={imageIsInViewport}>
-        <div className={ styles.item_container }
-          onClick={()=>setFullscreen(data.imageUrl)}>
-          <img 
-            className={ data.isLandscape ? `${ styles.image_item } ${ styles.image_item__vertical_variant }` : `${ styles.image_item } ${ styles.image_item__horizontal_variant }`} 
-            src={ data.imageUrl } />
-        </div>
-      </VisibilitySensor>
+      <div ref={ref} className={ styles.item_container }
+        onClick={()=>setFullscreen(data.imageUrl)}>
+        <img
+          className={ data.isLandscape ? `${ styles.image_item } ${ styles.image_item__vertical_variant }` : `${ styles.image_item } ${ styles.image_item__horizontal_variant }`} 
+          src={ data.imageUrl } />
+      </div>
       {
           data.text ? 
             <div className={`${ styles.item_container } ${ styles.project_info_container }`}>
