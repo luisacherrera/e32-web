@@ -1,7 +1,7 @@
 import Footer from '../components/Footer'
 import Image from 'next/image'
 import styles from './Home.module.scss'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 
 export default function Home() {
@@ -27,6 +27,16 @@ export default function Home() {
   }
 
   const router = useRouter()
+
+  useEffect(()=>{
+    window.screen.orientation.lock('portrait')
+      .then(()=>{
+        alert('This site is intented for portrait mode')
+      })
+      .catch((error)=>{
+        alert(error)
+      })
+  }, [])
 
   return (
     <>
