@@ -15,7 +15,7 @@ export default function ProjectBlock({updateItemInformation, project_data, proje
 
   useEffect(()=>{
     if (callToView === project_id) {
-      blockRef.current.scrollIntoView({behavior: "smooth", block: "start"})
+      blockRef.current.scrollIntoView({behavior: "auto", inline: "start"})
     }
   })
 

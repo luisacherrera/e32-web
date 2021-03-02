@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import styles from './ArchitectureProjects.module.scss'
 import ProjectBlock from '../../../components/ProjectBlock'
 

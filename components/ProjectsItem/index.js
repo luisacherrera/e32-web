@@ -1,6 +1,5 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import styles from './ProjectsItem.module.scss'
-import VisibilitySensor from 'react-visibility-sensor'
 import { useInView } from 'react-intersection-observer'
 
 export default function ProjectsItem({onItemVisible, item_data}) {
