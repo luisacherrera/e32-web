@@ -190,6 +190,15 @@ export default function ArchitectureProjects() {
 
   const containerRef = useRef(null)
 
+  const [selectedElement, setSelectedElement] = useState(0)
+
+  const [navigationMenuVisibility, toggleNavigationMenuVisibility] = useState(false)
+
+  const setElementToCall = (el) => {
+    toggleNavigationMenuVisibility(false)
+    setSelectedElement(el)
+  }
+
   return (
     <>
       <div ref={containerRef} className={styles.container}>
@@ -203,7 +212,8 @@ export default function ArchitectureProjects() {
             <h3>NºEXP: {projectInformation.expedient}</h3>
           </div>
           <h2 onClick={()=>router.push('/')} className={styles.footer__title}>E32</h2>
-          <p className={styles.footer__project_counter}>01/12</p>
+          <p onClick={()=>toggleNavigationMenuVisibility(!navigationMenuVisibility)} className={styles.footer__project_counter}>
+            { projectInformation.id < 10 ? `0${projectInformation.id}` : projectInformation.id }/{ dummyData.length < 10 ? `0${dummyData.length}` : dummyData.length}</p>
           <h2 onClick={()=>router.push('/architecture')} className={styles.footer__title}>A</h2>
           <p className={styles.footer_middle} onClick={()=>router.push('/about')}>About</p>
           <img className={styles.footer_middle__mobile} onClick={()=>router.push('/about')} src="/cursor/SeeMore.png"/>
@@ -217,10 +227,39 @@ export default function ArchitectureProjects() {
           dummyData.map((block, i)=>
             <ProjectBlock key={block.projectId} 
                           project_data={block.data}
+                          project_id={i + 1}
                           isFirstElement={ i === 0 }
-                          updateItemInformation={handleNewItemInformation}>
+                          updateItemInformation={handleNewItemInformation}
+                          callToView={selectedElement}>
             </ProjectBlock>
           )
+        }
+        {
+          navigationMenuVisibility ?
+            <div className={styles.projects_navigation_menu}>
+              <img src={dummyData[0].data[0].image} alt=""/>
+              <ul>
+                { dummyData.map((block, i)=>
+                    <li key={i}
+                        onClick={()=>setElementToCall(i+1)}>
+                      { 
+                        i < 10 ? 
+                          `0${i + 1}` 
+                          : 
+                          i + 1 
+                      }/{ 
+                          dummyData.length < 10 ? 
+                            `0${dummyData.length}` 
+                            : 
+                            dummyData.length
+                        }
+                    </li>
+                  ) 
+                }
+              </ul>
+            </div>
+            :
+            null
         }
       </div>
     </>
