@@ -8,9 +8,26 @@
 }
 
 .first_element {
-  padding-left: 35vw;
+  margin-left: 35vw;
 
   @include media('small') {
-      padding: 0;
+    margin: 0;
+  }
+}
+
+.project_intro_container {
+  display: flex;
+  justify-content: center;
+  height: 85%;
+  width: 470px;
+
+  .project_intro__counter {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  @include media('small') {
+    width: 102vw;
   }
 }

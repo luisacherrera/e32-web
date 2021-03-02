@@ -228,6 +228,7 @@ export default function ArchitectureProjects() {
             <ProjectBlock key={block.projectId} 
                           project_data={block.data}
                           project_id={i + 1}
+                          total_project_length={dummyData.length}
                           isFirstElement={ i === 0 }
                           updateItemInformation={handleNewItemInformation}
                           callToView={selectedElement}>
