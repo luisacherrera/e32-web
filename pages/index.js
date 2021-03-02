@@ -28,16 +28,6 @@ export default function Home() {
 
   const router = useRouter()
 
-  useEffect(()=>{
-    window.screen.orientation.lock('portrait')
-      .then(()=>{
-        alert('This site is intented for portrait mode')
-      })
-      .catch((error)=>{
-        alert(error)
-      })
-  }, [])
-
   return (
     <>
       <div className={currentBlock.title === "L" ? `${styles.container} ${styles.container_lighting}`: (currentBlock.title === "B" ? `${styles.container} ${styles.container_building}` : styles.container)}>
