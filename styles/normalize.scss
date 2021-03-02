@@ -27,3 +27,10 @@ ul {
 img { 
   width: 100%; 
 } 
+
+@media only screen and (max-width: 769px) and (orientation:landscape){
+  body {
+    height: 100vw;
+    transform: rotate(90deg);
+  }
+}
