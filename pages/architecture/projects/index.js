@@ -172,7 +172,13 @@ export default function ArchitectureProjects() {
     updateProjectInformation(information)
   }
 
-  const [projectInformation, updateProjectInformation] = useState({})
+  const [projectInformation, updateProjectInformation] = useState({
+    title: dummyData[0].data[0].title,
+    year: dummyData[0].data[0].year,
+    location: dummyData[0].data[0].location,
+    expedient: dummyData[0].data[0].expedient,
+    id: 1
+  })
 
   // const moveCarrousel = (evt) => {
   //   evt.deltaY > 0 ? 
