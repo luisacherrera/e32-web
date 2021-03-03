@@ -19,6 +19,7 @@ export default function ProjectsItem({onItemVisible, item_data}) {
   const [fullscreenImage, setFullscreenImage] = useState()
 
   const setFullscreen = (image) => {
+    fullScreen === false ? document.body.style.overflow = 'unset' : document.body.style.overflow = 'hidden' 
     setFullscreenImage(image)
     toggleFullscreen(!fullScreen)
   }
