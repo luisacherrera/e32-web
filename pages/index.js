@@ -26,6 +26,17 @@ export default function Home() {
     updateBlock(blocks[block])
   }
 
+  useEffect(()=>{
+    const navigateOnScroll = () => {
+      router.push('/architecture')
+    }
+    window.addEventListener('mousewheel', navigateOnScroll)
+
+    return ()=>{
+      window.removeEventListener('mousewheel', navigateOnScroll)
+    }
+  }, [])
+
   const router = useRouter()
 
   return (
