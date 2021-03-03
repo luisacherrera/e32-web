@@ -159,6 +159,7 @@
     display: flex;
     justify-content: space-between;
     padding: 20px 20px 0;
+    background-color: white;
 
     @include media('small') {
         bottom: -10px;
@@ -248,25 +249,33 @@
 
 .projects_navigation_menu {
     position: absolute;
-    background: white;
-    width: 100%;
-    height: 85%;
+    background-color: white;
+    width: 102%;
+    height: 102%;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
 
-    img {
-        width: 30%;
-        height: 90%;
-        padding: 40px 0px;
+    .projects_navigation_menu__image_container {
+        width: 30vw;
+        height: 85vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        @include media('small') { display: none; }
     }
 
     ul {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
         width: 30%;
         height: 90%;
         padding: 40px 0px;
 
         li {
             padding: 10px;
+            margin: 0 auto;
         }
     }
 }

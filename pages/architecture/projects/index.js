@@ -244,7 +244,9 @@ export default function ArchitectureProjects() {
         {
           navigationMenuVisibility ?
             <div className={styles.projects_navigation_menu}>
-              <img src={dummyData[0].data[0].image} alt=""/>
+              <div className={styles.projects_navigation_menu__image_container}>
+                <img src={dummyData[0].data[0].image} alt=""/>
+              </div>
               <ul>
                 { dummyData.map((block, i)=>
                     <li key={i}
