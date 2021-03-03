@@ -170,18 +170,6 @@
     }
 }
 
-.footer__info_container {
-    padding-top: 30px;
-    font-size: 10px;
-
-    @include media('small') {
-        position: absolute;
-        right: 10px;
-        bottom: 85px;
-        padding: 0;
-    }
-}
-
 .footer__title {
     font-size: 5em;
 
@@ -211,15 +199,35 @@
     }
 }
 
-.footer__address_container {
-    width: 230px;
-    padding-top: 28px;
+.footer__project_data {
+    display: flex;
+    
+    .footer__project_data__title_container {
+        width: 230px;
+        padding-top: 28px;
+    }
+    
+    .footer__project_data__info_container {
+        padding-top: 30px;
+        font-size: 10px;
+    }
 
     @include media('small') {
+        justify-content: space-between;
         position: absolute;
-        left: 10px;
-        bottom: 80px;
-        padding: 0;
+        bottom: 65px;
+        left: 0;
+        width: 100%;
+        padding: 10px;
+        background-color: white;
+
+        .footer__project_data__title_container {
+            padding-top: 0;
+        }
+
+        .footer__project_data__info_container {
+            padding-top: 2px;
+        }
     }
 }
 

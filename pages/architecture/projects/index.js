@@ -209,13 +209,15 @@ export default function ArchitectureProjects() {
     <>
       <div ref={containerRef} className={styles.container}>
         <div className={styles.footer}>
-          <div className={styles.footer__address_container}>
-            <h3>{projectInformation.title}</h3>
-          </div>
-          <div className={styles.footer__info_container}>
-            <h3>Year: {projectInformation.year}</h3>
-            <h3>Location: {projectInformation.location}</h3>
-            <h3>NºEXP: {projectInformation.expedient}</h3>
+          <div className={styles.footer__project_data}>
+            <div className={styles.footer__project_data__title_container}>
+              <h3>{projectInformation.title}</h3>
+            </div>
+            <div className={styles.footer__project_data__info_container}>
+              <h3>Year: {projectInformation.year}</h3>
+              <h3>Location: {projectInformation.location}</h3>
+              <h3>NºEXP: {projectInformation.expedient}</h3>
+            </div>
           </div>
           <h2 onClick={()=>router.push('/')} className={styles.footer__title}>E32</h2>
           <p onClick={()=>toggleNavigationMenuVisibility(!navigationMenuVisibility)} className={styles.footer__project_counter}>
