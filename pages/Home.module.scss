@@ -95,6 +95,7 @@
     }
 
     @include media('small') {
+        overflow: hidden;
         grid-area: main-middle;
         width: 100%;
         padding: 0;
@@ -163,6 +164,7 @@
         height: 65px;
         padding: 10px;
         border-top: 1px solid black;
+        background-color: white;
 
         .footer_about__mobile_claim {
             padding-top: 5px;
