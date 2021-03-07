@@ -165,6 +165,6 @@ export default function ArchitectureProjects() {
 
   return (
     <ProjectPage project_items={dummyData}
-                 category={'architecutre'}></ProjectPage>
+                 category={'architecture'}></ProjectPage>
   )
 }
