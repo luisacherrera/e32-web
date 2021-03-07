@@ -32,12 +32,10 @@ export default function ProjectPage({project_items, category}) {
 
   const handleWheel = (evt) => {
     const container = containerRef.current
-    const containerScrollPosition = container.scrollLeft
-    container.scrollTo({
-        top: 0,
-        left: containerScrollPosition - evt.deltaY*300,
-        behaviour: 'smooth'
-    })
+    evt.deltaY > 0 ? 
+      container.scrollLeft += 500
+      :
+      container.scrollLeft -= 500 
   }
 
   const handleAutomaticScroll = (move) => {
@@ -49,13 +47,13 @@ export default function ProjectPage({project_items, category}) {
     })
   }
 
-  useEffect(()=>{
-    const interval = isBrowser && setInterval(()=>{
-      handleAutomaticScroll(3);
-    }, 50)
+  // useEffect(()=>{
+  //   const interval = isBrowser && setInterval(()=>{
+  //     handleAutomaticScroll(3);
+  //   }, 50)
 
-    return () => isBrowser && clearInterval(interval)
-  }, [])
+  //   return () => isBrowser && clearInterval(interval)
+  // }, [])
 
   return (
     <>
