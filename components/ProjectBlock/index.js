@@ -2,7 +2,7 @@ import styles from './ProjectBlock.module.scss'
 import ProjectsItem from '../ProjectsItem'
 import { useEffect, useRef } from 'react'
 
-export default function ProjectBlock({updateItemInformation, project_data, project_id, total_project_length, isFirstElement, callToView}) {
+export default function ProjectBlock({updateItemInformation, project_data, project_id, total_project_length, isFirstElement, callToView, canScrollIntoView}) {
   const handleNewVisibleItem = (item) => {
     const itemToUpdate = {
       ...item,
@@ -14,7 +14,8 @@ export default function ProjectBlock({updateItemInformation, project_data, proje
   const blockRef = useRef(null)
 
   useEffect(()=>{
-    if (callToView === project_id) {
+    if (canScrollIntoView && callToView === project_id) {
+      console.log('heeey', callToView)
       blockRef.current.scrollIntoView({behavior: "auto", inline: "start"})
     }
   })

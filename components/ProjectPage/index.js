@@ -23,11 +23,19 @@ export default function ProjectPage({project_items, category}) {
 
   const [selectedElement, setSelectedElement] = useState(0)
 
+  const [hasBeenCalled, setCallStatus] = useState(true)
+
   const [navigationMenuVisibility, toggleNavigationMenuVisibility] = useState(false)
 
   const setElementToCall = (el) => {
+    if (!hasBeenCalled) {
+      setCallStatus(true)
+    }
     toggleNavigationMenuVisibility(false)
     setSelectedElement(el)
+    setTimeout(()=>{
+      setCallStatus(false)
+    }, 1000)
   }
 
   const handleWheel = (evt) => {
@@ -97,7 +105,8 @@ export default function ProjectPage({project_items, category}) {
                           total_project_length={project_items.length}
                           isFirstElement={ i === 0 }
                           updateItemInformation={handleNewItemInformation}
-                          callToView={selectedElement}>
+                          callToView={selectedElement}
+                          canScrollIntoView={hasBeenCalled}>
             </ProjectBlock>
           )
         }
