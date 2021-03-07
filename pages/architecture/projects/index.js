@@ -1,7 +1,4 @@
-import { useRouter } from 'next/router'
-import { useRef, useState } from 'react';
-import styles from './ArchitectureProjects.module.scss'
-import ProjectBlock from '../../../components/ProjectBlock'
+import ProjectPage from '../../../components/ProjectPage'
 
 export default function ArchitectureProjects() {
   const dummyData = [
@@ -166,113 +163,8 @@ export default function ArchitectureProjects() {
     }
   ]
 
-  const router = useRouter()
-
-  const handleNewItemInformation = (information) => {
-    updateProjectInformation(information)
-  }
-
-  const [projectInformation, updateProjectInformation] = useState({
-    title: dummyData[0].data[0].title,
-    year: dummyData[0].data[0].year,
-    location: dummyData[0].data[0].location,
-    expedient: dummyData[0].data[0].expedient,
-    id: 1
-  })
-
-  // const moveCarrousel = (evt) => {
-  //   evt.deltaY > 0 ? 
-  //     containerRef.current.scrollLeft -= 150 : 
-  //     containerRef.current.scrollLeft += 150
-    
-  // }
-
-  // useEffect(()=>{
-  //   window.addEventListener('wheel', moveCarrousel)
-  //   setInterval(()=>{
-  //     containerRef.current.scrollLeft += 3
-  //   }, 50)
-  // })
-
-  const containerRef = useRef(null)
-
-  const [selectedElement, setSelectedElement] = useState(0)
-
-  const [navigationMenuVisibility, toggleNavigationMenuVisibility] = useState(false)
-
-  const setElementToCall = (el) => {
-    toggleNavigationMenuVisibility(false)
-    setSelectedElement(el)
-  }
-
   return (
-    <>
-      <div ref={containerRef} className={styles.container}>
-        <div className={styles.footer}>
-          <div className={styles.footer__project_data}>
-            <div className={styles.footer__project_data__title_container}>
-              <h3>{projectInformation.title}</h3>
-            </div>
-            <div className={styles.footer__project_data__info_container}>
-              <h3>Year: {projectInformation.year}</h3>
-              <h3>Location: {projectInformation.location}</h3>
-              <h3>NºEXP: {projectInformation.expedient}</h3>
-            </div>
-          </div>
-          <h2 onClick={()=>router.push('/')} className={styles.footer__title}>E32</h2>
-          <p onClick={()=>toggleNavigationMenuVisibility(!navigationMenuVisibility)} className={styles.footer__project_counter}>
-            { projectInformation.id < 10 ? `0${projectInformation.id}` : projectInformation.id }/{ dummyData.length < 10 ? `0${dummyData.length}` : dummyData.length}</p>
-          <h2 onClick={()=>router.push('/architecture')} className={styles.footer__title}>A</h2>
-          <p className={styles.footer_middle} onClick={()=>router.push('/about')}>About</p>
-          <img className={styles.footer_middle__mobile} onClick={()=>router.push('/about')} src="/cursor/SeeMore.png"/>
-          <ul className={styles.footer_home__navbar}>
-            <li className={styles.footer_home__navbar_item}>Architecture</li>
-            <li onClick={()=>router.push('/lighting')} className={styles.footer_home__navbar_item_noactive}>Lighting</li>
-            <li onClick={()=>router.push('/building')} className={styles.footer_home__navbar_item_noactive}>Building</li>
-          </ul>
-        </div>
-        {
-          dummyData.map((block, i)=>
-            <ProjectBlock key={block.projectId} 
-                          project_data={block.data}
-                          project_id={i + 1}
-                          total_project_length={dummyData.length}
-                          isFirstElement={ i === 0 }
-                          updateItemInformation={handleNewItemInformation}
-                          callToView={selectedElement}>
-            </ProjectBlock>
-          )
-        }
-        {
-          navigationMenuVisibility ?
-            <div className={styles.projects_navigation_menu}>
-              <div className={styles.projects_navigation_menu__image_container}>
-                <img src={dummyData[0].data[0].image} alt=""/>
-              </div>
-              <ul>
-                { dummyData.map((block, i)=>
-                    <li key={i}
-                        onClick={()=>setElementToCall(i+1)}>
-                      { 
-                        i < 10 ? 
-                          `0${i + 1}` 
-                          : 
-                          i + 1 
-                      }/{ 
-                          dummyData.length < 10 ? 
-                            `0${dummyData.length}` 
-                            : 
-                            dummyData.length
-                        }
-                    </li>
-                  ) 
-                }
-              </ul>
-            </div>
-            :
-            null
-        }
-      </div>
-    </>
+    <ProjectPage project_items={dummyData}
+                 category={'architecture'}></ProjectPage>
   )
 }
