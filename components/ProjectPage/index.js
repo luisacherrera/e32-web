@@ -48,6 +48,20 @@ export default function ProjectPage({project_items, category}) {
 
   const scrollSpeed = project_items.length*100
 
+  const [fullScreen, toggleFullscreen] = useState(false)
+  const [fullscreenImage, setFullscreenImage] = useState()
+
+  const handleFullscreenImage = (image) => {
+    document.body.style.overflow = 'unset' 
+    setFullscreenImage(image)
+    toggleFullscreen(true)
+  }
+
+  const handleFullscreenClose = () => {
+    document.body.style.overflow = 'hidden'
+    toggleFullscreen(false)
+  }
+
   return (
     <>
       <div ref={containerRef} className={styles.container} onWheel={(e)=>isBrowser && handleWheel(e)}>
@@ -99,14 +113,15 @@ export default function ProjectPage({project_items, category}) {
         <div className="projects_blocks__container">
         {
           project_items.map((block, i)=>
-            <ProjectBlock key={block.projectId} 
+            <ProjectBlock key={block.projectId}
+                          callToView={selectedElement}
+                          canScrollIntoView={hasBeenCalled}
+                          isFirstElement={ i === 0 }
                           project_data={block.data}
                           project_id={i + 1}
+                          showFullscreenImage={handleFullscreenImage}
                           total_project_length={project_items.length}
-                          isFirstElement={ i === 0 }
-                          updateItemInformation={handleNewItemInformation}
-                          callToView={selectedElement}
-                          canScrollIntoView={hasBeenCalled}>
+                          updateItemInformation={handleNewItemInformation}>
             </ProjectBlock>
           )
         }
@@ -141,6 +156,15 @@ export default function ProjectPage({project_items, category}) {
             null
         }
       </div>
+      {
+        fullScreen && isBrowser ? 
+          <div onClick={()=>handleFullscreenClose()} 
+               className={ styles.image_container_fullscreen_mode }>
+            <img src={ fullscreenImage }/>
+          </div>
+          : 
+          null 
+      }
 
       <style jsx>{`
         @keyframes moveSlideshow {

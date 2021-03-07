@@ -2,7 +2,16 @@ import styles from './ProjectBlock.module.scss'
 import ProjectsItem from '../ProjectsItem'
 import { useEffect, useRef } from 'react'
 
-export default function ProjectBlock({updateItemInformation, project_data, project_id, total_project_length, isFirstElement, callToView, canScrollIntoView}) {
+export default function ProjectBlock({
+  callToView,
+  canScrollIntoView,
+  isFirstElement,
+  project_data,
+  project_id,
+  showFullscreenImage,
+  total_project_length,
+  updateItemInformation
+}) {
   const handleNewVisibleItem = (item) => {
     const itemToUpdate = {
       ...item,
@@ -12,6 +21,10 @@ export default function ProjectBlock({updateItemInformation, project_data, proje
   }
 
   const blockRef = useRef(null)
+
+  const handleSetFullscreen = (img) => {
+    showFullscreenImage(img)
+  }
 
   useEffect(()=>{
     if (canScrollIntoView && callToView === project_id) {
@@ -33,7 +46,8 @@ export default function ProjectBlock({updateItemInformation, project_data, proje
           project_data.map((item, i) =>
             <ProjectsItem key={ item.imageId }
                           item_data={ item }
-                          onItemVisible={handleNewVisibleItem}>
+                          onItemVisible={handleNewVisibleItem}
+                          onFullscreenMode={handleSetFullscreen}>
             </ProjectsItem>
           )
         }

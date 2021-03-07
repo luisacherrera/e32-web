@@ -1,9 +1,13 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import styles from './ProjectsItem.module.scss'
 import { useInView } from 'react-intersection-observer'
 import { isBrowser } from 'react-device-detect'
 
-export default function ProjectsItem({onItemVisible, item_data}) {
+export default function ProjectsItem({
+  item_data,
+  onItemVisible, 
+  onFullscreenMode
+}) {
   const data = {
     id: item_data.id,
     title: item_data.title,
@@ -15,17 +19,8 @@ export default function ProjectsItem({onItemVisible, item_data}) {
     text: item_data.text ? item_data.text : false
   }
 
-  const [fullScreen, toggleFullscreen] = useState(false)
-  const [fullscreenImage, setFullscreenImage] = useState()
-
   const setFullscreen = (image) => {
-    fullScreen === false ? document.body.style.overflow = 'unset' : document.body.style.overflow = 'hidden' 
-    setFullscreenImage(image)
-    toggleFullscreen(!fullScreen)
-  }
-
-  const handleToggleFullScreen = () => {
-    toggleFullscreen(!fullScreen)
+    onFullscreenMode(image)
   }
 
   const [ref, inView] = isBrowser ?
@@ -67,15 +62,6 @@ export default function ProjectsItem({onItemVisible, item_data}) {
             </div> 
             : 
             null
-      }
-      {
-        fullScreen && isBrowser ? 
-          <div onClick={()=>{handleToggleFullScreen()}} 
-               className={ styles.image_container_fullscreen_mode }>
-            <img src={ fullscreenImage }/>
-          </div>
-          : 
-          null 
       }
     </>
   )
