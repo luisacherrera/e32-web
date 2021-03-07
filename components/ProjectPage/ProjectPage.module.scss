@@ -15,19 +15,6 @@
     }
 }
 
-.horizontal_container {
-    height: 100%;
-    display: flex;
-
-    div {
-        position: relative;
-
-        @include media('small') {
-            padding-right: 5px;
-        }
-    }
-}
-
 .footer {
     position: absolute;
     z-index: 100;

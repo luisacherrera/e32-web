@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import styles from './ProjectPage.module.scss'
 import ProjectBlock from '../ProjectBlock'
 import { isBrowser } from 'react-device-detect'
@@ -38,22 +38,7 @@ export default function ProjectPage({project_items, category}) {
       container.scrollLeft -= 500 
   }
 
-  const handleAutomaticScroll = (move) => {
-    const container = containerRef.current
-    container.scrollTo({
-      top: 0,
-      left: container.scrollLeft + move,
-      behaviour: 'smooth'
-    })
-  }
-
-  // useEffect(()=>{
-  //   const interval = isBrowser && setInterval(()=>{
-  //     handleAutomaticScroll(3);
-  //   }, 50)
-
-  //   return () => isBrowser && clearInterval(interval)
-  // }, [])
+  const scrollSpeed = project_items.length*100
 
   return (
     <>
@@ -103,6 +88,7 @@ export default function ProjectPage({project_items, category}) {
             }
           </ul>
         </div>
+        <div className="projects_blocks__container">
         {
           project_items.map((block, i)=>
             <ProjectBlock key={block.projectId} 
@@ -115,6 +101,7 @@ export default function ProjectPage({project_items, category}) {
             </ProjectBlock>
           )
         }
+        </div>
         {
           navigationMenuVisibility ?
             <div className={styles.projects_navigation_menu}>
@@ -145,6 +132,19 @@ export default function ProjectPage({project_items, category}) {
             null
         }
       </div>
+
+      <style jsx>{`
+        @keyframes moveSlideshow {
+          100% { 
+            transform: translateX(-95%);  
+          }
+        }
+
+        .projects_blocks__container {
+          display: flex;
+          animation: moveSlideshow ${scrollSpeed}s linear infinite;
+        }
+      `}</style>
     </>
   )
 }
