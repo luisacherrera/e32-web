@@ -1,12 +1,6 @@
 @import "variables.scss";
 @import "mixins.scss";
 
-@keyframes moveSlideshow {
-  100% { 
-    transform: translateX(-66.6666%);  
-  }
-}
-
 .container {
     display: flex;
     height: 100vh;
@@ -21,131 +15,15 @@
     }
 }
 
-.header_logo {
-    position: absolute;
-    top: 5vh;
-    left: 2vw;
-}
-
-.header_logo__page_variant {
-  position: absolute;
-  top: 5vh;
-  right: 2vw;
-}
-
-.address_info_container {
-    position: absolute;
-    top: 5vh;
-    right: 20vw;
-    display: flex;
-    justify-content: space-between;
-    width: 250px;
-}
-
-.title_style {
-    font-size: 20vw;
-    font-weight: 100;
-    line-height: 0.9;
-    
-    @include media('medium') { font-size: 25vw; }
-    @include media('small') { font-size: 30vw; }
-}
-
 .horizontal_container {
     height: 100%;
     display: flex;
-    // animation: moveSlideshow 15s linear infinite;
 
     div {
         position: relative;
 
         @include media('small') {
             padding-right: 5px;
-        }
-    }
-}
-
-.first_image_container {
-    padding-left: 35vw;
-
-    @include media('small') {
-        padding: 0;
-    }
-}
-
-.image_item {
-    padding: 0 5px;
-    cursor: url('/cursor/Open.png'), auto;
-
-    @include media('small') {
-        padding: 0;
-    }
-}
-
-.image_item__single_spaced {
-    padding-right: 150px;
-}
-
-.image_item__double_spaced {
-    padding-right: 400px;
-}
-
-.image_item__vertical_variant {
-    width: 470px;
-
-    @include media('small') {
-        width: 102vw;
-    }
-}
-
-.image_item__horizontal_variant {
-    width: 900px;
-
-    @include media('small') {
-        width: 197.3vw;
-    }
-}
-
-.image_container_fullscreen_mode {
-    position: absolute !important;
-    padding: 0;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    z-index: 100;
-
-    img {
-        width: 150%;
-        cursor: url('/cursor/Close.png'), auto;
-    }
-}
-
-.project_info_container {
-    display: flex;
-    flex-direction: column;
-    height: 82%;
-    padding: 10px 40px;
-
-    p {
-        overflow-y: scroll;
-        font-size: 1.8vw;
-        line-height: 1;
-        width: 400px;
-        margin-bottom: 30px;
-    }
-
-    h3 {
-        font-size: 1.5em;
-    }
-
-    @include media('small') {
-        height: 80%;
-        padding: 10px 30px;
-
-        p {
-            font-size: 1.25em;
-            width: 80vw;
-            margin-bottom: 16px;
         }
     }
 }
@@ -182,13 +60,13 @@
     font-size: 1.25em;
 }
 
-.footer_middle {
+.footer__about {
     font-size: 1.25em;
 
     @include media('small') { display: none; }
 }
 
-.footer_middle__mobile {
+.footer__about__mobile {
     display: none;
 
     @include media('small') {
@@ -231,7 +109,7 @@
     }
 }
 
-.footer__project_counter, .footer_middle {
+.footer__project_counter, .footer__about {
     padding-top: 45px;
 
     @include media('small') {

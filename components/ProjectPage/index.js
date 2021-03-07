@@ -84,8 +84,8 @@ export default function ProjectPage({project_items, category}) {
                   category === 'lighting' ? 'B' :
                     'C'
               }</h2>
-          <p className={styles.footer_middle} onClick={()=>router.push('/about')}>About</p>
-          <img className={styles.footer_middle__mobile} onClick={()=>router.push('/about')} src="/cursor/SeeMore.png"/>
+          <p className={styles.footer__about} onClick={()=>router.push('/about')}>About</p>
+          <img className={styles.footer__about__mobile} onClick={()=>router.push('/about')} src="/cursor/SeeMore.png"/>
           <ul className={styles.footer_home__navbar}>
             {
               category === 'architecture' ? 
