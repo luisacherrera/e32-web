@@ -50,16 +50,26 @@ export default function ProjectPage({project_items, category}) {
 
   const [fullScreen, toggleFullscreen] = useState(false)
   const [fullscreenImage, setFullscreenImage] = useState()
+  const [fullscreenLandscape, setFullscreenLandscape] = useState(false)
 
-  const handleFullscreenImage = (image) => {
+  const handleFullscreenImage = (image, size) => {
     document.body.style.overflow = 'unset' 
     setFullscreenImage(image)
+    setFullscreenLandscape(size)
     toggleFullscreen(true)
   }
 
   const handleFullscreenClose = () => {
     document.body.style.overflow = 'hidden'
     toggleFullscreen(false)
+    setFullscreenLandscape(false)
+  }
+
+  const fullScreenRef = useRef(null)
+
+  const handleMouseMove = (e) => {
+    fullScreenRef.current.style.backgroundPositionX = -e.nativeEvent.offsetX + "px"
+    fullScreenRef.current.style.backgroundPositionY = fullscreenLandscape ? -(e.nativeEvent.offsetY*4) + "px" : -(e.nativeEvent.offsetY*1.5) + "px"
   }
 
   return (
@@ -157,10 +167,11 @@ export default function ProjectPage({project_items, category}) {
         }
       </div>
       {
-        fullScreen && isBrowser ? 
-          <div onClick={()=>handleFullscreenClose()} 
-               className={ styles.image_container_fullscreen_mode }>
-            <img src={ fullscreenImage }/>
+        fullScreen ? 
+          <div ref={fullScreenRef}
+               onMouseMove={(e)=>handleMouseMove(e)}
+               onClick={()=>handleFullscreenClose()} 
+               className="fullscreen_image">
           </div>
           : 
           null 
@@ -176,6 +187,19 @@ export default function ProjectPage({project_items, category}) {
         .projects_blocks__container {
           display: flex;
           animation: moveSlideshow ${scrollSpeed}s linear infinite;
+        }
+
+        .fullscreen_image {
+          cursor: url('/cursor/Close.png'), auto;
+          background-image: url(${fullscreenImage});
+          background-size: 200%;
+          background-position: center;
+          position: absolute;
+          z-index: 100;
+          height: 100vh;
+          width: 100vw;
+          top: 0;
+          left: 0;
         }
       `}</style>
     </>

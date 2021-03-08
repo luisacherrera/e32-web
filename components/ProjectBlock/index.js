@@ -22,8 +22,8 @@ export default function ProjectBlock({
 
   const blockRef = useRef(null)
 
-  const handleSetFullscreen = (img) => {
-    showFullscreenImage(img)
+  const handleSetFullscreen = (img, size) => {
+    showFullscreenImage(img, size)
   }
 
   useEffect(()=>{

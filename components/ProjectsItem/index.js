@@ -20,7 +20,7 @@ export default function ProjectsItem({
   }
 
   const setFullscreen = (image) => {
-    onFullscreenMode(image)
+    onFullscreenMode(image, data.isLandscape)
   }
 
   const [ref, inView] = isBrowser ?
