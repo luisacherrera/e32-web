@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
-import styles from './ProjectsItem.module.scss'
-import { useInView } from 'react-intersection-observer'
 import { isBrowser } from 'react-device-detect'
+import { useInView } from 'react-intersection-observer'
+import styles from './ProjectsItem.module.scss'
 
 export default function ProjectsItem({
   item_data,

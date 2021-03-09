@@ -1,0 +1,52 @@
+@import "variables.scss";
+@import "mixins.scss";
+
+.container {
+  position: relative;
+}
+
+.first_image_container {
+  padding-left: 35vw;
+
+  @include media('small') {
+    padding: 0;
+  }
+}
+
+.image_item {
+  padding: 5px;
+}
+
+.image_item__single_spaced {
+  padding-right: 150px;
+
+  @include media('small') {
+    padding-right: 75px;
+  }
+}
+
+.image_item__double_spaced {
+  padding-right: 400px;
+
+  @include media('small') {
+    padding-right: 200px;
+  }
+}
+
+.image_item__vertical_variant {
+  width: 400px;
+
+  @include media('small') {
+    width: 100vw;
+  }
+}
+
+.image_item__horizontal_variant {
+  width: 575px;
+  padding-top: 140px;
+
+  @include media('small') {
+    width: 100vw;
+    padding-top: 210px;
+  }
+}
