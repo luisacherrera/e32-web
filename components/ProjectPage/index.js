@@ -82,13 +82,13 @@ export default function ProjectPage({project_items, category}) {
   useEffect(() => {
     let timer = setInterval(() => {
         setTranslate(translate => {
-            const updatedTranslate = translate + 0.01;
+            const updatedTranslate = translate >= 95 ? 0 : translate < 0 ? 0 : translate + 0.01;
 
             return updatedTranslate;
-        }); // use callback function to set the state
+        });
 
     }, 15);
-    return () => clearInterval(timer); // cleanup the timer
+    return () => clearInterval(timer);
 }, []);
 
   return (
