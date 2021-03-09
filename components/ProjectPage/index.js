@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import styles from './ProjectPage.module.scss'
 import ProjectBlock from '../ProjectBlock'
 import { isBrowser } from 'react-device-detect'
@@ -39,14 +39,19 @@ export default function ProjectPage({project_items, category}) {
   }
 
   const handleWheel = (evt) => {
-    const container = containerRef.current
     evt.deltaY > 0 ? 
-      container.scrollLeft += 500
-      :
-      container.scrollLeft -= 500 
-  }
+      setTranslate(translate=>{
+        const updatedTranslate = translate + 0.1;
 
-  const scrollSpeed = project_items.length*100
+        return updatedTranslate;
+      })
+      :
+      setTranslate(translate=>{
+        const updatedTranslate = translate - 0.1;
+  
+        return updatedTranslate;
+      })  
+  }
 
   const [fullScreen, toggleFullscreen] = useState(false)
   const [fullscreenImage, setFullscreenImage] = useState()
@@ -71,6 +76,20 @@ export default function ProjectPage({project_items, category}) {
     fullScreenRef.current.style.backgroundPositionX = -e.nativeEvent.offsetX + "px"
     fullScreenRef.current.style.backgroundPositionY = fullscreenLandscape ? -(e.nativeEvent.offsetY*4) + "px" : -(e.nativeEvent.offsetY*1.5) + "px"
   }
+
+  const [translate, setTranslate] = useState(0)
+  
+  useEffect(() => {
+    let timer = setInterval(() => {
+        setTranslate(translate => {
+            const updatedTranslate = translate + 0.01;
+
+            return updatedTranslate;
+        }); // use callback function to set the state
+
+    }, 15);
+    return () => clearInterval(timer); // cleanup the timer
+}, []);
 
   return (
     <>
@@ -178,15 +197,9 @@ export default function ProjectPage({project_items, category}) {
       }
 
       <style jsx>{`
-        @keyframes moveSlideshow {
-          100% { 
-            transform: translateX(-95%);  
-          }
-        }
-
         .projects_blocks__container {
           display: flex;
-          animation: moveSlideshow ${scrollSpeed}s linear infinite;
+          transform: translateX(-${translate}%);  
         }
 
         .fullscreen_image {
