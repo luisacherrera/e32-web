@@ -159,11 +159,12 @@ export default function ProjectPage({project_items, category}) {
           navigationMenuVisibility ?
             <div className={styles.projects_navigation_menu}>
               <div className={styles.projects_navigation_menu__image_container}>
-                <img src={project_items[0].data[0].image} alt=""/>
+                <img src={project_items[projectInformation.id - 1].data[0].image} alt=""/>
               </div>
               <ul>
                 { project_items.map((block, i)=>
-                    <li key={i}
+                    <li className={ projectInformation.id - 1 === i ? `${styles.highlighted__project}` : '' }
+                        key={i}
                         onClick={()=>setElementToCall(i+1)}>
                       { 
                         i < 10 ? 
