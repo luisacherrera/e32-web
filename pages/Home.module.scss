@@ -39,6 +39,8 @@
 .header_logo {
     grid-area: header-logo;
     min-width: 0;
+    padding-top: 4px;
+    margin-left: -11px;
 }
 
 .address_info_container {
@@ -114,6 +116,7 @@
 .block_sign_container {
     grid-area: header-title;
     justify-self: end;
+    padding-top: 3.5px;
 }
 
 .footer_home__address_container {

@@ -20,18 +20,18 @@
 
 .header_logo {
   position: absolute;
-  top: 20px;
-  left: 20px;
+  top: 3px;
+  left: 8px;
 }
 
 .header_logo__page_variant {
   position: absolute;
-  top: 20px;
-  right: 20px;
+  top: 3px;
+  right: 17px;
 }
 
 .header_logo__page_variant__lighting {
-  top: 0;
+  top: -25px;
   font-family: $title-font;
 
   @include media('small') {
@@ -55,7 +55,6 @@
 .title_style {
   font-size: 20vw;
   font-weight: 100;
-  line-height: 0.9;
   
   @include media('medium') { font-size: 25vw; }
   @include media('small') { font-size: 30vw; }
