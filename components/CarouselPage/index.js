@@ -16,8 +16,11 @@ export default function CarouselPage({
                     ? '/building' 
                     : '/architecture'
 
-  const containerLightingVariant = category === 'lighting' ? styles.container_lighting : ''
+
   const containerBuildingVariant = category === 'building' ? styles.container_building : ''
+  const containerLightingVariant = category === 'lighting' ? styles.container_lighting : ''
+  const footerBuildingVariant = category === 'building' ? styles.footer__building_variant : ''
+  const footerLightingVariant = category === 'lighting' ? styles.footer__lighting_variant : ''
   const titleLightingVariant = category === 'lighting' ? styles.header_logo__page_variant__lighting : ''
 
   const handleNewVisibleItem = (item) => {
@@ -89,7 +92,11 @@ export default function CarouselPage({
                 'L'
           }</h1>
         </div>
-        <div className={styles.footer}>
+        <div className={`
+          ${styles.footer}
+          ${footerBuildingVariant}
+          ${footerLightingVariant}
+        `}>
           <div className={styles.footer__address_container}>
             <h3>{ itemInformation.title }</h3>
           </div>
