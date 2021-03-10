@@ -85,6 +85,13 @@
       width: 103vw;
       bottom: 45px;
       padding: 10px;
+      background-color: white;
+  }
+}
+
+.footer__project_title_container {
+  @include media('small') {
+    width: 60vw;
   }
 }
 

@@ -95,7 +95,7 @@ export default function CarouselPage({
           ${footerBuildingVariant}
           ${footerLightingVariant}
         `}>
-          <div className={styles.footer__address_container}>
+          <div className={styles.footer__project_title_container}>
             <h3>{ itemInformation.title }</h3>
           </div>
           <div className={styles.footer__info_container}>
