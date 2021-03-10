@@ -8,7 +8,8 @@ export default function Lighting() {
       location: 'Barcelona',
       expedient: '123ABC',
       imageURL: '/photos/lighting/Destacada_1.png',
-      isLandscape: true
+      isLandscape: true,
+      isLightingVariant: true
     },
     {
       title: 'Paseo de Gracia. Residential Apartments 2',
@@ -16,7 +17,8 @@ export default function Lighting() {
       location: 'Barcelona',
       expedient: '123ABC',
       imageURL: '/photos/lighting/2.jpg',
-      isLandscape: false
+      isLandscape: false,
+      isLightingVariant: false
     },
     {
       title: 'Paseo de Gracia. Residential Apartments 3',
@@ -24,7 +26,8 @@ export default function Lighting() {
       location: 'Barcelona',
       expedient: '123ABC',
       imageURL: '/photos/lighting/3.jpg',
-      isLandscape: true
+      isLandscape: true,
+      isLightingVariant: true
     },
     {
       title: 'Paseo de Gracia. Residential Apartments 4',
@@ -32,7 +35,8 @@ export default function Lighting() {
       location: 'Barcelona',
       expedient: '123ABC',
       imageURL: '/photos/lighting/4.jpg',
-      isLandscape: false
+      isLandscape: false,
+      isLightingVariant: false
     },
     {
       title: 'Paseo de Gracia. Residential Apartments 5',
@@ -40,7 +44,8 @@ export default function Lighting() {
       location: 'Barcelona',
       expedient: '123ABC',
       imageURL: '/photos/lighting/Destacada_2.png',
-      isLandscape: true
+      isLandscape: true,
+      isLightingVariant: true
     }
   ]
   return (

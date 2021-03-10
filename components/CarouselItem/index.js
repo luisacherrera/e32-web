@@ -9,6 +9,7 @@ export default function CarouselItem({
   isDoubleSpaced,
   isFirstElement, 
   isLandscape,
+  isLightingVariant,
   isSingleSpaced,
   item,
   onItemVisible
@@ -23,6 +24,7 @@ export default function CarouselItem({
   const doubleSpaced = isDoubleSpaced ? styles.image_item__double_spaced : ''
   const firstElement = isFirstElement ? styles.first_image_container : ''
   const imageOrientation = isLandscape ? styles.image_item__horizontal_variant : styles.image_item__vertical_variant
+  const lightingVariant = isLightingVariant ? styles.image_item__lighting_variant : ''
   const singleSpaced = isSingleSpaced ? styles.image_item__single_spaced: ''
 
   const handleItemVisibility = () => {
@@ -53,6 +55,7 @@ export default function CarouselItem({
               ${styles.image_item}
               ${imageOrientation}
               ${buildingVariant}
+              ${lightingVariant}
             `} 
              src={item.imageURL}/>
       </div>
