@@ -28,7 +28,6 @@ export default function ProjectBlock({
 
   useEffect(()=>{
     if (canScrollIntoView && callToView === project_id) {
-      console.log('heeey', callToView)
       blockRef.current.scrollIntoView({behavior: "auto", inline: "start"})
     }
   })

@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { isBrowser } from 'react-device-detect';
 import CarouselItem from '../CarouselItem';
 import styles from './CarouselPage.module.scss';
 
@@ -8,6 +9,12 @@ export default function CarouselPage({
   category
 }) {
   const router = useRouter();
+
+  const nextPage = category === 'architecture' 
+                    ? '/lighting' 
+                    : category ==='lighting' 
+                    ? '/building' 
+                    : '/architecture'
 
   const handleNewVisibleItem = (item) => {
     updateItemInformation(item)
@@ -19,6 +26,35 @@ export default function CarouselPage({
     location: carousel_data[0].location,
     expedient: carousel_data[0].expedient
   })
+
+  const handleWheel = (evt) => {
+    evt.deltaY > 0 ? 
+      setTranslate(translate=>{
+        const updatedTranslate = translate + 0.1;
+
+        return updatedTranslate;
+      })
+      :
+      setTranslate(translate=>{
+        const updatedTranslate = translate - 0.1;
+  
+        return updatedTranslate;
+      })  
+  }
+
+  const [translate, setTranslate] = useState(0)
+  
+  useEffect(() => {
+    let timer = setInterval(() => {
+        setTranslate(translate => {
+            const updatedTranslate = translate >= 85 ? router.push(nextPage) : translate < 0 ? 0 : translate + 0.01;
+
+            return updatedTranslate;
+        });
+
+    }, 15);
+    return () => clearInterval(timer);
+  }, []);
 
   return (
     <>
@@ -67,7 +103,8 @@ export default function CarouselPage({
             }
           </ul>
         </div>
-        <div className={styles.horizontal_container}>
+        <div className={`${styles.horizontal_container} animation__container`}
+             onWheel={(e)=>isBrowser && handleWheel(e)}>
             {
               carousel_data.map((data, i)=>
                 <CarouselItem
@@ -88,6 +125,12 @@ export default function CarouselPage({
         <h2 className={styles.footer_about__mobile_claim}>See more</h2>
         <img onClick={()=>router.push('/about')} src="/cursor/SeeMore.png"/>
       </div>
+
+      <style jsx>{`
+        .animation__container {
+          transform: translateX(-${translate}%);  
+        }
+      `}</style>
     </>
   )
 }

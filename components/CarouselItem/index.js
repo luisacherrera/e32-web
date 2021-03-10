@@ -15,7 +15,7 @@ export default function CarouselItem({
   const router = useRouter();
 
   const [imageRef, inView] = useInView({
-    threshold: 0.8,
+    threshold: 0.85,
   })
 
   const firstElement = isFirstElement ? styles.first_image_container : ''

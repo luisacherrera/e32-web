@@ -2,13 +2,16 @@
 @import "mixins.scss";
 
 .container {
-  padding-top: 80px;
-  padding-bottom: 20px;
+  display: flex;
   height: 100vh;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
 
   @include media('small') {
-      padding-top: 30px;
-      padding-bottom: 0;
+      width: 102vw;
+      height: 102vh;
   }
 }
 
@@ -47,13 +50,8 @@ right: 20px;
 }
 
 .horizontal_container {
-  height: 75vh;
-  padding-top: 25px;
   display: flex;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
+  margin-top: 15vh;
 }
 
 .footer {
