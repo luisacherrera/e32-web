@@ -1,5 +1,6 @@
 import styles from './About.module.scss'
 import { useRouter } from 'next/router'
+import { useEffect } from 'react';
 
 export default function About() {
   const currentBlock = {
@@ -8,6 +9,10 @@ export default function About() {
   }
 
   const router = useRouter();
+
+  useEffect(()=>{
+    document.body.style.overflow = 'scroll';
+  }, [])
 
   return (
     <>
