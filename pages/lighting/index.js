@@ -27,7 +27,7 @@ export default function Lighting() {
       expedient: '123ABC',
       imageURL: '/photos/lighting/3.jpg',
       isLandscape: true,
-      isLightingVariant: true
+      isLightingVariant: false
     },
     {
       title: 'Paseo de Gracia. Residential Apartments 4',
