@@ -11,7 +11,7 @@
 
   @include media('small') {
       width: 103vw;
-      height: 103vh;
+      height: 90vh;
   }
 }
 
@@ -38,6 +38,10 @@
 .header_logo__page_variant__lighting {
   top: 0;
   font-family: $title-font;
+
+  @include media('small') {
+    top: 10px;
+  }
 }
 
 .address_info_container {
