@@ -10,8 +10,8 @@
     -webkit-overflow-scrolling: touch;
 
     @include media('small') {
-        width: 102vw;
-        height: 102vh;
+        width: 100vw;
+        height: 100vh;
     }
 }
 
