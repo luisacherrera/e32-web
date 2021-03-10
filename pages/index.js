@@ -59,7 +59,7 @@ export default function Home() {
         </div>
         <h3 className={styles.footer_home__address_container}>
             Tlf: 938 326 741 <br/>
-            info@e32.studio
+            <a href="mailto:info@e32.studio?subject=Request information">info@e32.studio</a>
           </h3>
         <p className={styles.footer_middle} onClick={()=>router.push('/about')}>About</p>
         <ul className={styles.footer_home__navbar}>

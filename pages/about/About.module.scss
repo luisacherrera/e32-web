@@ -69,6 +69,10 @@
         grid-area: header-title;
         justify-self: end;
         font-size: 3vw;
+
+        p {
+            cursor: pointer;
+        }
     }
 
     @include media('medium') { 

@@ -1,6 +1,6 @@
 import styles from './About.module.scss'
 import { useRouter } from 'next/router'
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
 export default function About() {
   const currentBlock = {
@@ -9,6 +9,12 @@ export default function About() {
   }
 
   const router = useRouter();
+
+  const contactForm = useRef(null);
+
+  const bringFormIntoView = () => {
+    contactForm.current.scrollIntoView();
+  }
 
   useEffect(()=>{
     document.body.style.overflow = 'scroll';
@@ -38,9 +44,9 @@ export default function About() {
         <div className={styles.footer}>
           <h3 className={styles.footer_home__address_container}>
             Tlf: 938 326 741 <br/>
-            info@e32.studio
+            <a href="mailto:info@e32.studio?subject=Request information">info@e32.studio</a>
           </h3>
-          <p className={styles.footer_middle}>Email us!</p>
+          <p className={styles.footer_middle} onClick={()=>bringFormIntoView()}>Email us!</p>
           <p className={styles.footer_middle}>
             <a href="https://www.instagram.com/e32studio/">IG</a>
           </p>
@@ -72,7 +78,7 @@ export default function About() {
             </div>
             <div className={styles.layout_helper_1}>
               <h2 className={styles.headline_text}>Email us!</h2>
-              <div className={styles.contact_form}>
+              <div ref={contactForm} className={styles.contact_form}>
                 <div className={styles.contact_form_input}>
                   <p>Your Email:</p><input type="text"/>
                 </div>
