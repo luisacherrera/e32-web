@@ -16,6 +16,10 @@ export default function CarouselPage({
                     ? '/building' 
                     : '/architecture'
 
+  const containerLightingVariant = category === 'lighting' ? styles.container_lighting : ''
+  const containerBuildingVariant = category === 'building' ? styles.container_building : ''
+  const titleLightingVariant = category === 'lighting' ? styles.header_logo__page_variant__lighting : ''
+
   const handleNewVisibleItem = (item) => {
     updateItemInformation(item)
   }
@@ -58,7 +62,11 @@ export default function CarouselPage({
 
   return (
     <>
-      <div className={styles.container}>
+      <div className={`
+        ${styles.container}
+        ${containerLightingVariant}
+        ${containerBuildingVariant}
+        `}>
         <div className={styles.header_logo}>
           <h1 className={styles.title_style} onClick={()=>router.push('/')}>E32</h1>
         </div>
@@ -69,7 +77,10 @@ export default function CarouselPage({
             Barcelona
           </address>
         </div>
-        <div className={styles.header_logo__page_variant}>
+        <div className={`
+          ${styles.header_logo__page_variant}
+          ${titleLightingVariant}
+          `}>
           <h1 className={
             category === 'lighting' ? `${styles.title_style__lighting}` : `${styles.title_style}`
           }>{
@@ -110,6 +121,7 @@ export default function CarouselPage({
                 <CarouselItem
                   key={i}
                   category={category}
+                  isBuildingVariant={i === 2 && category === 'building'}
                   isDoubleSpaced={i === 1 || i === 6}
                   isFirstElement={i === 0}
                   isLandscape={data.isLandscape}

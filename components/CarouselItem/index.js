@@ -4,7 +4,8 @@ import { useInView } from 'react-intersection-observer';
 import styles from './CarouselItem.module.scss';
 
 export default function CarouselItem({
-  category, 
+  category,
+  isBuildingVariant, 
   isDoubleSpaced,
   isFirstElement, 
   isLandscape,
@@ -18,10 +19,11 @@ export default function CarouselItem({
     threshold: 0.85,
   })
 
-  const firstElement = isFirstElement ? styles.first_image_container : ''
+  const buildingVariant = isBuildingVariant ? styles.image_item__building_variant : ''
   const doubleSpaced = isDoubleSpaced ? styles.image_item__double_spaced : ''
-  const singleSpaced = isSingleSpaced ? styles.image_item__single_spaced: ''
+  const firstElement = isFirstElement ? styles.first_image_container : ''
   const imageOrientation = isLandscape ? styles.image_item__horizontal_variant : styles.image_item__vertical_variant
+  const singleSpaced = isSingleSpaced ? styles.image_item__single_spaced: ''
 
   const handleItemVisibility = () => {
     onItemVisible({
@@ -50,6 +52,7 @@ export default function CarouselItem({
         <img className={`
               ${styles.image_item}
               ${imageOrientation}
+              ${buildingVariant}
             `} 
              src={item.imageURL}/>
       </div>

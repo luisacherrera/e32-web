@@ -15,6 +15,14 @@
   }
 }
 
+.container_building {
+  background-color: $building-page-color;
+}
+
+.container_lighting {
+  background-color: $lighting-page-color;
+}
+
 .header_logo {
   position: absolute;
   top: 20px;
@@ -22,9 +30,14 @@
 }
 
 .header_logo__page_variant {
-position: absolute;
-top: 20px;
-right: 20px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.header_logo__page_variant__lighting {
+  top: 0;
+  font-family: $title-font;
 }
 
 .address_info_container {
