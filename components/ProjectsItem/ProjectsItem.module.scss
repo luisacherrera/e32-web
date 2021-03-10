@@ -20,7 +20,6 @@
 
 .image_item__vertical_variant {
   width: 35vw;
-  max-width: 520px;
 
   @include media('small') {
     width: 102vw;
@@ -29,7 +28,6 @@
 
 .image_item__horizontal_variant {
   width: 67vw;
-  max-width: 995px;
 
   @include media('small') {
     width: 197.3vw;

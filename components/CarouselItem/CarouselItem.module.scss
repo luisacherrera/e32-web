@@ -34,7 +34,7 @@
 }
 
 .image_item__vertical_variant {
-  width: 400px;
+  width: 27.85vw;
 
   @include media('small') {
     width: 90vw;
@@ -42,8 +42,8 @@
 }
 
 .image_item__horizontal_variant {
-  width: 575px;
-  padding-top: 140px;
+  width: 40.15vw;
+  padding-top: 9.75vw;
 
   @include media('small') {
     width: 99vw;
