@@ -8,11 +8,6 @@
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
-
-    @include media('small') {
-        width: 100vw;
-        height: 100vh;
-    }
 }
 
 .footer {
@@ -27,10 +22,10 @@
     background-color: white;
 
     @include media('small') {
-        bottom: -10px;
+        bottom: 0;
         padding: 10px 10px 0;
         border-top: 1px solid black;
-        width: 102%;
+        width: 100;
         height: 65px;
     }
 }
@@ -123,8 +118,8 @@
 .projects_navigation_menu {
     position: absolute;
     background-color: white;
-    width: 102%;
-    height: 102%;
+    width: 100%;
+    height: 100%;
     display: flex;
     justify-content: center;
 

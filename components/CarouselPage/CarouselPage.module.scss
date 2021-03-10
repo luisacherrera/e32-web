@@ -8,11 +8,6 @@
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
-
-  @include media('small') {
-      width: 100vw;
-      height: 100vh;
-  }
 }
 
 .container_building {
@@ -86,10 +81,9 @@
   padding: 20px;
 
   @include media('small') {
-      width: 103vw;
-      bottom: 45px;
-      padding: 10px;
-      background-color: white;
+    bottom: 65px;
+    padding: 10px;
+    background-color: white;
   }
 }
 
@@ -130,10 +124,10 @@
 
   @include media('small') {    
       position: absolute;
-      bottom: -20px;
+      bottom: 0;
       display: flex;
       justify-content: space-between;
-      width: 103vw;
+      width: 100vw;
       height: 65px;
       padding: 10px;
       border-top: 1px solid black;
