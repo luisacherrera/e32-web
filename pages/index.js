@@ -1,7 +1,6 @@
-import Footer from '../components/Footer'
 import Image from 'next/image'
 import styles from './Home.module.scss'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useRouter } from 'next/router'
 
 export default function Home() {
@@ -25,17 +24,6 @@ export default function Home() {
   const setBlock = (block) => {
     updateBlock(blocks[block])
   }
-
-  useEffect(()=>{
-    const navigateOnScroll = () => {
-      router.push('/architecture')
-    }
-    window.addEventListener('mousewheel', navigateOnScroll)
-
-    return ()=>{
-      window.removeEventListener('mousewheel', navigateOnScroll)
-    }
-  }, [])
 
   const router = useRouter()
 
