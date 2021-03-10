@@ -28,6 +28,11 @@
   position: absolute;
   top: 3px;
   right: 17px;
+
+  @include media('small') {
+    top: 4px;
+    right: 14px;
+  }
 }
 
 .header_logo__page_variant__lighting {
@@ -35,7 +40,7 @@
   font-family: $title-font;
 
   @include media('small') {
-    top: 10px;
+    top: -13px;
   }
 }
 
