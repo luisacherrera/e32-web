@@ -37,7 +37,7 @@
   width: 400px;
 
   @include media('small') {
-    width: 100vw;
+    width: 90vw;
   }
 }
 
@@ -46,8 +46,8 @@
   padding-top: 140px;
 
   @include media('small') {
-    width: 100vw;
-    padding-top: 210px;
+    width: 99vw;
+    padding-top: 200px;
   }
 }
 
@@ -58,4 +58,8 @@
 
 .image_item__lighting_variant {
   padding-top: 100px;
+
+  @include media('small') {
+    padding-top: 160px;
+  }
 }

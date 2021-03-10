@@ -80,7 +80,7 @@ export default function ProjectPage({project_items, category}) {
   const [translate, setTranslate] = useState(0)
   
   useEffect(() => {
-    let timer = setInterval(() => {
+    let timer = isBrowser && setInterval(() => {
         setTranslate(translate => {
             const updatedTranslate = translate >= 95 ? 0 : translate < 0 ? 0 : translate + 0.01;
 

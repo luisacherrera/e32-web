@@ -10,8 +10,8 @@
   -webkit-overflow-scrolling: touch;
 
   @include media('small') {
-      width: 102vw;
-      height: 102vh;
+      width: 103vw;
+      height: 103vh;
   }
 }
 
@@ -65,6 +65,10 @@
 .horizontal_container {
   display: flex;
   margin-top: 15vh;
+
+  @include media('small') {
+    margin-top: 55px;
+  }
 }
 
 .footer {
@@ -78,7 +82,8 @@
   padding: 20px;
 
   @include media('small') {
-      bottom: 70px;
+      width: 103vw;
+      bottom: 45px;
       padding: 10px;
   }
 }
@@ -114,10 +119,10 @@
 
   @include media('small') {    
       position: absolute;
-      bottom: 0;
+      bottom: -20px;
       display: flex;
       justify-content: space-between;
-      width: 100vw;
+      width: 103vw;
       height: 65px;
       padding: 10px;
       border-top: 1px solid black;

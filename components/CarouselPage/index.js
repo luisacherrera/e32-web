@@ -52,7 +52,7 @@ export default function CarouselPage({
   const [translate, setTranslate] = useState(0)
   
   useEffect(() => {
-    let timer = setInterval(() => {
+    let timer = isBrowser && setInterval(() => {
         setTranslate(translate => {
             const updatedTranslate = translate >= 85 ? router.push(nextPage) : translate < 0 ? 0 : translate + 0.01;
 
@@ -139,7 +139,11 @@ export default function CarouselPage({
             }
         </div>
       </div>
-      <div className={styles.footer_about__mobile} onClick={()=>router.push('/about')}>
+      <div className={`
+        ${styles.footer_about__mobile}
+        ${footerBuildingVariant}
+        ${footerLightingVariant}
+      `} onClick={()=>router.push('/about')}>
         <h2 className={styles.footer_about__mobile_claim}>See more</h2>
         <img onClick={()=>router.push('/about')} src="/cursor/SeeMore.png"/>
       </div>
