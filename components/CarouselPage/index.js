@@ -84,9 +84,7 @@ export default function CarouselPage({
           ${styles.header_logo__page_variant}
           ${titleLightingVariant}
           `}>
-          <h1 className={
-            category === 'lighting' ? `${styles.title_style__lighting}` : `${styles.title_style}`
-          }>{
+          <h1 className={styles.title_style}>{
             category === 'architecture' ? 'A' :
               category === 'building' ? 'B' : 
                 'L'
