@@ -50,11 +50,13 @@ export default function CarouselPage({
   }
 
   const [translate, setTranslate] = useState(0)
+
+  const carouselSpeed = 0.15 / carousel_data.length
   
   useEffect(() => {
     let timer = isBrowser && setInterval(() => {
         setTranslate(translate => {
-            const updatedTranslate = translate >= 85 ? router.push(nextPage) : translate < 0 ? 0 : translate + 0.01;
+            const updatedTranslate = translate >= 85 ? router.push(nextPage) : translate < 0 ? 0 : translate + carouselSpeed;
 
             return updatedTranslate;
         });
