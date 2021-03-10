@@ -57,11 +57,10 @@ export default function Home() {
         <div className={styles.block_sign_container}>
           <h2 className={currentBlock.title === "L" ? `${styles.title_style} ${styles.title_style_lighting}`: styles.title_style}>{currentBlock.title}</h2>
         </div>
-        <address className={styles.footer_home__address_container}>
-          Nº02 C/Energía, 32 Planta 1<br/>
-          08940 Cornellà de Llobregat<br/>
-          Barcelona
-        </address>
+        <h3 className={styles.footer_home__address_container}>
+            Tlf: 938 326 741 <br/>
+            info@e32.studio
+          </h3>
         <p className={styles.footer_middle} onClick={()=>router.push('/about')}>About</p>
         <ul className={styles.footer_home__navbar}>
           <li onClick={()=>router.push('/architecture')} onMouseLeave={()=>setBlock("architecture")} onMouseEnter={()=>setBlock("architecture")}>Architecture</li>
