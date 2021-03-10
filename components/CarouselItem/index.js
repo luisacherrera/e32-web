@@ -44,20 +44,21 @@ export default function CarouselItem({
 
   return (
     <>
-      <div ref={imageRef} onClick={()=>router.push(`/${category}/projects`)} 
-           className={`
+      <div className={`
             ${styles.container}
             ${firstElement}
             ${doubleSpaced}
             ${singleSpaced}
            `}>
-        <img className={`
+        <img onClick={()=>router.push(`/${category}/projects`)}
+             className={`
               ${styles.image_item}
               ${imageOrientation}
               ${buildingVariant}
               ${lightingVariant}
-            `} 
-             src={item.imageURL}/>
+             `} 
+             src={item.imageURL}
+             ref={imageRef}/>
       </div>
     </>
   )
