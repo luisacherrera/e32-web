@@ -8,7 +8,7 @@
   src: url('../public/fonts/Mazius-Italic.otf');
 }
 
-body {
+body, textarea {
   font-family: $body-font;
 }
 
