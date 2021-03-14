@@ -1,6 +1,6 @@
 import styles from './About.module.scss'
 import { useRouter } from 'next/router'
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 export default function About() {
   const currentBlock = {
@@ -15,6 +15,8 @@ export default function About() {
   const bringFormIntoView = () => {
     contactForm.current.scrollIntoView();
   }
+
+  const [inputFocus, setInputFocus] = useState(false);
 
   useEffect(()=>{
     document.body.style.overflow = 'scroll';
@@ -86,7 +88,20 @@ export default function About() {
                   <p>Subject:</p><input type="text"/>
                 </div>
                 <div className={styles.contact_form_input}>
-                  <p>Your text here...</p><textarea cols="30" rows="15"></textarea>
+                  {
+                    !inputFocus
+                      ? <p>Your text here...</p>
+                      : null
+                  }
+                  <textarea onBlur={()=>setInputFocus(false)} 
+                            onFocus={()=>setInputFocus(true)} 
+                            cols="30" 
+                            rows="15"></textarea>
+                  {
+                    !!inputFocus
+                      ? <button>Send!</button>
+                      : null
+                  }
                 </div>
               </div>
             </div>
