@@ -19,7 +19,11 @@
 }
 
 .image_item__vertical_variant {
-  width: 35vw;
+  width: 60vh;
+
+  @media all and (min-height: 700px) {
+    width: 63vh;
+  }
 
   @include media('small') {
     width: 102vw;
@@ -27,7 +31,11 @@
 }
 
 .image_item__horizontal_variant {
-  width: 67vw;
+  width: 114.5vh;
+  
+  @media all and (min-height: 700px) {
+    width: 120.65vh;
+  }
 
   @include media('small') {
     width: 197.3vw;
@@ -42,7 +50,7 @@
 
   p {
       overflow-y: scroll;
-      font-size: 1.8vw;
+      font-size: 1.5em;
       line-height: 1;
       width: 400px;
       margin-bottom: 30px;

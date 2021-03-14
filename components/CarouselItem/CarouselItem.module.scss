@@ -14,7 +14,7 @@
 }
 
 .image_item {
-  padding: 5px;
+  padding: 0 5px;
 }
 
 .image_item__single_spaced {
@@ -34,7 +34,7 @@
 }
 
 .image_item__vertical_variant {
-  width: 27.85vw;
+  width: 52.8vh;
 
   @include media('small') {
     width: 90vw;
@@ -42,8 +42,8 @@
 }
 
 .image_item__horizontal_variant {
-  width: 40.15vw;
-  padding-top: 9.75vw;
+  width: 80vh;
+  padding-top: 15vh;
 
   @include media('small') {
     width: 99vw;
@@ -57,7 +57,7 @@
 }
 
 .image_item__lighting_variant {
-  padding-top: 100px;
+  padding-top: 8vh;
 
   @include media('small') {
     padding-top: 160px;
