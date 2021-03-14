@@ -86,6 +86,8 @@
     padding: 10px 10px 0;
 
     img {
+        width: 57.5vh;
+
         @include media('small') { object-fit: cover; }
     }
 
@@ -110,6 +112,10 @@
     &building_variant {
         border-top-left-radius: 250px;
         border-top-right-radius: 250px;
+    }
+
+    &lighting_variant {
+        width: 65vh !important;
     }
 }
 

@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import styles from './Home.module.scss'
 import { useState } from 'react'
 import { useRouter } from 'next/router'
@@ -35,7 +34,7 @@ export default function Home() {
         </div>
         <p className={styles.intro_text}>E32 is a trans-disciplinary studio that strives to enhance integrated projects with a "Human centric" approach.</p>
         <div className={styles.image_container}>
-          <Image onClick={()=>router.push('/architecture')} className={currentBlock.title === "L" ? styles.image__lighting_variant : (currentBlock.title === "B" ? styles.image__building_variant : "")} src={currentBlock.image} width={1920} height={2670} layout="responsive" />
+          <img onClick={()=>router.push('/architecture')} className={currentBlock.title === "L" ? styles.image__lighting_variant : (currentBlock.title === "B" ? styles.image__building_variant : "")} src={currentBlock.image}/>
         </div>
         <address className={styles.address_info_container}>
           Nº02 C/Energía, 32 Planta 1<br/>
