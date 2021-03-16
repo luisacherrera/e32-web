@@ -21,8 +21,9 @@ export default function ArchitectureProjects() {
           year: "2015",
           location: "Barcelona",
           expedient: "123ABC",
-          image: "/photos/pdg/PDG_2.jpg",
-          orientation: "portrait"
+          image: "/photos/pdg/PDG_large_size.jpg",
+          orientation: "portrait",
+          extraLandscape: true
         },
         {
           imageId: 13,

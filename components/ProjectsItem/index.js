@@ -16,8 +16,12 @@ export default function ProjectsItem({
     expedient: item_data.expedient,
     imageUrl: item_data.image,
     isLandscape: item_data.orientation === "landscape",
-    text: item_data.text ? item_data.text : false
+    isExtraLandscape: item_data.extraLandscape ? true : false,
+    text: item_data.text ? item_data.text : false,
   }
+
+  const landscapeImage = data.isLandscape? styles.image_item__vertical_variant : styles.image_item__horizontal_variant
+  const extraLargeImage = data.isExtraLandscape ? styles.image_item__extra_variant : ''
 
   const setFullscreen = (image) => {
     onFullscreenMode(image, data.isLandscape)
@@ -52,7 +56,7 @@ export default function ProjectsItem({
       <div ref={ref} className={ styles.item_container }
         onClick={()=>isBrowser && setFullscreen(data.imageUrl)}>
         <img
-          className={ data.isLandscape ? `${ styles.image_item } ${ styles.image_item__vertical_variant }` : `${ styles.image_item } ${ styles.image_item__horizontal_variant }`} 
+          className={ `${ styles.image_item } ${landscapeImage} ${extraLargeImage}` } 
           src={ data.imageUrl } />
       </div>
       {
