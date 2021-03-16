@@ -7,10 +7,18 @@ import { isBrowser } from 'react-device-detect'
 export default function ProjectPage({project_items, category}) {
   const router = useRouter()
 
-  const handleNewItemInformation = (information) => {
-    updateProjectInformation(information)
-  }
+  // refs
 
+  const containerRef = useRef(null)
+  const fullScreenRef = useRef(null)
+
+  // states
+
+  const [fullScreen, toggleFullscreen] = useState(false)
+  const [fullscreenImage, setFullscreenImage] = useState()
+  const [fullscreenLandscape, setFullscreenLandscape] = useState(false)
+  const [hasBeenCalled, setCallStatus] = useState(true)
+  const [navigationMenuVisibility, toggleNavigationMenuVisibility] = useState(false)
   const [projectInformation, updateProjectInformation] = useState({
     title: project_items[0].data[0].title,
     year: project_items[0].data[0].year,
@@ -18,24 +26,15 @@ export default function ProjectPage({project_items, category}) {
     expedient: project_items[0].data[0].expedient,
     id: 1
   })
-
-  const containerRef = useRef(null)
-
   const [selectedElement, setSelectedElement] = useState(0)
+  const [translate, setTranslate] = useState(0)
 
-  const [hasBeenCalled, setCallStatus] = useState(true)
+  //DOM events handlers
 
-  const [navigationMenuVisibility, toggleNavigationMenuVisibility] = useState(false)
-
-  const setElementToCall = (el) => {
-    if (!hasBeenCalled) {
-      setCallStatus(true)
-    }
-    toggleNavigationMenuVisibility(false)
-    setSelectedElement(el)
-    setTimeout(()=>{
-      setCallStatus(false)
-    }, 1000)
+  const handleFullscreenClose = () => {
+    document.body.style.overflow = 'hidden'
+    toggleFullscreen(false)
+    setFullscreenLandscape(false)
   }
 
   const handleWheel = (evt) => {
@@ -53,9 +52,23 @@ export default function ProjectPage({project_items, category}) {
       })  
   }
 
-  const [fullScreen, toggleFullscreen] = useState(false)
-  const [fullscreenImage, setFullscreenImage] = useState()
-  const [fullscreenLandscape, setFullscreenLandscape] = useState(false)
+  const handleMouseMove = (e) => {
+    fullScreenRef.current.style.backgroundPositionX = -e.nativeEvent.offsetX + "px"
+    fullScreenRef.current.style.backgroundPositionY = fullscreenLandscape ? -(e.nativeEvent.offsetY*4) + "px" : -(e.nativeEvent.offsetY*1.5) + "px"
+  }
+
+  const setElementToCall = (el) => {
+    if (!hasBeenCalled) {
+      setCallStatus(true)
+    }
+    toggleNavigationMenuVisibility(false)
+    setSelectedElement(el)
+    setTimeout(()=>{
+      setCallStatus(false)
+    }, 1000)
+  }
+
+  // prop functions handlers
 
   const handleFullscreenImage = (image, size) => {
     document.body.style.overflow = 'unset' 
@@ -64,20 +77,11 @@ export default function ProjectPage({project_items, category}) {
     toggleFullscreen(true)
   }
 
-  const handleFullscreenClose = () => {
-    document.body.style.overflow = 'hidden'
-    toggleFullscreen(false)
-    setFullscreenLandscape(false)
+  const handleNewItemInformation = (information) => {
+    updateProjectInformation(information)
   }
 
-  const fullScreenRef = useRef(null)
-
-  const handleMouseMove = (e) => {
-    fullScreenRef.current.style.backgroundPositionX = -e.nativeEvent.offsetX + "px"
-    fullScreenRef.current.style.backgroundPositionY = fullscreenLandscape ? -(e.nativeEvent.offsetY*4) + "px" : -(e.nativeEvent.offsetY*1.5) + "px"
-  }
-
-  const [translate, setTranslate] = useState(0)
+  // on page load actions
   
   useEffect(() => {
     let timer = isBrowser && setInterval(() => {
