@@ -95,6 +95,10 @@
 .footer__project_title_container {
   @include media('small') {
     width: 60vw;
+
+    h3 {
+      font-size: 1em;
+    }
   }
 }
 
