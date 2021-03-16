@@ -154,6 +154,11 @@
         .highlighted__project {
             text-decoration: underline;
         }
+
+        @include media('small') {
+            width: 100%;
+            padding: 0;
+        }
     }
 }
 
