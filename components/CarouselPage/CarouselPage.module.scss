@@ -86,6 +86,7 @@
   background-color: white;
 
   @include media('small') {
+    position: fixed;
     bottom: 65px;
     padding: 10px;
   }
@@ -127,7 +128,7 @@
   display: none;
 
   @include media('small') {    
-      position: absolute;
+      position: fixed;
       bottom: 0;
       display: flex;
       justify-content: space-between;
