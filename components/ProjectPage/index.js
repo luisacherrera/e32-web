@@ -101,7 +101,11 @@ export default function ProjectPage({project_items, category}) {
         <div className={styles.footer}>
           <div className={styles.footer__project_data}>
             <div className={styles.footer__project_data__title_container}>
-              <h3>{projectInformation.title}</h3>
+              {
+                navigationMenuVisibility 
+                  ? <h3>See all <br/>{category[0].toUpperCase() + category.slice(1).toLowerCase()} Projects</h3>
+                  : <h3>{projectInformation.title}</h3>
+              }
             </div>
             <div className={styles.footer__project_data__info_container}>
               <h3>Year: {projectInformation.year}</h3>
