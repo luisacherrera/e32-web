@@ -268,14 +268,14 @@
     &_home__address_container {
         grid-area: footer-left;
         align-self: end;
-        font-size: 1.9vw;
+        font-size: 2em;
     }
 
     &_middle {
         grid-area: footer-middle;
         align-self: end;
         justify-self: end;
-        font-size: 1.5vw;
+        font-size: 1.25em;
 
         &:first-of-type { justify-self: initial; }
     }
@@ -285,7 +285,7 @@
         display: flex;
         justify-content: flex-end;
         align-items: flex-end;
-        font-size: 1.5vw;
+        font-size: 1.25em;
         text-decoration: line-through;
 
         li:not(:last-of-type) { margin-right: 10px; }
