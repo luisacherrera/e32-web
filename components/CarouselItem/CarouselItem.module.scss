@@ -37,7 +37,7 @@
   width: 52.8vh;
 
   @include media('small') {
-    width: 90vw;
+    width: 52vh;
   }
 }
 
@@ -46,8 +46,8 @@
   padding-top: 15vh;
 
   @include media('small') {
-    width: 99vw;
-    padding-top: 200px;
+    width: 85vh;
+    padding-top: 10vh;
   }
 }
 
@@ -60,6 +60,7 @@
   padding-top: 8vh;
 
   @include media('small') {
-    padding-top: 160px;
+    padding-top: 10vh;
+    width: 75vh;
   }
 }

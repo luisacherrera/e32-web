@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
+import { isBrowser } from 'react-device-detect';
 import { useInView } from 'react-intersection-observer';
 import styles from './CarouselItem.module.scss';
 
@@ -16,8 +17,13 @@ export default function CarouselItem({
 }) {
   const router = useRouter();
 
-  const [imageRef, inView] = useInView({
-    threshold: 0.85,
+  const [imageRef, inView] = isBrowser ?
+  useInView({
+    threshold: 1
+  })
+  :
+  useInView({
+    threshold: 0.5
   })
 
   const buildingVariant = isBuildingVariant ? styles.image_item__building_variant : ''

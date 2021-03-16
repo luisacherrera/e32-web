@@ -26,7 +26,7 @@
   }
 
   @include media('small') {
-    width: 102vw;
+    width: 56vh;
   }
 }
 
@@ -38,12 +38,16 @@
   }
 
   @include media('small') {
-    width: 197.3vw;
+    width: 108.15vh;
   }
 }
 
 .image_item__extra_variant {
   width: 240vh;
+
+  @include media('small') {
+    width: 217vh;
+  }
 }
 
 .project_info_container {
