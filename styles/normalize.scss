@@ -10,11 +10,6 @@ body {
 
 body {
   overflow: hidden;
-
-  @media only screen and (max-width: 768px) {
-    height: 110vh;
-    overflow: auto;
-  }
 }
 
 a {
