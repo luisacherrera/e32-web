@@ -1,6 +1,7 @@
-import styles from './Home.module.scss'
-import { useState } from 'react'
 import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
+import { isBrowser } from 'react-device-detect'
+import styles from './Home.module.scss'
 
 export default function Home() {
   const blocks = {
@@ -25,6 +26,12 @@ export default function Home() {
   }
 
   const router = useRouter()
+
+  useEffect(()=>{
+    if (!isBrowser) {
+      router.push('/architecture')
+    }
+  },[])
 
   return (
     <>
