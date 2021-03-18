@@ -3,7 +3,7 @@
 
 .container {
   display: flex;
-  height: 100vh;
+  height: 80vh;
   overflow-x: hidden;
 
   @include media('small') {
@@ -23,6 +23,10 @@
   position: absolute;
   top: 3px;
   left: 8px;
+
+  @include media('small') {
+    position: fixed;
+  }
 }
 
 .header_logo__page_variant {
@@ -31,6 +35,7 @@
   right: 17px;
 
   @include media('small') {
+    position: fixed;
     top: 4px;
     right: 14px;
   }
