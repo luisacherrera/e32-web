@@ -6,14 +6,17 @@ import styles from './Home.module.scss'
 export default function Home() {
   const blocks = {
     architecture: {
+      route: "/architecture",
       title: "A",
       image: "/photos/architecture-main.jpg"
     },
     building: {
+      route: "/building",
       title: "B",
       image: "/photos/building-main.jpg"
     },
     lighting: {
+      route: "/lighting",
       title: "L",
       image: "/photos/lighting-main.png"
     },
@@ -41,7 +44,7 @@ export default function Home() {
         </div>
         <p className={styles.intro_text}>E32 is a trans-disciplinary studio that strives to enhance integrated projects with a "Human centric" approach.</p>
         <div className={styles.image_container}>
-          <img onClick={()=>router.push('/architecture')} className={currentBlock.title === "L" ? styles.image__lighting_variant : (currentBlock.title === "B" ? styles.image__building_variant : "")} src={currentBlock.image}/>
+          <img onClick={()=>router.push(currentBlock.route)} className={currentBlock.title === "L" ? styles.image__lighting_variant : (currentBlock.title === "B" ? styles.image__building_variant : "")} src={currentBlock.image}/>
         </div>
         <address className={styles.address_info_container}>
           Nº02 C/Energía, 32 Planta 1<br/>
@@ -57,9 +60,9 @@ export default function Home() {
           </h3>
         <p className={styles.footer_middle} onClick={()=>router.push('/about')}>About</p>
         <ul className={styles.footer_home__navbar}>
-          <li onClick={()=>router.push('/architecture')} onMouseLeave={()=>setBlock("architecture")} onMouseEnter={()=>setBlock("architecture")}>Architecture</li>
-          <li onClick={()=>router.push('/lighting')} onMouseLeave={()=>setBlock("architecture")} onMouseEnter={()=>setBlock("lighting")}>Lighting</li>
-          <li onClick={()=>router.push('/building')} onMouseLeave={()=>setBlock("architecture")} onMouseEnter={()=>setBlock("building")}>Building</li>
+          <li onClick={()=>router.push('/architecture')} onMouseEnter={()=>setBlock("architecture")}>Architecture</li>
+          <li onClick={()=>router.push('/lighting')} onMouseEnter={()=>setBlock("lighting")}>Lighting</li>
+          <li onClick={()=>router.push('/building')} onMouseEnter={()=>setBlock("building")}>Building</li>
         </ul>
       </div>
       <div className={styles.footer_about__mobile} onClick={()=>router.push('/about')}>
