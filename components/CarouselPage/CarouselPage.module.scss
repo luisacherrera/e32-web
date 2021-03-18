@@ -7,6 +7,7 @@
   overflow-x: hidden;
 
   @include media('small') {
+    height: 125vh;
     overflow-x: auto;
   }
 }
