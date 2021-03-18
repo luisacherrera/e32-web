@@ -1,6 +1,6 @@
-import styles from './About.module.scss'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/router';
 import { useEffect, useRef, useState } from 'react';
+import styles from './About.module.scss';
 
 export default function About() {
   const currentBlock = {

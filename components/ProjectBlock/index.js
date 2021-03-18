@@ -1,6 +1,6 @@
-import styles from './ProjectBlock.module.scss'
-import ProjectsItem from '../ProjectsItem'
 import { useEffect, useRef } from 'react'
+import ProjectsItem from '../ProjectsItem'
+import styles from './ProjectBlock.module.scss'
 
 export default function ProjectBlock({
   callToView,

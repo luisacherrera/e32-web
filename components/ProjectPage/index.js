@@ -1,8 +1,8 @@
 import { useRouter } from 'next/router'
 import { useEffect, useRef, useState } from 'react'
-import styles from './ProjectPage.module.scss'
-import ProjectBlock from '../ProjectBlock'
 import { isBrowser } from 'react-device-detect'
+import ProjectBlock from '../ProjectBlock'
+import styles from './ProjectPage.module.scss'
 
 export default function ProjectPage({project_items, category}) {
   const router = useRouter()
