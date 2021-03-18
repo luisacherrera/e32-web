@@ -3,7 +3,7 @@
 
 .container {
   display: flex;
-  height: 85vh;
+  height: 100vh;
   overflow-x: hidden;
 
   @include media('small') {
