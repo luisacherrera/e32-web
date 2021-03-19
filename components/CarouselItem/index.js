@@ -27,6 +27,8 @@ export default function CarouselItem({
   })
 
   const buildingVariant = isBuildingVariant ? styles.image_item__building_variant : ''
+  const isLandscapeContainer = isLandscape ? styles.container__landscape_variant : ''
+  const isLightingLandscapeContainer = isLightingVariant ? styles.container__landscape_variant__lighting : ''
   const doubleSpaced = isDoubleSpaced ? styles.image_item__double_spaced : ''
   const firstElement = isFirstElement ? styles.first_image_container : ''
   const imageOrientation = isLandscape ? styles.image_item__horizontal_variant : styles.image_item__vertical_variant
@@ -52,8 +54,10 @@ export default function CarouselItem({
     <>
       <div className={`
             ${styles.container}
-            ${firstElement}
             ${doubleSpaced}
+            ${firstElement}
+            ${isLandscapeContainer}
+            ${isLightingLandscapeContainer}
             ${singleSpaced}
            `}>
         <img onClick={()=>router.push(`/${category}/projects`)}
