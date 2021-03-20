@@ -1,53 +1,38 @@
 import CarouselPage from '../../components/CarouselPage'
+import { getSlidersData } from '../../lib/api'
 
-export default function Building() {
-  const data = [
-    {
-      title: 'Paseo de Gracia. Residential Apartments',
-      year: '2015',
-      location: 'Barcelona',
-      expedient: '123ABC',
-      imageURL: '/photos/building/1.jpg',
-      isLandscape: false
-    },
-    {
-      title: 'Paseo de Gracia. Residential Apartments 2',
-      year: '2015',
-      location: 'Barcelona',
-      expedient: '123ABC',
-      imageURL: '/photos/building/2.jpg',
-      isLandscape: true
-    },
-    {
-      title: 'Paseo de Gracia. Residential Apartments 3',
-      year: '2015',
-      location: 'Barcelona',
-      expedient: '123ABC',
-      imageURL: '/photos/building/3.jpg',
-      isLandscape: false
-    },
-    {
-      title: 'Paseo de Gracia. Residential Apartments 4',
-      year: '2015',
-      location: 'Barcelona',
-      expedient: '123ABC',
-      imageURL: '/photos/building/4.jpg',
-      isLandscape: true
-    },
-    {
-      title: 'Paseo de Gracia. Residential Apartments 5',
-      year: '2015',
-      location: 'Barcelona',
-      expedient: '123ABC',
-      imageURL: '/photos/building/5.jpg',
-      isLandscape: true
+export default function Building({data}) {
+  const customFields = data.find((field)=>field.slug === 'building').acf
+
+  const items = Object.keys(customFields).reduce((acc,key)=>{
+    if (customFields[key].image !== false) {
+      acc.push({
+        title: customFields[key].title,
+        year: customFields[key].year,
+        location: customFields[key].location,
+        expedient: customFields[key].expedient_number,
+        imageURL: customFields[key].image.url,
+        isLandscape: customFields[key].image.width > customFields[key].image.height ? true : false
+      })
     }
-  ]
+
+    return acc
+  },[])
 
   return (
     <>
-      <CarouselPage carousel_data={data}
+      <CarouselPage carousel_data={items}
                     category="building"></CarouselPage>
     </>
   )
+}
+
+export async function getStaticProps() {
+  const data = await getSlidersData()
+
+  return {
+    props: {
+      data: data
+    }
+  }
 }

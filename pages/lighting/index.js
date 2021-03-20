@@ -1,57 +1,39 @@
 import CarouselPage from '../../components/CarouselPage'
+import { getSlidersData } from '../../lib/api'
 
-export default function Lighting() {
-  const data = [
-    {
-      title: 'Paseo de Gracia. Residential Apartments',
-      year: '2015',
-      location: 'Barcelona',
-      expedient: '123ABC',
-      imageURL: '/photos/lighting/Destacada_1.png',
-      isLandscape: true,
-      isLightingVariant: true
-    },
-    {
-      title: 'Paseo de Gracia. Residential Apartments 2',
-      year: '2015',
-      location: 'Barcelona',
-      expedient: '123ABC',
-      imageURL: '/photos/lighting/2.jpg',
-      isLandscape: false,
-      isLightingVariant: false
-    },
-    {
-      title: 'Paseo de Gracia. Residential Apartments 3',
-      year: '2015',
-      location: 'Barcelona',
-      expedient: '123ABC',
-      imageURL: '/photos/lighting/3.jpg',
-      isLandscape: true,
-      isLightingVariant: false
-    },
-    {
-      title: 'Paseo de Gracia. Residential Apartments 4',
-      year: '2015',
-      location: 'Barcelona',
-      expedient: '123ABC',
-      imageURL: '/photos/lighting/4.jpg',
-      isLandscape: false,
-      isLightingVariant: false
-    },
-    {
-      title: 'Paseo de Gracia. Residential Apartments 5',
-      year: '2015',
-      location: 'Barcelona',
-      expedient: '123ABC',
-      imageURL: '/photos/lighting/Destacada_2.png',
-      isLandscape: true,
-      isLightingVariant: true
+export default function Lighting({data}) {
+  const customFields = data.find((field)=>field.slug === 'lighting').acf
+
+  const items = Object.keys(customFields).reduce((acc,key)=>{
+    if (customFields[key].image !== false) {
+      acc.push({
+        title: customFields[key].title,
+        year: customFields[key].year,
+        location: customFields[key].location,
+        expedient: customFields[key].expedient_number,
+        imageURL: customFields[key].image.url,
+        isLandscape: customFields[key].image.width > customFields[key].image.height ? true : false,
+        isLightingVariant: customFields[key].image.url.includes('png')
+      })
     }
-  ]
+
+    return acc
+  },[])
+
   return (
     <>
-      <CarouselPage carousel_data={data}
+      <CarouselPage carousel_data={items}
                     category="lighting"></CarouselPage>
     </>
   )
+}
+
+export async function getStaticProps() {
+  const data = await getSlidersData()
+
+  return {
+    props: {
+      data: data
+    }
+  }
 }
