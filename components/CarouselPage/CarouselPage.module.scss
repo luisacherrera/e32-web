@@ -27,6 +27,7 @@
 
   @include media('small') {
     position: fixed;
+    top: 4px;
   }
 }
 

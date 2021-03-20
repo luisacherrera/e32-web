@@ -25,7 +25,7 @@
   padding-left: 35vw;
 
   @include media('small') {
-    padding: 0;
+    padding-left: 0;
 
     img {
       padding-left: 0;

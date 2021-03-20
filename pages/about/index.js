@@ -1,11 +1,14 @@
 import { useRouter } from 'next/router';
 import { useEffect, useRef, useState } from 'react';
+import { getHomeAboutData } from '../../lib/api';
 import styles from './About.module.scss';
 
-export default function About() {
+export default function About({data}) {
+  const customFields = data[0].acf
+
   const currentBlock = {
     title: "A",
-    image: "/photos/architecture-main.jpg"
+    image: customFields.galeria.architecture.url
   }
 
   const router = useRouter();
@@ -68,8 +71,12 @@ export default function About() {
             <div className={styles.layout_helper_0}>
               <h2 className={styles.headline_text}>About</h2>
               <div className={styles.block_sign_container}>
-                <p className={styles.intro_text}>E32 is a trans-disciplinary studio that strives to enhance integrated projects with a "Human centric" approach.</p>
-                <p className={styles.dummy_text}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                <p className={styles.intro_text}>
+                  { customFields.title }
+                </p>
+                <p className={styles.dummy_text}>
+                  { customFields.about_claim }
+                </p>
               </div>
               <div className={styles.image_block}>
                 <img src={currentBlock.image}></img>
@@ -111,4 +118,14 @@ export default function About() {
       </div>
     </>
   )
+}
+
+export async function getStaticProps() {
+  const data = await getHomeAboutData()
+
+  return {
+    props: {
+      data: data
+    }
+  }
 }

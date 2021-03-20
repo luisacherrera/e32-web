@@ -5,21 +5,23 @@ import styles from './Home.module.scss'
 import { getHomeAboutData } from '../lib/api'
 
 export default function Home({data}) {
+  const customFields = data[0].acf
+
   const blocks = {
     architecture: {
       route: "/architecture",
       title: "A",
-      image: "/photos/architecture-main.jpg"
+      image: customFields.galeria.architecture.url
     },
     building: {
       route: "/building",
       title: "B",
-      image: "/photos/building-main.jpg"
+      image: customFields.galeria.building.url
     },
     lighting: {
       route: "/lighting",
       title: "L",
-      image: "/photos/lighting-main.png"
+      image: customFields.galeria.lighting.url
     },
   }
 
@@ -32,10 +34,9 @@ export default function Home({data}) {
   const router = useRouter()
 
   useEffect(()=>{
-    console.log(data)
-    // if (!isBrowser) {
-    //   router.push('/architecture')
-    // }
+    if (!isBrowser) {
+      router.push('/architecture')
+    }
   },[])
 
   return (
@@ -44,7 +45,9 @@ export default function Home({data}) {
         <div className={styles.header_logo}>
           <h1 className={styles.title_style}>E32</h1>
         </div>
-        <p className={styles.intro_text}>E32 is a trans-disciplinary studio that strives to enhance integrated projects with a "Human centric" approach.</p>
+        <p className={styles.intro_text}>
+          { customFields.title }
+        </p>
         <div className={styles.image_container}>
           <img onClick={()=>router.push(currentBlock.route)} className={currentBlock.title === "L" ? styles.image__lighting_variant : (currentBlock.title === "B" ? styles.image__building_variant : "")} src={currentBlock.image}/>
         </div>
