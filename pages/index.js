@@ -2,8 +2,9 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { isBrowser } from 'react-device-detect'
 import styles from './Home.module.scss'
+import { getHomeAboutData } from '../lib/api'
 
-export default function Home() {
+export default function Home({data}) {
   const blocks = {
     architecture: {
       route: "/architecture",
@@ -31,9 +32,10 @@ export default function Home() {
   const router = useRouter()
 
   useEffect(()=>{
-    if (!isBrowser) {
-      router.push('/architecture')
-    }
+    console.log(data)
+    // if (!isBrowser) {
+    //   router.push('/architecture')
+    // }
   },[])
 
   return (
@@ -71,4 +73,14 @@ export default function Home() {
       </div>
     </>
   )
+}
+
+export async function getStaticProps() {
+  const data = await getHomeAboutData()
+
+  return {
+    props: {
+      data: data
+    }
+  }
 }
