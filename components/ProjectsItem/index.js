@@ -15,12 +15,12 @@ export default function ProjectsItem({
     location: item_data.location,
     expedient: item_data.expedient,
     imageUrl: item_data.image,
-    isLandscape: item_data.orientation === "landscape",
+    isLandscape: item_data.isLandscape,
     isExtraLandscape: item_data.extraLandscape ? true : false,
     text: item_data.text ? item_data.text : false,
   }
 
-  const landscapeImage = data.isLandscape? styles.image_item__vertical_variant : styles.image_item__horizontal_variant
+  const landscapeImage = data.isLandscape? styles.image_item__horizontal_variant : styles.image_item__vertical_variant
   const extraLargeImage = data.isExtraLandscape ? styles.image_item__extra_variant : ''
 
   const setFullscreen = (image) => {
