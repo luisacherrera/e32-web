@@ -24,6 +24,15 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+
+    h2 {
+      margin: 0 auto;
+    }
+
+    p {
+      margin: 0 auto;
+      padding: 50px;
+    }
   }
 
   @include media('small') {

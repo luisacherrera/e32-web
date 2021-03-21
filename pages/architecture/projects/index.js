@@ -4,7 +4,7 @@ import { getArchitectureData } from '../../../lib/api'
 export default function ArchitectureProjects({data}) {
   const project_data = [];
 
-  data.forEach((item)=>{
+  data.reverse().forEach((item)=>{
     const customFields = item.acf
 
     const items = Object.keys(customFields).reduce((acc,key)=>{
@@ -16,7 +16,8 @@ export default function ArchitectureProjects({data}) {
           location: customFields[key].location,
           expedient: customFields[key].expedient_number,
           image: customFields[key].image?.url,
-          isLandscape: customFields[key].image?.width > customFields[key].image?.height ? true : false
+          isLandscape: customFields[key].image?.width > customFields[key].image?.height ? true : false,
+          text: customFields[key].text && customFields[key].text
         })
       }
   
@@ -24,7 +25,8 @@ export default function ArchitectureProjects({data}) {
     },[])
 
     const projectInfo = {
-      projectId: item.acf.project_id,
+      projectId: customFields.project_id,
+      projectDescription: customFields.project_description,
       data: items
     }
 
