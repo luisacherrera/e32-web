@@ -149,7 +149,7 @@ export default function ProjectPage({project_items, category}) {
             }
           </ul>
         </div>
-        <div className="projects_blocks__container">
+        <div className={`projects_blocks__container ${styles.projects_blocks__container_mobile}`}>
         {
           project_items.map((block, i)=>
             <ProjectBlock key={block.projectId}

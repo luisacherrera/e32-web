@@ -7,10 +7,18 @@
     overflow-x: hidden;
 
     @include media('small') {
+        display: block;
         overflow-x: auto;
         overflow-y: hidden;
     }
 }
+
+.projects_blocks__container_mobile {
+    @include media('small') {
+        position: sticky;
+        top: 81px;
+    }
+} 
 
 .footer {
     position: absolute;
