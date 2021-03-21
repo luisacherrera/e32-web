@@ -39,7 +39,7 @@ export default function ArchitectureProjects({data}) {
   )
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const data = await getArchitectureData()
 
   return {

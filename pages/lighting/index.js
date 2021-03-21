@@ -28,7 +28,7 @@ export default function Lighting({data}) {
   )
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const data = await getSlidersData()
 
   return {

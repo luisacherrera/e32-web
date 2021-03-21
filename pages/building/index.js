@@ -27,7 +27,7 @@ export default function Building({data}) {
   )
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const data = await getSlidersData()
 
   return {
