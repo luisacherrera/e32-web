@@ -1,0 +1,82 @@
+@import "variables.scss";
+@import "mixins.scss";
+
+.container {
+  position: relative;
+}
+
+.container__landscape_variant {
+  padding-top: 15vh;
+
+  @include media('small') {
+    padding-top: 10vh;
+  }
+}
+
+.container__landscape_variant__lighting {
+  padding-top: 8vh;
+
+  @include media('small') {
+    padding-top: 10vh;
+  }
+}
+
+.first_image_container {
+  padding-left: 35vw;
+
+  @include media('small') {
+    padding-left: 0;
+
+    img {
+      padding-left: 0;
+    }
+  }
+}
+
+.image_item {
+  padding: 0 5px;
+}
+
+.image_item__single_spaced {
+  padding-right: 150px;
+
+  @include media('small') {
+    padding-right: 75px;
+  }
+}
+
+.image_item__double_spaced {
+  padding-right: 400px;
+
+  @include media('small') {
+    padding-right: 200px;
+  }
+}
+
+.image_item__vertical_variant {
+  width: 52.8vh;
+
+  @include media('small') {
+    width: 52vh;
+  }
+}
+
+.image_item__horizontal_variant {
+  width: 80vh;
+
+  @include media('small') {
+    width: 85vh;
+  }
+}
+
+.image_item__building_variant {
+  border-top-left-radius: 250px;
+  border-top-right-radius: 250px;
+}
+
+.image_item__lighting_variant {
+
+  @include media('small') {
+    width: 75vh;
+  }
+}

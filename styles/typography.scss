@@ -1,0 +1,18 @@
+@font-face {
+  font-family: 'Lausanne-300';
+  src: url('../public/fonts/Lausanne-300.otf');
+}
+
+@font-face {
+  font-family: 'Mazius-Italic';
+  src: url('../public/fonts/Mazius-Italic.otf');
+}
+
+body, textarea {
+  font-family: $body-font;
+}
+
+address {
+  font-size: 0.8rem;
+  font-style: initial;
+}

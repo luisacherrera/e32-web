@@ -1,0 +1,232 @@
+import { useRouter } from 'next/router'
+import { useEffect, useRef, useState } from 'react'
+import { isBrowser } from 'react-device-detect'
+import ProjectBlock from '../ProjectBlock'
+import styles from './ProjectPage.module.scss'
+
+export default function ProjectPage({project_items, category}) {
+  const router = useRouter()
+
+  // refs
+
+  const containerRef = useRef(null)
+  const fullScreenRef = useRef(null)
+
+  // states
+
+  const [fullScreen, toggleFullscreen] = useState(false)
+  const [fullscreenImage, setFullscreenImage] = useState()
+  const [fullscreenLandscape, setFullscreenLandscape] = useState(false)
+  const [hasBeenCalled, setCallStatus] = useState(true)
+  const [navigationMenuVisibility, toggleNavigationMenuVisibility] = useState(false)
+  const [projectInformation, updateProjectInformation] = useState({
+    title: project_items[0].data[0].title,
+    year: project_items[0].data[0].year,
+    location: project_items[0].data[0].location,
+    expedient: project_items[0].data[0].expedient,
+    id: 1
+  })
+  const [selectedElement, setSelectedElement] = useState(0)
+  const [translate, setTranslate] = useState(0)
+
+  //DOM events handlers
+
+  const handleFullscreenClose = () => {
+    document.body.style.overflow = 'hidden'
+    toggleFullscreen(false)
+    setFullscreenLandscape(false)
+  }
+
+  const handleWheel = (evt) => {
+    (evt.deltaY > 0 || evt.deltaX > 0) ? 
+      setTranslate(translate=>{
+        const updatedTranslate = translate + 0.1;
+
+        return updatedTranslate;
+      })
+      :
+      setTranslate(translate=>{
+        const updatedTranslate = translate - 0.1;
+  
+        return updatedTranslate;
+      })  
+  }
+
+  const handleMouseMove = (e) => {
+    fullScreenRef.current.style.backgroundPositionX = -e.nativeEvent.offsetX + "px"
+    fullScreenRef.current.style.backgroundPositionY = fullscreenLandscape ? -(e.nativeEvent.offsetY*1.5) + "px" : -(e.nativeEvent.offsetY*4) + "px"
+  }
+
+  const setElementToCall = (el) => {
+    if (!hasBeenCalled) {
+      setCallStatus(true)
+    }
+    toggleNavigationMenuVisibility(false)
+    setSelectedElement(el)
+    setTimeout(()=>{
+      setCallStatus(false)
+    }, 1000)
+  }
+
+  // prop functions handlers
+
+  const handleFullscreenImage = (image, size) => {
+    document.body.style.overflow = 'unset' 
+    setFullscreenImage(image)
+    setFullscreenLandscape(size)
+    toggleFullscreen(true)
+  }
+
+  const handleNewItemInformation = (information) => {
+    updateProjectInformation(information)
+  }
+
+  // on page load actions
+  
+  useEffect(() => {    
+    const projects_speed = 0.10 / project_items.reduce((acc,val)=> acc + val.data.length, 0)
+
+    let timer = isBrowser && setInterval(() => {
+        setTranslate(translate => {
+            const updatedTranslate = translate >= 95 ? 0 : translate < 0 ? 0 : translate + projects_speed;
+
+            return updatedTranslate;
+        });
+
+    }, 15);
+    return () => clearInterval(timer);
+}, []);
+
+  return (
+    <>
+      <div ref={containerRef} className={styles.container} onWheel={(e)=>isBrowser && handleWheel(e)}>
+        <div className={styles.footer}>
+          <div className={styles.footer__project_data}>
+            <div className={styles.footer__project_data__title_container}>
+              {
+                navigationMenuVisibility 
+                  ? <h3>See all <br/>{category[0].toUpperCase() + category.slice(1).toLowerCase()} Projects</h3>
+                  : <h3>{projectInformation.title}</h3>
+              }
+            </div>
+            <div className={styles.footer__project_data__info_container}>
+              <h3>Year: {projectInformation.year}</h3>
+              <h3>Location: {projectInformation.location}</h3>
+              <h3>NºEXP: {projectInformation.expedient}</h3>
+            </div>
+          </div>
+          <h2 onClick={()=>router.push('/')} className={styles.footer__title}>E32</h2>
+          <p onClick={()=>toggleNavigationMenuVisibility(!navigationMenuVisibility)} className={styles.footer__project_counter}>
+            { projectInformation.id < 10 ? `0${projectInformation.id}` : projectInformation.id }/{ project_items.length < 10 ? `0${project_items.length}` : project_items.length}</p>
+          <h2 onClick={()=>{
+            category === 'architecture' ? router.push('/architecture') : 
+              category === 'lighting' ? router.push('/lighting') : 
+                router.push('building')
+            }
+              } className={styles.footer__title}>{
+                category === 'architecture' ? 'A' :
+                  category === 'lighting' ? 'L' :
+                    'B'
+              }</h2>
+          <p className={styles.footer__about} onClick={()=>router.push('/about')}>About</p>
+          <img className={styles.footer__about__mobile} onClick={()=>router.push('/about')} src="/cursor/SeeMore.png"/>
+          <ul className={styles.footer_home__navbar}>
+            {
+              category === 'architecture' ? 
+                <li className={styles.footer_home__navbar_item}>Architecture</li> :
+                <li onClick={()=>router.push('/architecture')} className={styles.footer_home__navbar_item_noactive}>Architecture</li>
+            }
+            {
+              category === 'lighting' ?
+                <li className={styles.footer_home__navbar_item}>Lighting</li> :
+                <li onClick={()=>router.push('/lighting')} className={styles.footer_home__navbar_item_noactive}>Lighting</li>
+
+            }
+            {
+              category === 'building' ? 
+                <li className={styles.footer_home__navbar_item}>Building</li> :
+                <li onClick={()=>router.push('/building')} className={styles.footer_home__navbar_item_noactive}>Building</li>
+            }
+          </ul>
+        </div>
+        <div className={`projects_blocks__container ${styles.projects_blocks__container_mobile}`}>
+        {
+          project_items.map((block, i)=>
+            <ProjectBlock key={block.projectId}
+                          callToView={selectedElement}
+                          canScrollIntoView={hasBeenCalled}
+                          isFirstElement={ i === 0 }
+                          project_data={block.data}
+                          project_id={i+1}
+                          project_description={block.projectDescription}
+                          showFullscreenImage={handleFullscreenImage}
+                          total_project_length={project_items.length}
+                          updateItemInformation={handleNewItemInformation}>
+            </ProjectBlock>
+          )
+        }
+        </div>
+        {
+          navigationMenuVisibility ?
+            <div className={styles.projects_navigation_menu}>
+              <div className={styles.projects_navigation_menu__image_container}>
+                <img src={project_items[projectInformation.id - 1].data[0].image} alt=""/>
+              </div>
+              <ul>
+                { project_items.map((block, i)=>
+                    <li className={ projectInformation.id - 1 === i ? `${styles.highlighted__project}` : '' }
+                        key={i}
+                        onClick={()=>setElementToCall(i+1)}>
+                      { 
+                        i < 10 ? 
+                          `0${i + 1}` 
+                          : 
+                          i + 1 
+                      }/{ 
+                          project_items.length < 10 ? 
+                            `0${project_items.length}` 
+                            : 
+                            project_items.length
+                        }
+                    </li>
+                  ) 
+                }
+              </ul>
+            </div>
+            :
+            null
+        }
+      </div>
+      {
+        fullScreen ? 
+          <div ref={fullScreenRef}
+               onMouseMove={(e)=>handleMouseMove(e)}
+               onClick={()=>handleFullscreenClose()} 
+               className="fullscreen_image">
+          </div>
+          : 
+          null 
+      }
+
+      <style jsx>{`
+        .projects_blocks__container {
+          display: flex;
+          transform: translateX(-${translate}%);  
+        }
+
+        .fullscreen_image {
+          cursor: url('/cursor/Close.png'), auto;
+          background-image: url(${fullscreenImage});
+          background-size: 200%;
+          background-position: center;
+          position: absolute;
+          z-index: 100;
+          height: 100vh;
+          width: 100vw;
+          top: 0;
+          left: 0;
+        }
+      `}</style>
+    </>
+  )
+}
