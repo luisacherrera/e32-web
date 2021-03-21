@@ -157,8 +157,9 @@ export default function ProjectPage({project_items, category}) {
                           canScrollIntoView={hasBeenCalled}
                           isFirstElement={ i === 0 }
                           project_data={block.data}
-                          project_id={i+1}
                           project_description={block.projectDescription}
+                          project_id={block.projectId}
+                          project_position={i+1}
                           showFullscreenImage={handleFullscreenImage}
                           total_project_length={project_items.length}
                           updateItemInformation={handleNewItemInformation}>

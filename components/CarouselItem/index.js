@@ -15,6 +15,7 @@ export default function CarouselItem({
   item,
   onItemVisible
 }) {
+
   const router = useRouter();
 
   const [imageRef, inView] = isBrowser ?
@@ -60,7 +61,10 @@ export default function CarouselItem({
             ${isLightingLandscapeContainer}
             ${singleSpaced}
            `}>
-        <img onClick={()=>router.push(`/${category}/projects`)}
+        <img onClick={()=>router.push({
+               pathname: `/${category}/projects`,
+               query: { project: item.project_id }
+             })}
              className={`
               ${styles.image_item}
               ${imageOrientation}
