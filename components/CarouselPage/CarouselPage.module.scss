@@ -76,7 +76,7 @@
 
 .horizontal_container {
   display: flex;
-  margin-top: 15vh;
+  margin-top: 150px;
 
   @include media('small') {
     position: sticky;
