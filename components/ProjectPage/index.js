@@ -84,6 +84,8 @@ export default function ProjectPage({project_items, category}) {
   // on page load actions
   
   useEffect(() => {
+    !isBrowser && window.scrollTo(0,document.body.scrollHeight)
+    
     const projects_speed = 0.10 / project_items.reduce((acc,val)=> acc + val.data.length, 0)
 
     let timer = isBrowser && setInterval(() => {
