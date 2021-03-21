@@ -7,6 +7,7 @@
   overflow-x: hidden;
 
   @include media('small') {
+    display: block;
     overflow-x: auto;
     overflow-y: hidden;
   }
@@ -78,6 +79,8 @@
   margin-top: 15vh;
 
   @include media('small') {
+    position: sticky;
+    top: 10vh;
     margin-top: 0;
     padding-top: 55px;
   }
