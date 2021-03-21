@@ -40,7 +40,9 @@ export default function ProjectBlock({
         <div className={styles.project_intro__counter}>
           <h2>Project</h2>
           <h2>{ project_id < 10 ? `0${project_id}` : project_id }/{ total_project_length < 10 ? `0${total_project_length}` : total_project_length }</h2>
-          <p>{ project_description }</p>
+          {
+            project_description.length > 0 && <p>{ project_description }</p>
+          }
         </div>
       </div>
         {

@@ -84,9 +84,11 @@ export default function ProjectPage({project_items, category}) {
   // on page load actions
   
   useEffect(() => {
+    const projects_speed = 0.10 / project_items.reduce((acc,val)=> acc + val.data.length, 0)
+
     let timer = isBrowser && setInterval(() => {
         setTranslate(translate => {
-            const updatedTranslate = translate >= 95 ? 0 : translate < 0 ? 0 : translate + 0.01;
+            const updatedTranslate = translate >= 95 ? 0 : translate < 0 ? 0 : translate + projects_speed;
 
             return updatedTranslate;
         });
