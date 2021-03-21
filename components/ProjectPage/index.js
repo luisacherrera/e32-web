@@ -123,8 +123,8 @@ export default function ProjectPage({project_items, category}) {
             }
               } className={styles.footer__title}>{
                 category === 'architecture' ? 'A' :
-                  category === 'lighting' ? 'B' :
-                    'C'
+                  category === 'lighting' ? 'L' :
+                    'B'
               }</h2>
           <p className={styles.footer__about} onClick={()=>router.push('/about')}>About</p>
           <img className={styles.footer__about__mobile} onClick={()=>router.push('/about')} src="/cursor/SeeMore.png"/>
