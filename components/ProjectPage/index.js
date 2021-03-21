@@ -54,7 +54,7 @@ export default function ProjectPage({project_items, category}) {
 
   const handleMouseMove = (e) => {
     fullScreenRef.current.style.backgroundPositionX = -e.nativeEvent.offsetX + "px"
-    fullScreenRef.current.style.backgroundPositionY = fullscreenLandscape ? -(e.nativeEvent.offsetY*4) + "px" : -(e.nativeEvent.offsetY*1.5) + "px"
+    fullScreenRef.current.style.backgroundPositionY = fullscreenLandscape ? -(e.nativeEvent.offsetY*1.5) + "px" : -(e.nativeEvent.offsetY*4) + "px"
   }
 
   const setElementToCall = (el) => {
