@@ -35,7 +35,7 @@ export default function CarouselPage({
   })
 
   const handleWheel = (evt) => {
-    (evt.deltaY > 0 || evt.deltaX > 0) ? 
+    evt.deltaY > 0 ? 
       setTranslate(translate=>{
         const updatedTranslate = translate + 0.1;
 
