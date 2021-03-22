@@ -7,6 +7,7 @@ export default function Building({data}) {
   const items = Object.keys(customFields).reduce((acc,key)=>{
     if (customFields[key].image !== false) {
       acc.push({
+        project_id: customFields[key].id,
         title: customFields[key].title,
         year: customFields[key].year,
         location: customFields[key].location,
