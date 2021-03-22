@@ -22,18 +22,17 @@
 }
 
 .header_logo {
-  position: absolute;
+  position: fixed;
   top: -8px;
-  left: 8px;
+  left: 9px;
 
   @include media('small') {
-    position: fixed;
     top: 4px;
   }
 }
 
 .header_logo__page_variant {
-  position: absolute;
+  position: fixed;
   top: -8px;
   right: 20px;
 
@@ -67,7 +66,7 @@
 }
 
 .title_style {
-  font-size: 20vw;
+  font-size: 18em;
   font-weight: 100;
   
   @include media('medium') { font-size: 25vw; }
