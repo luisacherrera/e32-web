@@ -1,40 +1,11 @@
 import CarouselPage from '../../components/CarouselPage'
-import { getSlidersData } from '../../lib/api'
+import lighting_items from '../../lib/lighting_category'
 
-export default function Lighting({data}) {
-  const customFields = data.find((field)=>field.slug === 'lighting').acf
-
-  const items = Object.keys(customFields).reduce((acc,key)=>{
-    if (customFields[key].image !== false) {
-      acc.push({
-        project_id: customFields[key].id,
-        title: customFields[key].title,
-        year: customFields[key].year,
-        location: customFields[key].location,
-        expedient: customFields[key].expedient_number,
-        imageURL: customFields[key].image.url,
-        isLandscape: customFields[key].image.width > customFields[key].image.height ? true : false,
-        isLightingVariant: customFields[key].image.url.includes('png')
-      })
-    }
-
-    return acc
-  },[])
-
+export default function Lighting() {
   return (
     <>
-      <CarouselPage carousel_data={items}
+      <CarouselPage carousel_data={lighting_items}
                     category="lighting"></CarouselPage>
     </>
   )
-}
-
-export async function getServerSideProps() {
-  const data = await getSlidersData()
-
-  return {
-    props: {
-      data: data
-    }
-  }
 }
