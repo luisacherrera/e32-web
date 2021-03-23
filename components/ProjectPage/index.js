@@ -61,6 +61,7 @@ export default function ProjectPage({project_items, category}) {
     if (!hasBeenCalled) {
       setCallStatus(true)
     }
+    isBrowser && el === 1 ? setTranslate(0) : setTranslate(el*10)
     toggleNavigationMenuVisibility(false)
     setSelectedElement(el)
     setTimeout(()=>{
