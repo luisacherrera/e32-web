@@ -130,7 +130,7 @@
 .footer_home__address_container {
     grid-area: footer-left;
     align-self: end;
-    font-size: 1.5em;
+    font-size: 1.25em;
 
     @include media('small') { display: none; }
 }
