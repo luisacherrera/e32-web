@@ -6,6 +6,7 @@ import styles from './ProjectPage.module.scss'
 
 export default function ProjectPage({project_items, category}) {
   const router = useRouter()
+  const footerLightingVariant = category === "lighting" ? styles.footer__title__lighting_variant : ''
 
   // refs
 
@@ -124,7 +125,7 @@ export default function ProjectPage({project_items, category}) {
               category === 'lighting' ? router.push('/lighting') : 
                 router.push('building')
             }
-              } className={styles.footer__title}>{
+              } className={`${styles.footer__title} ${footerLightingVariant}`}>{
                 category === 'architecture' ? 'A' :
                   category === 'lighting' ? 'L' :
                     'B'

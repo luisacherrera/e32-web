@@ -49,6 +49,15 @@
     }
 }
 
+.footer__title__lighting_variant {
+    margin-top: -10px;
+    font-family: $title-font;
+
+    @include media('small') {
+        margin-top: -6px;
+    }
+}
+
 .footer__project_counter {
     font-size: 1.25em;
 }
