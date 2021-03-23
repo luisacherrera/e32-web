@@ -115,6 +115,10 @@
         width: 65vh !important;
         margin-left: -15%;
     }
+
+    &hidden {
+        display: none;
+    }
 }
 
 .block_sign_container {

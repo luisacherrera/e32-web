@@ -1,16 +1,8 @@
 import { useRouter } from 'next/router';
 import { useEffect, useRef, useState } from 'react';
-import { getHomeAboutData } from '../../lib/api';
 import styles from './About.module.scss';
 
-export default function About({data}) {
-  const customFields = data[0].acf
-
-  const currentBlock = {
-    title: "A",
-    image: customFields.galeria.architecture.url
-  }
-
+export default function About() {
   const router = useRouter();
 
   const contactForm = useRef(null);
@@ -71,15 +63,11 @@ export default function About({data}) {
             <div className={styles.layout_helper_0}>
               <h2 className={styles.headline_text}>About</h2>
               <div className={styles.block_sign_container}>
-                <p className={styles.intro_text}>
-                  { customFields.title }
-                </p>
-                <p className={styles.dummy_text}>
-                  { customFields.about_claim }
-                </p>
+                <p className={styles.intro_text}>E32 is a trans-disciplinary studio that strives to enhance integrated projects with a «Human centric» approach.</p>
+                <p className={styles.dummy_text}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a elementum nibh. Quisque id pretium arcu, ac facilisis magna. Maecenas eget vulputate enim, nec cursus sem.</p>
               </div>
               <div className={styles.image_block}>
-                <img src={currentBlock.image}></img>
+                <img src="/photos/projects_architecture/01.PDG/PDG_9.jpg"></img>
               </div>
             </div>
             <div className={styles.contact_block}>
@@ -118,14 +106,4 @@ export default function About({data}) {
       </div>
     </>
   )
-}
-
-export async function getServerSideProps() {
-  const data = await getHomeAboutData()
-
-  return {
-    props: {
-      data: data
-    }
-  }
 }
