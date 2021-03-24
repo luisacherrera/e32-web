@@ -6,7 +6,12 @@ import styles from './ProjectPage.module.scss'
 
 export default function ProjectPage({project_items, category}) {
   const router = useRouter()
+
   const footerLightingVariant = category === "lighting" ? styles.footer__title__lighting_variant : ''
+
+  const projectsLength = project_items.reduce((acc,val)=> acc + val.data.length, 0)
+  const projects_speed = 0.10 / projectsLength
+  const projects_move = 1.25 / projectsLength
 
   // refs
 
@@ -39,16 +44,16 @@ export default function ProjectPage({project_items, category}) {
   }
 
   const handleWheel = (evt) => {
-    if (evt.deltaX === -0 || evt.deltaX === 1.25 ) {
+    if (evt.deltaX === -0 || evt.deltaX === -1.25 || evt.deltaX === 1.25) {
       evt.deltaY > 0 ? 
         setTranslate(translate=>{
-          const updatedTranslate = translate + 0.1;
+          const updatedTranslate = translate + projects_move;
 
           return updatedTranslate;
         })
         :
         setTranslate(translate=>{
-          const updatedTranslate = translate - 0.1;
+          const updatedTranslate = translate - projects_move;
         
           return updatedTranslate;
         })
@@ -88,8 +93,6 @@ export default function ProjectPage({project_items, category}) {
   // on page load actions
   
   useEffect(() => {    
-    const projects_speed = 0.10 / project_items.reduce((acc,val)=> acc + val.data.length, 0)
-
     let timer = isBrowser && setInterval(() => {
         setTranslate(translate => {
             const updatedTranslate = translate >= 95 ? 0 : translate < 0 ? 0 : translate + projects_speed;
