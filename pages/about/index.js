@@ -48,9 +48,9 @@ export default function About() {
             <a href="https://www.instagram.com/e32studio/">IG</a>
           </p>
           <ul className={styles.footer_home__navbar}>
-            <li>Architecture</li>
-            <li>Lighting</li>
-            <li>Building</li>
+            <li onClick={()=>router.push('/architecture')}>Architecture</li>
+            <li onClick={()=>router.push('/lighting')}>Lighting</li>
+            <li onClick={()=>router.push('/building')}>Building</li>
           </ul>
           <ul className={styles.footer_home__navbar_mobile}>
             <li onClick={()=>router.push('/architecture')}>Architecture projects</li>

@@ -70,7 +70,7 @@
     &_closing_button {
         grid-area: header-title;
         justify-self: end;
-        font-size: 3vw;
+        font-size: 1.5vw;
 
         p {
             cursor: pointer;
@@ -225,7 +225,7 @@
         &:last-child { display: block; }
 
         input {
-            width: 70%;
+            width: 80%;
             background-color: $about-page-color;
             color: $white;
             border: none;
@@ -253,6 +253,10 @@
             font-size: 1.5em;
             padding-top: 10px;
             padding-left: 85%;
+
+            @include media('small') {
+                padding-left: 75%;
+            }
         }
     }
 
