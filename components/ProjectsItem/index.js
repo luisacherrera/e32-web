@@ -27,14 +27,7 @@ export default function ProjectsItem({
     onFullscreenMode(image, data.isLandscape)
   }
 
-  const [ref, inView] = isBrowser ?
-    useInView({
-      threshold: 1
-    })
-    :
-    useInView({
-      threshold: 0.25
-    })
+  const [ref, inView] = useInView({threshold: 0.5})
 
   const handleItemVisibility = () => {
     onItemVisible({
