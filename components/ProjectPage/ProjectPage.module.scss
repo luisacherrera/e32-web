@@ -160,8 +160,6 @@
             height: auto;
             padding-top: 10vh;
         }
-
-        @include media('small') { display: none; }
     }
 
     ul {
@@ -180,21 +178,21 @@
         .highlighted__project {
             text-decoration: underline;
         }
+    }
 
-        @include media('small') {
+    @include media('small') {
+        position: fixed;
+
+        .projects_navigation_menu__image_container {
+            display: none;
+        }
+        
+        ul {
             width: 100%;
             padding: 0;
 
             li {
                 font-size: 2em;
-
-                &:first-of-type {
-                    padding-top: 200px;
-                }
-
-                &:last-of-type {
-                    padding-bottom: 200px;
-                }
             }
         }
     }
