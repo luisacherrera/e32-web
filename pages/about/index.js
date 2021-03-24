@@ -26,6 +26,7 @@ export default function About() {
           </div>
           <div className={styles.header_closing_button}>
             <p onClick={()=>router.back()}>&#9587;</p>
+            <img onClick={()=>router.back()} src="/cursor/SeeMore.png"/>
           </div>
           <div className={styles.header_address_info_container}>
             <p className={styles.header_address_info_container__map_link}>
