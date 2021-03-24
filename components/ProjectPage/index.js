@@ -39,18 +39,20 @@ export default function ProjectPage({project_items, category}) {
   }
 
   const handleWheel = (evt) => {
-    evt.deltaY > 0 ? 
-      setTranslate(translate=>{
-        const updatedTranslate = translate + 0.1;
+    if (evt.deltaX === -0 || evt.deltaX === 1.25 ) {
+      evt.deltaY > 0 ? 
+        setTranslate(translate=>{
+          const updatedTranslate = translate + 0.1;
 
-        return updatedTranslate;
-      })
-      :
-      setTranslate(translate=>{
-        const updatedTranslate = translate - 0.1;
-  
-        return updatedTranslate;
-      })  
+          return updatedTranslate;
+        })
+        :
+        setTranslate(translate=>{
+          const updatedTranslate = translate - 0.1;
+        
+          return updatedTranslate;
+        })
+    }
   }
 
   const handleMouseMove = (e) => {
