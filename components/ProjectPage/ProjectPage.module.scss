@@ -3,7 +3,7 @@
 
 .container {
     display: flex;
-    height: 100vh;
+    height: 95vh;
     overflow-x: hidden;
 
     @include media('small') {
@@ -46,6 +46,15 @@
 
     @include media('small') {
         font-size: 3em;
+    }
+}
+
+.footer__title__lighting_variant {
+    margin-top: -10px;
+    font-family: $title-font;
+
+    @include media('small') {
+        margin-top: -6px;
     }
 }
 
@@ -151,8 +160,6 @@
             height: auto;
             padding-top: 10vh;
         }
-
-        @include media('small') { display: none; }
     }
 
     ul {
@@ -171,21 +178,21 @@
         .highlighted__project {
             text-decoration: underline;
         }
+    }
 
-        @include media('small') {
+    @include media('small') {
+        position: fixed;
+
+        .projects_navigation_menu__image_container {
+            display: none;
+        }
+        
+        ul {
             width: 100%;
             padding: 0;
 
             li {
-                font-size: 2em;
-
-                &:first-of-type {
-                    padding-top: 200px;
-                }
-
-                &:last-of-type {
-                    padding-bottom: 200px;
-                }
+                font-size: 1.25em;
             }
         }
     }

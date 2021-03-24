@@ -2,26 +2,23 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { isBrowser } from 'react-device-detect'
 import styles from './Home.module.scss'
-import { getHomeAboutData } from '../lib/api'
 
-export default function Home({data}) {
-  const customFields = data[0].acf
-
+export default function Home() {
   const blocks = {
     architecture: {
       route: "/architecture",
       title: "A",
-      image: customFields.galeria.architecture.url
+      image: "/photos/projects_architecture/01.PDG/PDG_9.jpg"
     },
     building: {
       route: "/building",
       title: "B",
-      image: customFields.galeria.building.url
+      image: "/photos/shapes/building_home.png"
     },
     lighting: {
       route: "/lighting",
       title: "L",
-      image: customFields.galeria.lighting.url
+      image: "/photos/shapes/lighting_home.png"
     },
   }
 
@@ -45,11 +42,11 @@ export default function Home({data}) {
         <div className={styles.header_logo}>
           <h1 className={styles.title_style}>E32</h1>
         </div>
-        <p className={styles.intro_text}>
-          { customFields.title }
-        </p>
+        <p className={styles.intro_text}>E32 is a trans-disciplinary studio that strives to enhance integrated projects with a «Human centric» approach.</p>
         <div className={styles.image_container}>
-          <img onClick={()=>router.push(currentBlock.route)} className={currentBlock.title === "L" ? styles.image__lighting_variant : (currentBlock.title === "B" ? styles.image__building_variant : "")} src={currentBlock.image}/>
+          <img onClick={()=>router.push(currentBlock.route)} className={currentBlock.title === "A" ? "" : styles.image__hidden } src={blocks['architecture'].image}/>
+          <img onClick={()=>router.push(currentBlock.route)} className={currentBlock.title === "L" ? styles.image__lighting_variant : styles.image__hidden} src={blocks['lighting'].image}/>
+          <img onClick={()=>router.push(currentBlock.route)} className={currentBlock.title === "B" ? styles.image__building_variant : styles.image__hidden} src={blocks['building'].image}/>
         </div>
         <address className={styles.address_info_container}>
           Nº02 C/Energía, 32 Planta 1<br/>
@@ -76,14 +73,4 @@ export default function Home({data}) {
       </div>
     </>
   )
-}
-
-export async function getServerSideProps() {
-  const data = await getHomeAboutData()
-
-  return {
-    props: {
-      data: data
-    }
-  }
 }

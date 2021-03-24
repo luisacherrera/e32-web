@@ -7,6 +7,12 @@ import styles from './ProjectPage.module.scss'
 export default function ProjectPage({project_items, category}) {
   const router = useRouter()
 
+  const footerLightingVariant = category === "lighting" ? styles.footer__title__lighting_variant : ''
+
+  const projectsLength = project_items.reduce((acc,val)=> acc + val.data.length, 0)
+  const projects_speed = 0.10 / projectsLength
+  const projects_move = 1.25 / projectsLength
+
   // refs
 
   const containerRef = useRef(null)
@@ -38,18 +44,20 @@ export default function ProjectPage({project_items, category}) {
   }
 
   const handleWheel = (evt) => {
-    (evt.deltaY > 0 || evt.deltaX > 0) ? 
-      setTranslate(translate=>{
-        const updatedTranslate = translate + 0.1;
+    if (evt.deltaX === -0 || evt.deltaX === -1.25 || evt.deltaX === 1.25) {
+      evt.deltaY > 0 ? 
+        setTranslate(translate=>{
+          const updatedTranslate = translate + projects_move;
 
-        return updatedTranslate;
-      })
-      :
-      setTranslate(translate=>{
-        const updatedTranslate = translate - 0.1;
-  
-        return updatedTranslate;
-      })  
+          return updatedTranslate;
+        })
+        :
+        setTranslate(translate=>{
+          const updatedTranslate = translate - projects_move;
+        
+          return updatedTranslate;
+        })
+    }
   }
 
   const handleMouseMove = (e) => {
@@ -61,6 +69,7 @@ export default function ProjectPage({project_items, category}) {
     if (!hasBeenCalled) {
       setCallStatus(true)
     }
+    isBrowser && el === 1 ? setTranslate(0) : setTranslate(el*10)
     toggleNavigationMenuVisibility(false)
     setSelectedElement(el)
     setTimeout(()=>{
@@ -84,8 +93,6 @@ export default function ProjectPage({project_items, category}) {
   // on page load actions
   
   useEffect(() => {    
-    const projects_speed = 0.10 / project_items.reduce((acc,val)=> acc + val.data.length, 0)
-
     let timer = isBrowser && setInterval(() => {
         setTranslate(translate => {
             const updatedTranslate = translate >= 95 ? 0 : translate < 0 ? 0 : translate + projects_speed;
@@ -123,7 +130,7 @@ export default function ProjectPage({project_items, category}) {
               category === 'lighting' ? router.push('/lighting') : 
                 router.push('building')
             }
-              } className={styles.footer__title}>{
+              } className={`${styles.footer__title} ${footerLightingVariant}`}>{
                 category === 'architecture' ? 'A' :
                   category === 'lighting' ? 'L' :
                     'B'

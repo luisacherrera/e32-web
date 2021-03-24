@@ -9,6 +9,7 @@ export default function CarouselPage({
   category
 }) {
   const router = useRouter();
+  const carouselLength = carousel_data.length
 
   const nextPage = category === 'architecture' 
                     ? '/lighting' 
@@ -34,24 +35,28 @@ export default function CarouselPage({
     expedient: carousel_data[0].expedient
   })
 
+  const carouselMove = 1.25 / carouselLength
+
   const handleWheel = (evt) => {
-    (evt.deltaY > 0 || evt.deltaX > 0) ? 
+    if (evt.deltaX === -0 || evt.deltaX === -1.25 || evt.deltaX === 1.25) {
+      evt.deltaY > 0 ? 
       setTranslate(translate=>{
-        const updatedTranslate = translate + 0.1;
+        const updatedTranslate = translate + carouselMove;
 
         return updatedTranslate;
       })
       :
       setTranslate(translate=>{
-        const updatedTranslate = translate - 0.1;
+        const updatedTranslate = translate - carouselMove;
   
         return updatedTranslate;
       })  
+    }
   }
 
   const [translate, setTranslate] = useState(0)
 
-  const carouselSpeed = 0.15 / carousel_data.length
+  const carouselSpeed = 0.15 / carouselLength
   
   useEffect(() => {
     let timer = isBrowser && setInterval(() => {
