@@ -160,10 +160,16 @@
         flex-direction: row;
         justify-content: flex-end;
 
-        img {
+        .projects_navigation_menu__image__portrait {
             width: 50vh;
             height: auto;
             padding-top: 10vh;
+        }
+
+        .projects_navigation_menu__image__landscape {
+            width: 70%;
+            height: 80%;
+            padding-top: 20vh;
         }
     }
 

@@ -216,7 +216,11 @@ export default function ProjectPage({project_items, category}) {
           navigationMenuVisibility ?
             <div className={styles.projects_navigation_menu}>
               <div className={styles.projects_navigation_menu__image_container}>
-                <img src={project_items[projectInformation.id - 1].data[0].image} alt=""/>
+                {
+                  projectInformation.isLandscape 
+                    ? <img className={styles.projects_navigation_menu__image__landscape} src={project_items[projectInformation.id - 1].data[0].image} alt=""/>
+                    : <img className={styles.projects_navigation_menu__image__portrait} src={project_items[projectInformation.id - 1].data[0].image} alt=""/>
+                }
               </div>
               <ul>
                 { project_items.map((block, i)=>
