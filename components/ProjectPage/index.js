@@ -23,6 +23,7 @@ export default function ProjectPage({project_items, category}) {
   const [fullScreen, toggleFullscreen] = useState(false)
   const [fullscreenImage, setFullscreenImage] = useState()
   const [fullscreenLandscape, setFullscreenLandscape] = useState(false)
+  const [extraFullscreenLandscape, setExtraFullscreenLandscape] = useState(false)
   const [hasBeenCalled, setCallStatus] = useState(true)
   const [navigationMenuVisibility, toggleNavigationMenuVisibility] = useState(false)
   const [projectInformation, updateProjectInformation] = useState({
@@ -42,6 +43,7 @@ export default function ProjectPage({project_items, category}) {
     document.body.style.overflow = 'hidden'
     toggleFullscreen(false)
     setFullscreenLandscape(false)
+    setExtraFullscreenLandscape(false)
   }
 
   const handleWheel = (evt) => {
@@ -62,8 +64,15 @@ export default function ProjectPage({project_items, category}) {
   }
 
   const handleMouseMove = (e) => {
-    fullScreenRef.current.style.backgroundPositionX = -e.nativeEvent.offsetX + "px"
-    fullScreenRef.current.style.backgroundPositionY = fullscreenLandscape ? -(e.nativeEvent.offsetY*1.5) + "px" : -(e.nativeEvent.offsetY*4) + "px"
+    const xAxis = fullScreenRef.current
+    const yAxis = fullScreenRef.current 
+    
+    xAxis.style.backgroundPositionX = -e.nativeEvent.offsetX + "px"
+    yAxis.style.backgroundPositionY = fullscreenLandscape 
+                                        ? -(e.nativeEvent.offsetY*1.5) + "px" 
+                                        : extraFullscreenLandscape 
+                                          ? -(e.nativeEvent.offsetY*0.25) + "px"
+                                          : -(e.nativeEvent.offsetY*4) + "px"
   }
 
   const setElementToCall = (el) => {
@@ -89,10 +98,11 @@ export default function ProjectPage({project_items, category}) {
 
   // prop functions handlers
 
-  const handleFullscreenImage = (image, size) => {
+  const handleFullscreenImage = (image, size, extraSize) => {
     document.body.style.overflow = 'unset' 
     setFullscreenImage(image)
     setFullscreenLandscape(size)
+    setExtraFullscreenLandscape(extraSize)
     toggleFullscreen(true)
   }
 
