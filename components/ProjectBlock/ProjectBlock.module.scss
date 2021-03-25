@@ -38,9 +38,25 @@
         display: none;
       }
     }
+
+    img {
+      display: none;
+    }
   }
 
   @include media('small') {
-    width: 70vw;
+    width: 100vw;
+
+    .project_intro__counter {
+      p {
+        display: none;
+      }
+
+      img {
+        display: inline;
+        height: 40px;
+        margin-top: 40px;
+      }
+    }
   }
 }

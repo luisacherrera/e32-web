@@ -34,6 +34,7 @@ export default function ProjectPage({project_items, category}) {
   })
   const [selectedElement, setSelectedElement] = useState(0)
   const [translate, setTranslate] = useState(0)
+  const [showSeeAll, setSeeAllVisibility] = useState(false)
 
   //DOM events handlers
 
@@ -69,7 +70,16 @@ export default function ProjectPage({project_items, category}) {
     if (!hasBeenCalled) {
       setCallStatus(true)
     }
-    isBrowser && el === 1 ? setTranslate(0) : setTranslate(el*10)
+    if (isBrowser) {
+      el === 1 ? setTranslate(0) : setTranslate(el*10)
+    }
+    updateProjectInformation({
+      title: project_items[el - 1].data[0].title,
+      year: project_items[el - 1].data[0].year,
+      location: project_items[el - 1].data[0].location,
+      expedient: project_items[el - 1].data[0].expedient,
+      id: el
+    })
     toggleNavigationMenuVisibility(false)
     setSelectedElement(el)
     setTimeout(()=>{
@@ -123,8 +133,26 @@ export default function ProjectPage({project_items, category}) {
             </div>
           </div>
           <h2 onClick={()=>router.push('/')} className={styles.footer__title}>E32</h2>
-          <p onClick={()=>toggleNavigationMenuVisibility(!navigationMenuVisibility)} className={styles.footer__project_counter}>
-            { projectInformation.id < 10 ? `0${projectInformation.id}` : projectInformation.id }/{ project_items.length < 10 ? `0${project_items.length}` : project_items.length}</p>
+          {          
+            !showSeeAll && 
+              <p className={styles.footer__project_counter}
+                 onMouseOver={()=>setSeeAllVisibility(true)}>
+                { projectInformation.id < 10 
+                    ? `0${projectInformation.id}` 
+                    : projectInformation.id }/{ project_items.length < 10 
+                      ? `0${project_items.length}` 
+                      : project_items.length
+                }
+              </p>
+          }
+          {
+            showSeeAll && 
+              <img onClick={()=>toggleNavigationMenuVisibility(!navigationMenuVisibility)}
+                   onMouseOut={()=>setSeeAllVisibility(false)}
+                   className={styles.footer__see_all} 
+                   src="/cursor/Cursor_projects.png" 
+                   alt="See all projects"/>
+          }
           <h2 onClick={()=>{
             category === 'architecture' ? router.push('/architecture') : 
               category === 'lighting' ? router.push('/lighting') : 

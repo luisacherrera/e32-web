@@ -60,6 +60,7 @@ export default function ProjectBlock({
           {
             project_description.length > 0 && <p>{ project_description }</p>
           }
+          <img src="/cursor/Flecha.svg" alt="arrow"/>
         </div>
       </div>
         {
