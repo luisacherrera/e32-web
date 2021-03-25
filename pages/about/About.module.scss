@@ -74,6 +74,22 @@
 
         p {
             cursor: pointer;
+            
+            @include media('small') {
+                display: none;
+            }
+        }
+
+        img {
+            display: none;
+
+            @include media('small') {
+                display: inline;
+                height: 1em;
+                width: 1em;
+                filter: invert(1);
+                transform: rotate(45deg);
+            }
         }
     }
 
@@ -100,6 +116,7 @@
             font-size: 10vw;
             position: fixed;
             right: $site-spacing; 
+            z-index: 100;
         }
     }
 }
@@ -262,7 +279,7 @@
 
     @include media('small') { 
         grid-area: main-content;
-        margin-bottom: 15vh;
+        margin-bottom: 10vh;
     }
 }
 

@@ -5,6 +5,8 @@ import styles from './About.module.scss';
 export default function About() {
   const router = useRouter();
 
+  const container = useRef(null);
+
   const contactForm = useRef(null);
 
   const bringFormIntoView = () => {
@@ -15,17 +17,20 @@ export default function About() {
 
   useEffect(()=>{
     document.body.style.overflow = 'scroll';
+    container.current.scrollIntoView();
   }, [])
 
   return (
     <>
-      <div className={styles.container}>
+      <div className={styles.container}
+           ref={container}>
         <div className={styles.header}>
           <div className={styles.header_logo}>
             <h1 className={styles.title_style}>E32</h1>
           </div>
           <div className={styles.header_closing_button}>
             <p onClick={()=>router.back()}>&#9587;</p>
+            <img onClick={()=>router.back()} src="/cursor/SeeMore.png"/>
           </div>
           <div className={styles.header_address_info_container}>
             <p className={styles.header_address_info_container__map_link}>

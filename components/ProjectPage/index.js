@@ -23,6 +23,7 @@ export default function ProjectPage({project_items, category}) {
   const [fullScreen, toggleFullscreen] = useState(false)
   const [fullscreenImage, setFullscreenImage] = useState()
   const [fullscreenLandscape, setFullscreenLandscape] = useState(false)
+  const [extraFullscreenLandscape, setExtraFullscreenLandscape] = useState(false)
   const [hasBeenCalled, setCallStatus] = useState(true)
   const [navigationMenuVisibility, toggleNavigationMenuVisibility] = useState(false)
   const [projectInformation, updateProjectInformation] = useState({
@@ -34,6 +35,7 @@ export default function ProjectPage({project_items, category}) {
   })
   const [selectedElement, setSelectedElement] = useState(0)
   const [translate, setTranslate] = useState(0)
+  const [showSeeAll, setSeeAllVisibility] = useState(false)
 
   //DOM events handlers
 
@@ -41,6 +43,7 @@ export default function ProjectPage({project_items, category}) {
     document.body.style.overflow = 'hidden'
     toggleFullscreen(false)
     setFullscreenLandscape(false)
+    setExtraFullscreenLandscape(false)
   }
 
   const handleWheel = (evt) => {
@@ -61,15 +64,31 @@ export default function ProjectPage({project_items, category}) {
   }
 
   const handleMouseMove = (e) => {
-    fullScreenRef.current.style.backgroundPositionX = -e.nativeEvent.offsetX + "px"
-    fullScreenRef.current.style.backgroundPositionY = fullscreenLandscape ? -(e.nativeEvent.offsetY*1.5) + "px" : -(e.nativeEvent.offsetY*4) + "px"
+    const xAxis = fullScreenRef.current
+    const yAxis = fullScreenRef.current 
+    
+    xAxis.style.backgroundPositionX = -e.nativeEvent.offsetX + "px"
+    yAxis.style.backgroundPositionY = fullscreenLandscape 
+                                        ? -(e.nativeEvent.offsetY*1.5) + "px" 
+                                        : extraFullscreenLandscape 
+                                          ? -(e.nativeEvent.offsetY*0.25) + "px"
+                                          : -(e.nativeEvent.offsetY*4) + "px"
   }
 
   const setElementToCall = (el) => {
     if (!hasBeenCalled) {
       setCallStatus(true)
     }
-    isBrowser && el === 1 ? setTranslate(0) : setTranslate(el*10)
+    if (isBrowser) {
+      el === 1 ? setTranslate(0) : setTranslate(el*10)
+    }
+    updateProjectInformation({
+      title: project_items[el - 1].data[0].title,
+      year: project_items[el - 1].data[0].year,
+      location: project_items[el - 1].data[0].location,
+      expedient: project_items[el - 1].data[0].expedient,
+      id: el
+    })
     toggleNavigationMenuVisibility(false)
     setSelectedElement(el)
     setTimeout(()=>{
@@ -79,10 +98,11 @@ export default function ProjectPage({project_items, category}) {
 
   // prop functions handlers
 
-  const handleFullscreenImage = (image, size) => {
+  const handleFullscreenImage = (image, size, extraSize) => {
     document.body.style.overflow = 'unset' 
     setFullscreenImage(image)
     setFullscreenLandscape(size)
+    setExtraFullscreenLandscape(extraSize)
     toggleFullscreen(true)
   }
 
@@ -123,8 +143,26 @@ export default function ProjectPage({project_items, category}) {
             </div>
           </div>
           <h2 onClick={()=>router.push('/')} className={styles.footer__title}>E32</h2>
-          <p onClick={()=>toggleNavigationMenuVisibility(!navigationMenuVisibility)} className={styles.footer__project_counter}>
-            { projectInformation.id < 10 ? `0${projectInformation.id}` : projectInformation.id }/{ project_items.length < 10 ? `0${project_items.length}` : project_items.length}</p>
+          {          
+            !showSeeAll && 
+              <p className={styles.footer__project_counter}
+                 onMouseOver={()=>setSeeAllVisibility(true)}>
+                { projectInformation.id < 10 
+                    ? `0${projectInformation.id}` 
+                    : projectInformation.id }/{ project_items.length < 10 
+                      ? `0${project_items.length}` 
+                      : project_items.length
+                }
+              </p>
+          }
+          {
+            showSeeAll && 
+              <img onClick={()=>toggleNavigationMenuVisibility(!navigationMenuVisibility)}
+                   onMouseOut={()=>setSeeAllVisibility(false)}
+                   className={styles.footer__see_all} 
+                   src="/cursor/Cursor_projects.png" 
+                   alt="See all projects"/>
+          }
           <h2 onClick={()=>{
             category === 'architecture' ? router.push('/architecture') : 
               category === 'lighting' ? router.push('/lighting') : 
@@ -178,7 +216,11 @@ export default function ProjectPage({project_items, category}) {
           navigationMenuVisibility ?
             <div className={styles.projects_navigation_menu}>
               <div className={styles.projects_navigation_menu__image_container}>
-                <img src={project_items[projectInformation.id - 1].data[0].image} alt=""/>
+                {
+                  projectInformation.isLandscape 
+                    ? <img className={styles.projects_navigation_menu__image__landscape} src={project_items[projectInformation.id - 1].data[0].image} alt=""/>
+                    : <img className={styles.projects_navigation_menu__image__portrait} src={project_items[projectInformation.id - 1].data[0].image} alt=""/>
+                }
               </div>
               <ul>
                 { project_items.map((block, i)=>

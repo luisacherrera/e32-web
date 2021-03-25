@@ -5,7 +5,7 @@ export default function AppLayout({ children }) {
     <>
       <Head>
         <title>E32</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.png" />
       </Head>
       <div>
         <main>{children}</main>

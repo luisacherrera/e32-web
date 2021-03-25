@@ -30,8 +30,8 @@ export default function ProjectBlock({
 
   const blockRef = useRef(null)
 
-  const handleSetFullscreen = (img, size) => {
-    showFullscreenImage(img, size)
+  const handleSetFullscreen = (img, size, extraSize) => {
+    showFullscreenImage(img, size, extraSize)
   }
 
   if (canScrollIntoView && callToView === project_position) {
@@ -60,6 +60,7 @@ export default function ProjectBlock({
           {
             project_description.length > 0 && <p>{ project_description }</p>
           }
+          <img src="/cursor/Flecha.svg" alt="arrow"/>
         </div>
       </div>
         {

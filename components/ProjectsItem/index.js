@@ -24,7 +24,7 @@ export default function ProjectsItem({
   const extraLargeImage = data.isExtraLandscape ? styles.image_item__extra_variant : ''
 
   const setFullscreen = (image) => {
-    onFullscreenMode(image, data.isLandscape)
+    onFullscreenMode(image, data.isLandscape, data.isExtraLandscape)
   }
 
   const [ref, inView] = useInView({threshold: 0.5})
@@ -34,7 +34,8 @@ export default function ProjectsItem({
       title: data.title,
       year: data.year,
       location: data.location,
-      expedient: data.expedient
+      expedient: data.expedient,
+      isLandscape: data.isLandscape
     })
   }
 
