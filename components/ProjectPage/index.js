@@ -145,8 +145,9 @@ export default function ProjectPage({project_items, category}) {
           <h2 onClick={()=>router.push('/')} className={styles.footer__title}>E32</h2>
           {          
             !showSeeAll && 
-              <p className={styles.footer__project_counter}
-                 onMouseOver={()=>setSeeAllVisibility(true)}>
+              <p onClick={()=>toggleNavigationMenuVisibility(!navigationMenuVisibility)}
+                 className={styles.footer__project_counter}
+                 onMouseOver={()=>isBrowser && setSeeAllVisibility(true)}>
                 { projectInformation.id < 10 
                     ? `0${projectInformation.id}` 
                     : projectInformation.id }/{ project_items.length < 10 
@@ -156,7 +157,7 @@ export default function ProjectPage({project_items, category}) {
               </p>
           }
           {
-            showSeeAll && 
+            isBrowser && showSeeAll && 
               <img onClick={()=>toggleNavigationMenuVisibility(!navigationMenuVisibility)}
                    onMouseOut={()=>setSeeAllVisibility(false)}
                    className={styles.footer__see_all} 
