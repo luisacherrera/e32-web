@@ -1,19 +1,73 @@
+import axios from 'axios';
 import { useRouter } from 'next/router';
 import { useEffect, useRef, useState } from 'react';
 import styles from './About.module.scss';
 
 export default function About() {
-  const router = useRouter();
+  const router = useRouter()
 
-  const container = useRef(null);
+  // refs
 
-  const contactForm = useRef(null);
+  const container = useRef(null)
+  const contactForm = useRef(null)
 
-  const bringFormIntoView = () => {
-    contactForm.current.scrollIntoView();
-  }
+  //states
 
   const [inputFocus, setInputFocus] = useState(false);
+  const [inputs, setInputs] = useState({
+    email: '',
+    subject: '',
+    message: '',
+  })
+  const [emailSuccess, setEmailSuccess] = useState(false)
+  const [emailFailure, setEmailFailure] = useState(false)
+
+  // DOM events handlers
+
+  const bringFormIntoView = () => {
+    contactForm.current.scrollIntoView()
+  }
+
+  // form handlers
+
+  const handleOnSubmit = (e) => {
+    e.preventDefault();
+  
+    axios({
+      method: 'POST',
+      url: 'https://formspree.io/f/mayawvvg',
+      data: inputs,
+    })
+      .then((response) => {
+        setEmailSuccess(true);
+        setInputs({
+          email: '',
+          subject: '',
+          message: '',
+        });
+      })
+      .catch((error) => {
+        console.error(error);
+        setEmailFailure(true);
+        setInputs({
+          email: '',
+          subject: '',
+          message: '',
+        });
+      })
+  }
+
+  const handleOnChange = (e) => {
+    e.persist()
+    setInputs((prev) => ({
+      ...prev,
+      [e.target.id]: e.target.value,
+    }))
+
+    if (e.target.id === 'message') {
+      setInputFocus(true)
+    }
+  }
 
   useEffect(()=>{
     document.body.style.overflow = 'scroll';
@@ -80,29 +134,58 @@ export default function About() {
             </div>
             <div className={styles.layout_helper_1}>
               <h2 className={styles.headline_text}>Email us!</h2>
-              <div ref={contactForm} className={styles.contact_form}>
-                <div className={styles.contact_form_input}>
-                  <p>Your Email:</p><input type="text"/>
-                </div>
-                <div className={styles.contact_form_input}>
-                  <p>Subject:</p><input type="text"/>
-                </div>
-                <div className={styles.contact_form_input}>
-                  {
-                    !inputFocus
-                      ? <p>Your text here...</p>
-                      : null
-                  }
-                  <textarea onBlur={()=>setInputFocus(false)} 
-                            onFocus={()=>setInputFocus(true)} 
-                            cols="30" 
-                            rows="15"></textarea>
-                  {
-                    !!inputFocus
-                      ? <button>Send!</button>
-                      : null
-                  }
-                </div>
+              <div className={styles.contact_form}>
+              {
+                emailSuccess 
+                  ? <p className={styles.contact_form__delivery_message}>Your email has been sent!</p>
+                  : emailFailure 
+                    ? <p className={styles.contact_form__delivery_message}>There has been a problem. Please <span onClick={()=>setEmailFailure(false)}>try again</span></p>              
+                    : <form ref={contactForm} 
+                            className={styles.contact_form}
+                            onSubmit={handleOnSubmit}>
+                        <div className={styles.contact_form_input}>
+                          <p>Your Email:</p>        
+                          <input
+                            id="email"
+                            type="email"
+                            name="_replyto"
+                            onChange={handleOnChange}
+                            required
+                            value={inputs.email}
+                          />
+                        </div>
+                        <div className={styles.contact_form_input}>
+                          <p>Subject:</p>
+                          <input
+                            id="subject"
+                            type="text"
+                            name="_subject"
+                            onChange={handleOnChange}
+                            required
+                            value={inputs.subject}
+                          />
+                        </div>
+                        <div className={styles.contact_form_input}>
+                          {
+                            !inputFocus
+                              ? <p>Your text here...</p>
+                              : null
+                          }
+                          <textarea cols="30" 
+                                    rows="15"
+                                    id="message"
+                                    name="message"
+                                    onChange={handleOnChange}
+                                    required
+                                    value={inputs.message}></textarea>
+                          {
+                            !!inputFocus
+                              ? <button>Send!</button>
+                              : null
+                          }
+                        </div>
+                      </form>
+              }
               </div>
             </div>
             <div className={styles.layout_helper}></div>

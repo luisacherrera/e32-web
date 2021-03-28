@@ -233,6 +233,14 @@
     align-self: end;
     scroll-snap-align: center;
 
+    .contact_form__delivery_message {
+        font-size: 4em;
+        
+        span {
+            text-decoration: underline;
+        }
+    }
+
     &_input {
         border: 1px solid $white;
         padding: 20px;
@@ -280,6 +288,11 @@
     @include media('small') { 
         grid-area: main-content;
         margin-bottom: 10vh;
+
+        .contact_form__delivery_message {
+            font-size: 2em;
+            text-align: center;
+        }
     }
 }
 
