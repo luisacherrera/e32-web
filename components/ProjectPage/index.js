@@ -259,10 +259,15 @@ export default function ProjectPage({project_items, category}) {
                  className="fullscreen_image">
             </div>
             :
-            <img src={ fullscreenImage }
-                 className={styles.fullscreen_mobile} 
-                 onClick={()=>handleFullscreenClose()} 
-                 alt="full screen image"/>
+            <div>
+              <img onClick={()=>handleFullscreenClose()} 
+                   src="/cursor/SeeMore.png" 
+                   className={styles.fullscreen_mobile__close}
+                   alt="close"/>
+              <img src={ fullscreenImage }
+                   className={styles.fullscreen_mobile} 
+                   alt="full screen image"/>
+            </div>
           : 
           null 
       }

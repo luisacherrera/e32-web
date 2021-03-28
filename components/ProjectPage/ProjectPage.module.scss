@@ -238,3 +238,13 @@
     width: 150vw;
     height: 110vh;
 }
+
+.fullscreen_mobile__close {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 101;
+    transform: rotate(45deg);
+    height: 3em;
+    width: 3em;
+}
