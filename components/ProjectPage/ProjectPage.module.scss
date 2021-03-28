@@ -229,3 +229,12 @@
 .image_container_fullscreen_mode {
     cursor: url('/cursor/Close.png'), auto;
 }
+
+.fullscreen_mobile {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 100;
+    width: 150vw;
+    height: 110vh;
+}

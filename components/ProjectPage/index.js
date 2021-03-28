@@ -252,11 +252,17 @@ export default function ProjectPage({project_items, category}) {
       </div>
       {
         fullScreen ? 
-          <div ref={fullScreenRef}
-               onMouseMove={(e)=>handleMouseMove(e)}
-               onClick={()=>handleFullscreenClose()} 
-               className="fullscreen_image">
-          </div>
+          isBrowser ?
+            <div ref={fullScreenRef}
+                 onMouseMove={(e)=>handleMouseMove(e)}
+                 onClick={()=>handleFullscreenClose()} 
+                 className="fullscreen_image">
+            </div>
+            :
+            <img src={ fullscreenImage }
+                 className={styles.fullscreen_mobile} 
+                 onClick={()=>handleFullscreenClose()} 
+                 alt="full screen image"/>
           : 
           null 
       }
