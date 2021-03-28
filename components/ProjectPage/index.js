@@ -11,7 +11,7 @@ export default function ProjectPage({project_items, category}) {
 
   const projectsLength = project_items.reduce((acc,val)=> acc + val.data.length, 0)
   const projects_speed = 0.10 / projectsLength
-  const projects_move = 1.25 / projectsLength
+  const projects_move = 1.4 / projectsLength
 
   // refs
 

@@ -35,7 +35,7 @@ export default function CarouselPage({
     expedient: carousel_data[0].expedient
   })
 
-  const carouselMove = 1.25 / carouselLength
+  const carouselMove = 1.4 / carouselLength
 
   const handleWheel = (evt) => {
     if (evt.deltaX === -0 || evt.deltaX === -1.25 || evt.deltaX === 1.25) {
