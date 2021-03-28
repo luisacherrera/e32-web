@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "next": "^10.0.0",
     "react": "16.13.1",
     "react-device-detect": "^1.15.0",
