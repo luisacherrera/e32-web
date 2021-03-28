@@ -143,6 +143,7 @@ export default function ProjectPage({project_items, category}) {
             </div>
           </div>
           <h2 onClick={()=>router.push('/')} className={styles.footer__title}>E32</h2>
+          <div className={styles.footer__project_counter_block}>
           {          
             !showSeeAll && 
               <p onClick={()=>toggleNavigationMenuVisibility(!navigationMenuVisibility)}
@@ -164,6 +165,7 @@ export default function ProjectPage({project_items, category}) {
                    src="/cursor/Cursor_projects.png" 
                    alt="See all projects"/>
           }
+          </div>
           <h2 onClick={()=>{
             category === 'architecture' ? router.push('/architecture') : 
               category === 'lighting' ? router.push('/lighting') : 
