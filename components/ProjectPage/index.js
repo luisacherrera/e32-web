@@ -40,7 +40,9 @@ export default function ProjectPage({project_items, category}) {
   //DOM events handlers
 
   const handleFullscreenClose = () => {
-    document.body.style.overflow = 'hidden'
+    if (isBrowser) {
+      document.body.style.overflow = 'hidden'
+    }
     toggleFullscreen(false)
     setFullscreenLandscape(false)
     setExtraFullscreenLandscape(false)
@@ -259,13 +261,12 @@ export default function ProjectPage({project_items, category}) {
                  className="fullscreen_image">
             </div>
             :
-            <div>
+            <div className={styles.fullscreen_mobile}>
               <img onClick={()=>handleFullscreenClose()} 
                    src="/cursor/SeeMore.png" 
                    className={styles.fullscreen_mobile__close}
                    alt="close"/>
-              <img src={ fullscreenImage }
-                   className={styles.fullscreen_mobile} 
+              <img src={ fullscreenImage } 
                    alt="full screen image"/>
             </div>
           : 

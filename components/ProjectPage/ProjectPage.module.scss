@@ -233,10 +233,8 @@
 .fullscreen_mobile {
     position: absolute;
     top: 0;
-    right: 0;
     z-index: 100;
-    width: 150vw;
-    height: 110vh;
+    width: 630vw;
 }
 
 .fullscreen_mobile__close {
@@ -245,6 +243,6 @@
     right: 0;
     z-index: 101;
     transform: rotate(45deg);
-    height: 3em;
-    width: 3em;
+    height: 10em;
+    width: 10em;
 }
