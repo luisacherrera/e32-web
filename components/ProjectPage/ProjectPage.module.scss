@@ -234,15 +234,15 @@
     position: absolute;
     top: 0;
     z-index: 100;
-    width: 250vw;
-}
-
-.fullscreen_mobile__landscape {
     width: 400vw;
 }
 
+.fullscreen_mobile__landscape {
+    width: 500vw;
+}
+
 .fullscreen_mobile__full_landscape {
-    width: 800vw;
+    width: 700vw;
 }
 
 .fullscreen_mobile__close {
