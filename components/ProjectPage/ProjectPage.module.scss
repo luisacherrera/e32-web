@@ -234,7 +234,11 @@
     position: absolute;
     top: 0;
     z-index: 100;
-    width: 150vw;
+    width: 200vw;
+}
+
+.fullscreen_mobile__landscape {
+    width: 400vw;
 }
 
 .fullscreen_mobile__close {
