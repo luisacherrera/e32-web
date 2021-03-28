@@ -47,22 +47,24 @@ export default function ProjectBlock({
   return (
     <>
       <div ref={blockRef} className={styles.horizontal_container}>
-      <div className={ isFirstElement ? ` ${styles.first_element} ${styles.project_intro_container}` : `${styles.project_intro_container}` }>
-        <div className={styles.project_intro__counter}>
-          <h2>Project</h2>
-          <h2>{ 
-            project_position < 10 
-              ? `0${project_position}` 
-              : project_position }/{ total_project_length < 10 
-                ? `0${total_project_length}` 
-                : total_project_length 
-          }</h2>
-          {
-            project_description.length > 0 && <p>{ project_description }</p>
-          }
-          <img src="/cursor/Flecha.svg" alt="arrow"/>
+        <div className={ isFirstElement ? ` ${styles.first_element} ${styles.project_intro_container}` : `${styles.project_intro_container}` }>
+          <div className={styles.project_intro__counter}>
+            <h2>Project</h2>
+            <h2>{ 
+              project_position < 10 
+                ? `0${project_position}` 
+                : project_position }/{ total_project_length < 10 
+                  ? `0${total_project_length}` 
+                  : total_project_length 
+            }</h2>
+            {
+              project_description.length > 0 && <p>{ project_description }</p>
+            }
+          </div>
+          <div className={styles.project_intro__mobile_arrow}>
+            <img src="/cursor/Flecha.svg" alt="arrow"/>
+          </div>
         </div>
-      </div>
         {
           project_data.map((item, i) =>
             <ProjectsItem key={ item.imageId }
