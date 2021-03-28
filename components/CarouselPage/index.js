@@ -9,24 +9,20 @@ export default function CarouselPage({
   category
 }) {
   const router = useRouter();
-  const carouselLength = carousel_data.length
 
   const nextPage = category === 'architecture' 
-                    ? '/lighting' 
-                    : category ==='lighting' 
-                    ? '/building' 
-                    : '/architecture'
+    ? '/lighting' 
+    : category ==='lighting' 
+    ? '/building' 
+    : '/architecture'
 
 
-  const containerBuildingVariant = category === 'building' ? styles.container_building : ''
-  const containerLightingVariant = category === 'lighting' ? styles.container_lighting : ''
-  const footerBuildingVariant = category === 'building' ? styles.footer__building_variant : ''
-  const footerLightingVariant = category === 'lighting' ? styles.footer__lighting_variant : ''
-  const titleLightingVariant = category === 'lighting' ? styles.header_logo__page_variant__lighting : ''
+  // carousel move values
+  const carouselLength = carousel_data.length
+  const carouselMove = 1.4 / carouselLength
+  const carouselSpeed = 0.15 / carouselLength
 
-  const handleNewVisibleItem = (item) => {
-    updateItemInformation(item)
-  }
+  // states
 
   const [itemInformation, updateItemInformation] = useState({
     title: carousel_data[0].title,
@@ -34,8 +30,17 @@ export default function CarouselPage({
     location: carousel_data[0].location,
     expedient: carousel_data[0].expedient
   })
+  const [translate, setTranslate] = useState(0)
 
-  const carouselMove = 1.4 / carouselLength
+  // styles
+
+  const containerBuildingVariant = category === 'building' ? styles.container_building : ''
+  const containerLightingVariant = category === 'lighting' ? styles.container_lighting : ''
+  const footerBuildingVariant = category === 'building' ? styles.footer__building_variant : ''
+  const footerLightingVariant = category === 'lighting' ? styles.footer__lighting_variant : ''
+  const titleLightingVariant = category === 'lighting' ? styles.header_logo__page_variant__lighting : ''
+
+  // DOM events handlers
 
   const handleWheel = (evt) => {
     if (evt.deltaX === -0 || evt.deltaX === -1.25 || evt.deltaX === 1.25) {
@@ -54,10 +59,12 @@ export default function CarouselPage({
     }
   }
 
-  const [translate, setTranslate] = useState(0)
+  // general handlers
 
-  const carouselSpeed = 0.15 / carouselLength
-  
+  const handleNewVisibleItem = (item) => {
+    updateItemInformation(item)
+  }
+
   useEffect(() => {
     let timer = isBrowser && setInterval(() => {
         setTranslate(translate => {
