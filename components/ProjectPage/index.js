@@ -71,7 +71,7 @@ export default function ProjectPage({project_items, category}) {
     yAxis.style.backgroundPositionY = fullscreenLandscape 
                                         ? -(e.nativeEvent.offsetY*1.5) + "px" 
                                         : extraFullscreenLandscape 
-                                          ? -(e.nativeEvent.offsetY*0.25) + "px"
+                                          ? -(e.nativeEvent.offsetY*0.31) + "px"
                                           : -(e.nativeEvent.offsetY*4) + "px"
   }
 
