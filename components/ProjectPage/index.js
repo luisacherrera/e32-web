@@ -11,7 +11,7 @@ export default function ProjectPage({project_items, category}) {
 
   const projectsLength = project_items.reduce((acc,val)=> acc + val.data.length, 0)
   const projects_speed = 0.10 / projectsLength
-  const projects_move = 1.25 / projectsLength
+  const projects_move = 1.4 / projectsLength
 
   // refs
 
@@ -71,7 +71,7 @@ export default function ProjectPage({project_items, category}) {
     yAxis.style.backgroundPositionY = fullscreenLandscape 
                                         ? -(e.nativeEvent.offsetY*1.5) + "px" 
                                         : extraFullscreenLandscape 
-                                          ? -(e.nativeEvent.offsetY*0.25) + "px"
+                                          ? -(e.nativeEvent.offsetY*0.31) + "px"
                                           : -(e.nativeEvent.offsetY*4) + "px"
   }
 
@@ -218,7 +218,7 @@ export default function ProjectPage({project_items, category}) {
             <div className={styles.projects_navigation_menu}>
               <div className={styles.projects_navigation_menu__image_container}>
                 {
-                  projectInformation.isLandscape 
+                  project_items[projectInformation.id - 1].data[0].isLandscape
                     ? <img className={styles.projects_navigation_menu__image__landscape} src={project_items[projectInformation.id - 1].data[0].image} alt=""/>
                     : <img className={styles.projects_navigation_menu__image__portrait} src={project_items[projectInformation.id - 1].data[0].image} alt=""/>
                 }

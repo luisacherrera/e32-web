@@ -34,8 +34,7 @@ export default function ProjectsItem({
       title: data.title,
       year: data.year,
       location: data.location,
-      expedient: data.expedient,
-      isLandscape: data.isLandscape
+      expedient: data.expedient
     })
   }
 
