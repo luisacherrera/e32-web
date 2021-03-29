@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 import { useEffect, useRef, useState } from 'react';
 import styles from './About.module.scss';
+import { isBrowser } from 'react-device-detect'
 
 export default function About() {
   const router = useRouter()
@@ -74,10 +75,12 @@ export default function About() {
   }
 
   useEffect(()=>{
-    document.body.style.overflow = 'scroll';
+    if (!isBrowser) {
+      document.body.style.overflow = 'scroll';
+    }
     container.current.scrollIntoView();
 
-    return ()=> resetBodyOverflownOnClose();
+    return ()=> !isBrowser && resetBodyOverflownOnClose();
   }, [])
 
   return (
