@@ -69,9 +69,15 @@ export default function About() {
     }
   }
 
+  const resetBodyOverflownOnClose = () => {
+    document.body.style.overflow = 'hidden'
+  }
+
   useEffect(()=>{
     document.body.style.overflow = 'scroll';
     container.current.scrollIntoView();
+
+    return ()=> resetBodyOverflownOnClose();
   }, [])
 
   return (
