@@ -47,7 +47,7 @@ export default function ProjectsItem({
   return (
     <>
       <div ref={ref} className={ styles.item_container }
-        onClick={()=>isBrowser && setFullscreen(data.imageUrl)}>
+        onClick={()=>setFullscreen(data.imageUrl)}>
         <img
           className={ `${ styles.image_item } ${landscapeImage} ${extraLargeImage}` } 
           src={ data.imageUrl } />

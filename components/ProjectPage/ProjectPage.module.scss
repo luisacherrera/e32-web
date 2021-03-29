@@ -229,3 +229,28 @@
 .image_container_fullscreen_mode {
     cursor: url('/cursor/Close.png'), auto;
 }
+
+.fullscreen_mobile {
+    position: absolute;
+    top: 0;
+    z-index: 100;
+    width: 200vw;
+}
+
+.fullscreen_mobile__landscape {
+    width: 400vw;
+}
+
+.fullscreen_mobile__full_landscape {
+    width: 550vw;
+}
+
+.fullscreen_mobile__close {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 101;
+    transform: rotate(45deg);
+    height: 6em;
+    width: 6em;
+}

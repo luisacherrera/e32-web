@@ -11,7 +11,7 @@ export default function ProjectPage({project_items, category}) {
 
   const projectsLength = project_items.reduce((acc,val)=> acc + val.data.length, 0)
   const projects_speed = 0.10 / projectsLength
-  const projects_move = 1.4 / projectsLength
+  const projects_move = 7.5 / projectsLength
 
   // refs
 
@@ -40,7 +40,9 @@ export default function ProjectPage({project_items, category}) {
   //DOM events handlers
 
   const handleFullscreenClose = () => {
-    document.body.style.overflow = 'hidden'
+    if (isBrowser) {
+      document.body.style.overflow = 'hidden'
+    }
     toggleFullscreen(false)
     setFullscreenLandscape(false)
     setExtraFullscreenLandscape(false)
@@ -252,11 +254,26 @@ export default function ProjectPage({project_items, category}) {
       </div>
       {
         fullScreen ? 
-          <div ref={fullScreenRef}
-               onMouseMove={(e)=>handleMouseMove(e)}
-               onClick={()=>handleFullscreenClose()} 
-               className="fullscreen_image">
-          </div>
+          isBrowser ?
+            <div ref={fullScreenRef}
+                 onMouseMove={(e)=>handleMouseMove(e)}
+                 onClick={()=>handleFullscreenClose()} 
+                 className="fullscreen_image">
+            </div>
+            :
+            <div className={
+              fullscreenLandscape 
+                ? `${styles.fullscreen_mobile} ${styles.fullscreen_mobile__landscape}`
+                : extraFullscreenLandscape 
+                  ? `${styles.fullscreen_mobile} ${styles.fullscreen_mobile__full_landscape}`
+                  : `${styles.fullscreen_mobile}`}>
+              <img onClick={()=>handleFullscreenClose()} 
+                   src="/cursor/SeeMore.png" 
+                   className={styles.fullscreen_mobile__close}
+                   alt="close"/>
+              <img src={ fullscreenImage } 
+                   alt="full screen image"/>
+            </div>
           : 
           null 
       }
