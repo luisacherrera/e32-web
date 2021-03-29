@@ -13,7 +13,8 @@ export default function ProjectBlock({
   project_position,
   showFullscreenImage,
   total_project_length,
-  updateItemInformation
+  updateItemInformation,
+  callProjectToView
 }) {
 
   const router = useRouter()
@@ -40,7 +41,7 @@ export default function ProjectBlock({
 
   useEffect(()=>{
     if (project_id === project) {
-      blockRef.current.scrollIntoView({behavior: "auto", inline: "start"})
+      callProjectToView(project_position)
     }
   }, [])
 
