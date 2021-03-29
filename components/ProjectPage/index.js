@@ -11,7 +11,7 @@ export default function ProjectPage({project_items, category}) {
 
   const projectsLength = project_items.reduce((acc,val)=> acc + val.data.length, 0)
   const projects_speed = 0.10 / projectsLength
-  const projects_move = 7.5 / projectsLength
+  const projects_move = 6 / projectsLength
 
   // refs
 
@@ -212,7 +212,8 @@ export default function ProjectPage({project_items, category}) {
                           project_position={i+1}
                           showFullscreenImage={handleFullscreenImage}
                           total_project_length={project_items.length}
-                          updateItemInformation={handleNewItemInformation}>
+                          updateItemInformation={handleNewItemInformation}
+                          callProjectToView={setElementToCall}>
             </ProjectBlock>
           )
         }

@@ -19,7 +19,7 @@ export default function CarouselPage({
 
   // carousel move values
   const carouselLength = carousel_data.length
-  const carouselMove = 15 / carouselLength
+  const carouselMove = 12 / carouselLength
   const carouselSpeed = 0.15 / carouselLength
 
   // states
