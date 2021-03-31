@@ -7,6 +7,12 @@ import styles from './ProjectPage.module.scss'
 export default function ProjectPage({project_items, category}) {
   const router = useRouter()
 
+  const nextPage = category === 'architecture' 
+    ? '/lighting' 
+    : category ==='lighting' 
+    ? '/building' 
+    : '/architecture'
+
   const footerLightingVariant = category === "lighting" ? styles.footer__title__lighting_variant : ''
 
   const projectsLength = project_items.reduce((acc,val)=> acc + val.data.length, 0)
@@ -117,7 +123,7 @@ export default function ProjectPage({project_items, category}) {
   useEffect(() => {    
     let timer = isBrowser && setInterval(() => {
         setTranslate(translate => {
-            const updatedTranslate = translate >= 95 ? 0 : translate < 0 ? 0 : translate + projectsSpeed;
+            const updatedTranslate = translate >= 95 ? router.push(nextPage) : translate < 0 ? 0 : translate + projectsSpeed;
 
             return updatedTranslate;
         });
