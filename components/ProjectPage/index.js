@@ -10,8 +10,8 @@ export default function ProjectPage({project_items, category}) {
   const footerLightingVariant = category === "lighting" ? styles.footer__title__lighting_variant : ''
 
   const projectsLength = project_items.reduce((acc,val)=> acc + val.data.length, 0)
-  const projects_speed = 0.10 / projectsLength
-  const projects_move = 6 / projectsLength
+  const projectsMove = 5 / projectsLength
+  const projectsSpeed = 0.10 / projectsLength
 
   // refs
 
@@ -52,13 +52,13 @@ export default function ProjectPage({project_items, category}) {
     if (evt.deltaX === -0 || evt.deltaX === -1.25 || evt.deltaX === 1.25) {
       evt.deltaY > 0 ? 
         setTranslate(translate=>{
-          const updatedTranslate = translate + projects_move;
+          const updatedTranslate = translate + projectsMove;
 
           return updatedTranslate;
         })
         :
         setTranslate(translate=>{
-          const updatedTranslate = translate - projects_move;
+          const updatedTranslate = translate - projectsMove;
         
           return updatedTranslate;
         })
@@ -117,7 +117,7 @@ export default function ProjectPage({project_items, category}) {
   useEffect(() => {    
     let timer = isBrowser && setInterval(() => {
         setTranslate(translate => {
-            const updatedTranslate = translate >= 95 ? 0 : translate < 0 ? 0 : translate + projects_speed;
+            const updatedTranslate = translate >= 95 ? 0 : translate < 0 ? 0 : translate + projectsSpeed;
 
             return updatedTranslate;
         });
