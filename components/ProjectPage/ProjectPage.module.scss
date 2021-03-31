@@ -16,7 +16,7 @@
 .projects_blocks__container_mobile {
     @include media('small') {
         position: sticky;
-        top: 10vh;
+        top: 5vh;
     }
 } 
 
