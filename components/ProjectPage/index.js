@@ -7,11 +7,17 @@ import styles from './ProjectPage.module.scss'
 export default function ProjectPage({project_items, category}) {
   const router = useRouter()
 
+  const nextPage = category === 'architecture' 
+    ? '/lighting' 
+    : category ==='lighting' 
+    ? '/building' 
+    : '/architecture'
+
   const footerLightingVariant = category === "lighting" ? styles.footer__title__lighting_variant : ''
 
   const projectsLength = project_items.reduce((acc,val)=> acc + val.data.length, 0)
-  const projects_speed = 0.10 / projectsLength
-  const projects_move = 6 / projectsLength
+  const projectsMove = 5 / projectsLength
+  const projectsSpeed = 0.10 / projectsLength
 
   // refs
 
@@ -52,13 +58,13 @@ export default function ProjectPage({project_items, category}) {
     if (evt.deltaX === -0 || evt.deltaX === -1.25 || evt.deltaX === 1.25) {
       evt.deltaY > 0 ? 
         setTranslate(translate=>{
-          const updatedTranslate = translate + projects_move;
+          const updatedTranslate = translate + projectsMove;
 
           return updatedTranslate;
         })
         :
         setTranslate(translate=>{
-          const updatedTranslate = translate - projects_move;
+          const updatedTranslate = translate - projectsMove;
         
           return updatedTranslate;
         })
@@ -71,7 +77,7 @@ export default function ProjectPage({project_items, category}) {
     
     xAxis.style.backgroundPositionX = -e.nativeEvent.offsetX + "px"
     yAxis.style.backgroundPositionY = fullscreenLandscape 
-                                        ? -(e.nativeEvent.offsetY*1.5) + "px" 
+                                        ? -(e.nativeEvent.offsetY*1.6) + "px" 
                                         : extraFullscreenLandscape 
                                           ? -(e.nativeEvent.offsetY*0.31) + "px"
                                           : -(e.nativeEvent.offsetY*4) + "px"
@@ -117,7 +123,7 @@ export default function ProjectPage({project_items, category}) {
   useEffect(() => {    
     let timer = isBrowser && setInterval(() => {
         setTranslate(translate => {
-            const updatedTranslate = translate >= 95 ? 0 : translate < 0 ? 0 : translate + projects_speed;
+            const updatedTranslate = translate >= 95 ? router.push(nextPage) : translate < 0 ? 0 : translate + projectsSpeed;
 
             return updatedTranslate;
         });
@@ -171,7 +177,7 @@ export default function ProjectPage({project_items, category}) {
           <h2 onClick={()=>{
             category === 'architecture' ? router.push('/architecture') : 
               category === 'lighting' ? router.push('/lighting') : 
-                router.push('building')
+                router.push('/building')
             }
               } className={`${styles.footer__title} ${footerLightingVariant}`}>{
                 category === 'architecture' ? 'A' :
@@ -248,6 +254,9 @@ export default function ProjectPage({project_items, category}) {
                   ) 
                 }
               </ul>
+              <img className={styles.projects_navigation_menu__close}
+                   onClick={()=>toggleNavigationMenuVisibility(false)} 
+                   src="/cursor/SeeMore.png"/>
             </div>
             :
             null

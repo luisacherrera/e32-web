@@ -4,7 +4,7 @@ export default function AppLayout({ children }) {
     return (
     <>
       <Head>
-        <title>E32</title>
+        <title>Trans-disciplinary studio with a «Human centric» approach.</title>
         <link rel="icon" href="/favicon.png" />
       </Head>
       <div>
