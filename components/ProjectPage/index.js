@@ -177,7 +177,7 @@ export default function ProjectPage({project_items, category}) {
           <h2 onClick={()=>{
             category === 'architecture' ? router.push('/architecture') : 
               category === 'lighting' ? router.push('/lighting') : 
-                router.push('building')
+                router.push('/building')
             }
               } className={`${styles.footer__title} ${footerLightingVariant}`}>{
                 category === 'architecture' ? 'A' :
