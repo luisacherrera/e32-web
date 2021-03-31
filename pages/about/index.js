@@ -11,6 +11,7 @@ export default function About() {
 
   const container = useRef(null)
   const contactForm = useRef(null)
+  const scrollContainer = useRef(null)
 
   //states
 
@@ -27,6 +28,12 @@ export default function About() {
 
   const bringFormIntoView = () => {
     contactForm.current.scrollIntoView()
+  }
+
+  const handleWheelMovement = (e) => {
+    if (e.deltaX === -0 || e.deltaX === -1.25 || e.deltaX === 1.25) {
+      scrollContainer.current.scrollLeft += e.deltaY*10
+    }
   }
 
   // form handlers
@@ -86,7 +93,8 @@ export default function About() {
   return (
     <>
       <div className={styles.container}
-           ref={container}>
+           ref={container}
+           onWheel={(e)=>handleWheelMovement(e)}>
         <div className={styles.header}>
           <div className={styles.header_logo}>
             <h1 className={styles.title_style}>E32</h1>
@@ -127,7 +135,8 @@ export default function About() {
           </ul>
         </div>
         <div className={styles.horizontal_container}>
-          <div className={styles.horizontal_container_secondary}>
+          <div className={styles.horizontal_container_secondary}
+               ref={scrollContainer}>
             <div className={styles.layout_helper_0}>
               <h2 className={styles.headline_text}>About</h2>
               <div className={styles.block_sign_container}>
