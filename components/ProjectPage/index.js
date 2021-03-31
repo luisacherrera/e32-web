@@ -254,6 +254,9 @@ export default function ProjectPage({project_items, category}) {
                   ) 
                 }
               </ul>
+              <img className={styles.projects_navigation_menu__close}
+                   onClick={()=>toggleNavigationMenuVisibility(false)} 
+                   src="/cursor/SeeMore.png"/>
             </div>
             :
             null
