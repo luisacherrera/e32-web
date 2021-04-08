@@ -189,18 +189,18 @@ export default function ProjectPage({project_items, category}) {
           <ul className={styles.footer_home__navbar}>
             {
               category === 'architecture' ? 
-                <li className={styles.footer_home__navbar_item}>Architecture</li> :
+                <li onClick={()=>router.push('/architecture')} className={styles.footer_home__navbar_item}>Architecture</li> :
                 <li onClick={()=>router.push('/architecture')} className={styles.footer_home__navbar_item_noactive}>Architecture</li>
             }
             {
               category === 'lighting' ?
-                <li className={styles.footer_home__navbar_item}>Lighting</li> :
+                <li onClick={()=>router.push('/lighting')} className={styles.footer_home__navbar_item}>Lighting</li> :
                 <li onClick={()=>router.push('/lighting')} className={styles.footer_home__navbar_item_noactive}>Lighting</li>
 
             }
             {
               category === 'building' ? 
-                <li className={styles.footer_home__navbar_item}>Building</li> :
+                <li onClick={()=>router.push('/building')} className={styles.footer_home__navbar_item}>Building</li> :
                 <li onClick={()=>router.push('/building')} className={styles.footer_home__navbar_item_noactive}>Building</li>
             }
           </ul>
