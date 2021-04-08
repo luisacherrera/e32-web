@@ -18,6 +18,7 @@ export default function ProjectPage({project_items, category}) {
   const projectsLength = project_items.reduce((acc,val)=> acc + val.data.length, 0)
   const projectsMove = 5 / projectsLength
   const projectsSpeed = 0.10 / projectsLength
+  const projectFraction = 95 / project_items.length
 
   // refs
 
@@ -88,7 +89,7 @@ export default function ProjectPage({project_items, category}) {
       setCallStatus(true)
     }
     if (isBrowser) {
-      el === 1 ? setTranslate(0) : setTranslate(el*10)
+      el === 1 ? setTranslate(0) : setTranslate((el-1)*projectFraction)
     }
     updateProjectInformation({
       title: project_items[el - 1].data[0].title,
