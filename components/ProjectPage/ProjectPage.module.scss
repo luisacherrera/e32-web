@@ -10,13 +10,15 @@
         display: block;
         overflow-x: auto;
         overflow-y: hidden;
+        height: 110vh;
+        padding-top: 10vh;
     }
 }
 
 .projects_blocks__container_mobile {
     @include media('small') {
         position: sticky;
-        top: 110vh;
+        top: 0;
     }
 } 
 
