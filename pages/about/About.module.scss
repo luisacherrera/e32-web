@@ -376,7 +376,10 @@
             font-size: 9vw;
             text-decoration: none;
 
-            li { margin: $site-spacing 0; }
+            li { 
+                margin: $site-spacing 0; 
+                line-height: 0.8;
+            }
         }
     }
 }
