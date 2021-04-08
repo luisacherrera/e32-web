@@ -140,7 +140,7 @@ export default function CarouselPage({
                 <CarouselItem
                   key={i}
                   category={category}
-                  isBuildingVariant={i === 2 && category === 'building'}
+                  isBuildingVariant={i === 3 && category === 'building'}
                   isDoubleSpaced={i === 1 || i === 6}
                   isFirstElement={i === 0}
                   isLandscape={data.isLandscape}
