@@ -15,10 +15,6 @@
 
 .container__landscape_variant__lighting {
   padding-top: 8vh;
-
-  @include media('small') {
-    padding-top: 10vh;
-  }
 }
 
 .first_image_container {
@@ -43,10 +39,10 @@
 }
 
 .image_item__single_spaced {
-  padding-right: 150px;
+  padding-right: 200px;
 
   @include media('small') {
-    padding-right: 75px;
+    padding-right: 100px;
   }
 }
 

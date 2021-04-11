@@ -141,11 +141,9 @@ export default function CarouselPage({
                   key={i}
                   category={category}
                   isBuildingVariant={i === 3 && category === 'building'}
-                  isDoubleSpaced={i === 1 || i === 6}
                   isFirstElement={i === 0}
                   isLandscape={data.isLandscape}
                   isLightingVariant={data.isLightingVariant}
-                  isSingleSpaced={i === 3}
                   item={data}
                   onItemVisible={handleNewVisibleItem}>
                 </CarouselItem>
