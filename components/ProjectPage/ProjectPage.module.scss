@@ -78,7 +78,11 @@
     }
 
     @include media('small') {
-        width: 15%;
+        width: 35%;
+
+        .footer__project_counter {
+            padding-left: 50px;
+        }
     }
 }
 
