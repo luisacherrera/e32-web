@@ -6,11 +6,9 @@ import styles from './CarouselItem.module.scss';
 export default function CarouselItem({
   category,
   isBuildingVariant, 
-  isDoubleSpaced,
   isFirstElement, 
   isLandscape,
   isLightingVariant,
-  isSingleSpaced,
   item,
   onItemVisible
 }) {
@@ -22,11 +20,11 @@ export default function CarouselItem({
   const buildingVariant = isBuildingVariant ? styles.image_item__building_variant : ''
   const isLandscapeContainer = isLandscape ? styles.container__landscape_variant : ''
   const isLightingLandscapeContainer = isLightingVariant ? styles.container__landscape_variant__lighting : ''
-  const doubleSpaced = isDoubleSpaced ? styles.image_item__double_spaced : ''
+  const doubleSpaced = item.spaced === 2 ? styles.image_item__double_spaced : ''
   const firstElement = isFirstElement ? styles.first_image_container : ''
   const imageOrientation = isLandscape ? styles.image_item__horizontal_variant : styles.image_item__vertical_variant
   const lightingVariant = isLightingVariant ? styles.image_item__lighting_variant : ''
-  const singleSpaced = isSingleSpaced ? styles.image_item__single_spaced: ''
+  const singleSpaced = item.spaced === 1 ? styles.image_item__single_spaced: ''
 
   const handleItemVisibility = () => {
     onItemVisible({
