@@ -12,6 +12,10 @@
   font-size: 18em;
   font-weight: 100;
   line-height: 0.9;
+
+  @include media('small') {
+    display: none;
+  }
 }
 
 .address_info {
@@ -24,6 +28,10 @@
 
   p {
     font-size: 1.25rem;
+  }
+
+  @include media('small') {
+    display: none;
   }
 }
 
@@ -39,11 +47,11 @@
     width: 2em;
     filter: invert(1);
     transform: rotate(45deg);
+  }
 
-    @include media('small') {
-      height: 1em;
-      width: 1em;
-    }
+  @include media('small') {
+    top: 10px;
+    z-index: 100;
   }
 }
 
@@ -53,6 +61,10 @@
   background-color: $about-page-color;
   overflow-x: scroll;
   scroll-snap-type: x mandatory;
+
+  @include media('small') {
+    display: block;
+  }
 }
 
 .block_container {
@@ -60,6 +72,51 @@
 
   &__about {
     display: flex;
+
+    @include media('small') {
+      display: block;
+    }
+
+    &_title__mobile {
+      display: none;
+
+      @include media('small') {
+        display: block;
+        font-size: 30vw;
+        font-weight: 100;
+        padding-top: 10px;
+        padding-left: 10px;
+      }
+    }
+
+    &_list {
+      display: none;
+
+      @include media('small') {
+        display: block;
+        padding-left: 80px;
+
+        li {
+          line-height: 0.8;
+          font-size: 9vw;
+          margin: 20px 0;
+        }
+      }
+    }
+
+    &_page_title__mobile {
+      display: none;
+      
+      @include media('small') {
+        display: block;
+        font-size: 1.5rem;
+        padding-left: 80px;
+        margin-top: 150px;
+        position: sticky;
+        top: 20px;
+        z-index: 100;
+      }
+    }
 
     &_image {
       display: flex;
@@ -71,6 +128,24 @@
       img {
         width: 33vw;
         filter: grayscale(100%);
+      }
+
+      @include media('small') {
+        display: none;
+      }
+    }
+
+    &_image__mobile {
+      display: none;
+
+      @include media('small') {
+        display: block;
+        overflow: hidden;
+
+        img {
+          width: 150%;
+          filter: grayscale(100%);
+        }
       }
     }
 
@@ -90,6 +165,25 @@
           display: none;
         }
       }
+
+      @include media('small') {
+        width: 100%;
+        padding: 60px 20px 150px 80px;
+
+        &__info {
+          line-height: 0.95;
+
+          &_intro_text {
+            font-size: 1rem;
+            padding: 0 0 20px 0;
+          }
+  
+          &_mobile_text {
+            display: block;
+            font-size: 1.65rem;
+          }
+        }
+      }
     }
   }
 
@@ -104,12 +198,36 @@
       font-size: 5.25rem;
       padding-bottom: 70px;
     }
+
+    @include media('small') {
+      display: none;
+    }
   }
 
   &__form {
+    &__title_mobile {
+      display: none;
+    }
+
+    @include media('small') {
+      flex-direction: column;
+      align-items: center;
+
+      &__title_mobile {
+        display: block;
+        margin-top: 150px;
+        margin-bottom: 50px;
+        padding-right: 100px;
+      }
+    }
+
     .contact_form {
       padding-bottom: 50px;
       width: 35vw;
+
+      @include media('small') {
+        width: 90vw;
+      }
   
       .contact_form__delivery_message {
           font-size: 4em;
@@ -168,14 +286,13 @@
           }
       }
   
-      @include media('small') { 
-          grid-area: main-content;
-          margin-bottom: 10vh;
-  
-          .contact_form__delivery_message {
-              font-size: 2em;
-              text-align: center;
-          }
+      @include media('small') {
+        margin-bottom: 5vh;
+        
+        .contact_form__delivery_message {
+          font-size: 2em;
+          text-align: center;
+        }
       }
     }
   }
@@ -211,45 +328,23 @@
     display: none;
   }
 
-  @include media('medium') { 
-    &_middle {
-      justify-self: initial;
-      align-self: end;
-      font-size: 2.5vw;
-
-      &:first-of-type { 
-          justify-self: end;
-          margin-right: 20px;
-      }
-    }
-
-    &_home__navbar { font-size: 2.5vw; }
+  @include media('small') {
+    display: none;
   }
+}
+
+.footer__mobile {
+  display: none;
 
   @include media('small') {
-    &_home__address_container {
-        justify-self: end;
-        font-size: 1.15em;
-    }
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding: 10px 20px;
+    width: 100%;
 
-    &_middle {
-      font-size: 2em;
-
-      &:first-of-type { display: none; }
-    }
-
-    &_home__navbar {
-      display: none;
-    }
-
-    &_home__navbar_mobile {
-      display: block;
-      font-size: 9vw;
-      text-decoration: none;
-      li { 
-        margin: $site-spacing 0; 
-        line-height: 0.8;
-      }
+    p {
+      font-size: 2rem;
     }
   }
 }

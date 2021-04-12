@@ -108,8 +108,15 @@ export default function AboutTest() {
 
       <div className={styles.container}
            ref={container}
-           onWheel={(e)=>handleWheelMovement(e)}>
+           onWheel={(e)=>isBrowser && handleWheelMovement(e)}>
         <div className={`${styles.block_container} ${styles.block_container__about}`}>
+          <h1 className={styles.block_container__about_title__mobile}>E32</h1>
+          <ul className={styles.block_container__about_list}>
+            <li onClick={()=>router.push('/architecture')}>Architecture projects</li>
+            <li onClick={()=>router.push('/lighting')}>Lighting projects</li>
+            <li onClick={()=>router.push('/building')}>Building projects</li>
+          </ul>
+          <div className={styles.block_container__about_page_title__mobile}><p>About</p></div>
           <div className={styles.block_container__about_image}>
             <img src="/photos/projects_architecture/01.PDG/PDG_9.jpg"></img>
           </div>
@@ -121,11 +128,15 @@ export default function AboutTest() {
               </div>
             </div>
           </div>
+          <div className={styles.block_container__about_image__mobile}>
+            <img src="/photos/projects_architecture/01.PDG/PDG_9.jpg"></img>
+          </div>
         </div>
         <div className={`${styles.block_container} ${styles.block_container__keep}`}>
           <h2>Need some<br/>info? Keep in<br/>touch!</h2>
         </div>
         <div className={`${styles.block_container} ${styles.block_container__form}`}>
+          <h2 className={styles.block_container__form__title_mobile}>Email us!</h2>
           <div className={styles.contact_form}>
             {
               emailSuccess 
@@ -178,6 +189,18 @@ export default function AboutTest() {
                       </div>
                     </form>
             }
+          </div>
+          <div className={styles.footer__mobile}>        
+            <p className={styles.footer_middle}>
+              <a href="https://www.instagram.com/e32studio/">IG</a>
+            </p>
+            <p>
+              <a href="https://goo.gl/maps/fDdTYNgfMrgtNWCS8">Maps</a>
+            </p>
+            <h3 className={styles.footer_home__address_container}>
+              Tlf: 938 326 741 <br/>
+              <a href="mailto:info@e32.studio?subject=Request information">info@e32.studio</a>
+            </h3>
           </div>
         </div>
       </div>
