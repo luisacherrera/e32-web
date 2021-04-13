@@ -123,10 +123,11 @@
       flex-direction: column;
       justify-content: center;
       align-items: flex-end;
-      width: 70%;
+      width: 65%;
 
       img {
         width: 33vw;
+        max-width: 450px;
         filter: grayscale(100%);
       }
 
