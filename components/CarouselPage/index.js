@@ -83,7 +83,8 @@ export default function CarouselPage({
         ${styles.container}
         ${containerLightingVariant}
         ${containerBuildingVariant}
-        `}>
+        `}
+        onWheel={(e)=>isBrowser && handleWheel(e)}>
         <div className={styles.header_logo}>
           <h1 className={styles.title_style} onClick={()=>router.push('/')}>E32</h1>
         </div>
@@ -133,8 +134,7 @@ export default function CarouselPage({
             }
           </ul>
         </div>
-        <div className={`${styles.horizontal_container} animation__container`}
-             onWheel={(e)=>isBrowser && handleWheel(e)}>
+        <div className={`${styles.horizontal_container} animation__container`}>
             {
               carousel_data.map((data, i)=>
                 <CarouselItem
