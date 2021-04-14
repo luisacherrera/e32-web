@@ -142,7 +142,6 @@ export default function CarouselPage({
                 <CarouselItem
                   key={i}
                   category={category}
-                  isBuildingVariant={i === 3 && category === 'building'}
                   isFirstElement={i === 0}
                   isLandscape={data.isLandscape}
                   isLightingVariant={data.isLightingVariant}
