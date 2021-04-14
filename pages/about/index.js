@@ -91,7 +91,7 @@ export default function About() {
 
   return (
     <>
-      <h1 className={styles.title_style}>E32</h1>
+      <h1 className={styles.title_style} onClick={()=>router.push('/')}>E32</h1>
       <div className={styles.address_info}>
         <p>
           <a href="https://goo.gl/maps/fDdTYNgfMrgtNWCS8">Maps</a>
