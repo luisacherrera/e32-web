@@ -118,7 +118,7 @@ export default function CarouselPage({
           <div className={styles.footer__info_container}>
             <h3>Year: { itemInformation.year }</h3>
             <h3>Location: { itemInformation.location }</h3>
-            <h3>NºEXP: { itemInformation.expedient }</h3>
+            {/* <h3>NºEXP: { itemInformation.expedient }</h3> */}
           </div>
           <p className={styles.footer_middle} onClick={()=>router.push('/about')}>About</p>
           <ul className={styles.footer_home__navbar}>

@@ -148,7 +148,7 @@ export default function ProjectPage({project_items, category}) {
             <div className={styles.footer__project_data__info_container}>
               <h3>Year: {projectInformation.year}</h3>
               <h3>Location: {projectInformation.location}</h3>
-              <h3>NºEXP: {projectInformation.expedient}</h3>
+              {/* <h3>NºEXP: {projectInformation.expedient}</h3> */}
             </div>
           </div>
           <h2 onClick={()=>router.push('/')} className={styles.footer__title}>E32</h2>
