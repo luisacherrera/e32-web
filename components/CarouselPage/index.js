@@ -65,10 +65,12 @@ export default function CarouselPage({
     updateItemInformation(item)
   }
 
+  const translateMaxValue = category === 'architecture' ? 95 : 80
+
   useEffect(() => {
     let timer = isBrowser && setInterval(() => {
         setTranslate(translate => {
-            const updatedTranslate = translate >= 85 ? router.push(nextPage) : translate < 0 ? 0 : translate + carouselSpeed;
+            const updatedTranslate = translate >= translateMaxValue ? router.push(nextPage) : translate < 0 ? 0 : translate + carouselSpeed;
 
             return updatedTranslate;
         });
@@ -83,7 +85,8 @@ export default function CarouselPage({
         ${styles.container}
         ${containerLightingVariant}
         ${containerBuildingVariant}
-        `}>
+        `}
+        onWheel={(e)=>isBrowser && handleWheel(e)}>
         <div className={styles.header_logo}>
           <h1 className={styles.title_style} onClick={()=>router.push('/')}>E32</h1>
         </div>
@@ -115,7 +118,7 @@ export default function CarouselPage({
           <div className={styles.footer__info_container}>
             <h3>Year: { itemInformation.year }</h3>
             <h3>Location: { itemInformation.location }</h3>
-            <h3>NºEXP: { itemInformation.expedient }</h3>
+            {/* <h3>NºEXP: { itemInformation.expedient }</h3> */}
           </div>
           <p className={styles.footer_middle} onClick={()=>router.push('/about')}>About</p>
           <ul className={styles.footer_home__navbar}>
@@ -133,14 +136,12 @@ export default function CarouselPage({
             }
           </ul>
         </div>
-        <div className={`${styles.horizontal_container} animation__container`}
-             onWheel={(e)=>isBrowser && handleWheel(e)}>
+        <div className={`${styles.horizontal_container} animation__container`}>
             {
               carousel_data.map((data, i)=>
                 <CarouselItem
                   key={i}
                   category={category}
-                  isBuildingVariant={i === 3 && category === 'building'}
                   isFirstElement={i === 0}
                   isLandscape={data.isLandscape}
                   isLightingVariant={data.isLightingVariant}

@@ -43,6 +43,7 @@ export default function ProjectPage({project_items, category}) {
   const [selectedElement, setSelectedElement] = useState(0)
   const [translate, setTranslate] = useState(0)
   const [showSeeAll, setSeeAllVisibility] = useState(false)
+  const [intervalDelay, setIntervalDelay] = useState(15)
 
   //DOM events handlers
 
@@ -53,6 +54,7 @@ export default function ProjectPage({project_items, category}) {
     toggleFullscreen(false)
     setFullscreenLandscape(false)
     setExtraFullscreenLandscape(false)
+    setIntervalDelay(15)
   }
 
   const handleWheel = (evt) => {
@@ -112,6 +114,7 @@ export default function ProjectPage({project_items, category}) {
     setFullscreenImage(image)
     setFullscreenLandscape(size)
     setExtraFullscreenLandscape(extraSize)
+    setIntervalDelay(150000)
     toggleFullscreen(true)
   }
 
@@ -121,17 +124,14 @@ export default function ProjectPage({project_items, category}) {
 
   // on page load actions
   
-  useEffect(() => {    
-    let timer = isBrowser && setInterval(() => {
-        setTranslate(translate => {
-            const updatedTranslate = translate >= 95 ? router.push(nextPage) : translate < 0 ? 0 : translate + projectsSpeed;
-
-            return updatedTranslate;
-        });
-
-    }, 15);
-    return () => clearInterval(timer);
-}, []);
+  isBrowser && useInterval(() => {
+    setTranslate(translate => {
+      const updatedTranslate = translate >= 95 ? router.push(nextPage) : translate < 0 ? 0 : translate + projectsSpeed;
+      
+      return updatedTranslate;
+    });
+  
+  }, intervalDelay);
 
   return (
     <>
@@ -148,7 +148,7 @@ export default function ProjectPage({project_items, category}) {
             <div className={styles.footer__project_data__info_container}>
               <h3>Year: {projectInformation.year}</h3>
               <h3>Location: {projectInformation.location}</h3>
-              <h3>NºEXP: {projectInformation.expedient}</h3>
+              {/* <h3>NºEXP: {projectInformation.expedient}</h3> */}
             </div>
           </div>
           <h2 onClick={()=>router.push('/')} className={styles.footer__title}>E32</h2>
@@ -241,7 +241,7 @@ export default function ProjectPage({project_items, category}) {
                         key={i}
                         onClick={()=>setElementToCall(i+1)}>
                       { 
-                        i < 10 ? 
+                        i < 9 ? 
                           `0${i + 1}` 
                           : 
                           i + 1 
@@ -310,4 +310,24 @@ export default function ProjectPage({project_items, category}) {
       `}</style>
     </>
   )
+}
+
+function useInterval (callback, delay) {
+  const savedCallback = useRef();
+
+  // Remember the latest callback.
+  useEffect(() => {
+    savedCallback.current = callback;
+  }, [callback]);
+
+  // Set up the interval.
+  useEffect(() => {
+    function tick() {
+      savedCallback.current();
+    }
+    if (delay !== null) {
+      let id = setInterval(tick, delay);
+      return () => clearInterval(id);
+    }
+  }, [delay]);
 }
