@@ -241,7 +241,7 @@ export default function ProjectPage({project_items, category}) {
                         key={i}
                         onClick={()=>setElementToCall(i+1)}>
                       { 
-                        i < 10 ? 
+                        i < 9 ? 
                           `0${i + 1}` 
                           : 
                           i + 1 

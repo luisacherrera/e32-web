@@ -65,10 +65,12 @@ export default function CarouselPage({
     updateItemInformation(item)
   }
 
+  const translateMaxValue = category === 'architecture' ? 95 : 80
+
   useEffect(() => {
     let timer = isBrowser && setInterval(() => {
         setTranslate(translate => {
-            const updatedTranslate = translate >= 85 ? router.push(nextPage) : translate < 0 ? 0 : translate + carouselSpeed;
+            const updatedTranslate = translate >= translateMaxValue ? router.push(nextPage) : translate < 0 ? 0 : translate + carouselSpeed;
 
             return updatedTranslate;
         });
