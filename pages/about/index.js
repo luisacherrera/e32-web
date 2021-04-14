@@ -124,7 +124,7 @@ export default function About() {
             <div className={styles.block_container__about_claims__info}>
               <div>
                 <p className={styles.block_container__about_claims__info_intro_text}>E32 is a trans-disciplinary studio that strives to enhance integrated projects with a «Human centric» approach.</p>
-                <p className={styles.block_container__about_claims__info_mobile_text}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a elementum nibh. Quisque id pretium arcu, ac facilisis magna. Maecenas eget vulputate enim, nec cursus sem.</p>
+                <p className={styles.block_container__about_claims__info_mobile_text}>Located in the industrial heart of Barcelona, E32 has established its studio to meet today's architectural needs. We are a team of young, energetic architects and designers, eager to bring our perspective on architecture, with values of respect and admiration for the past and tradition, and with the ambition to discover and solve present and future architectural needs.</p>
               </div>
             </div>
           </div>
