@@ -1,10 +1,20 @@
 @import "variables.scss";
 @import "mixins.scss";
 
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
 .container {
   display: flex;
   height: 96vh;
   overflow-x: hidden;
+  animation: slideInFromLeft 1s;
 
   @include media('small') {
     display: block;
@@ -12,6 +22,7 @@
     overflow-y: hidden;
     height: 110vh;
     padding-top: 10vh;
+    animation: none;
   }
 }
 

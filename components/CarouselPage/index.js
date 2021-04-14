@@ -68,6 +68,8 @@ export default function CarouselPage({
   const translateMaxValue = category === 'architecture' ? 95 : 80
 
   useEffect(() => {
+    document.body.style.background = category === 'building' ? '#616262' : category === 'lighting' ? '#D66633' : '#fff'
+
     let timer = isBrowser && setInterval(() => {
         setTranslate(translate => {
             const updatedTranslate = translate >= translateMaxValue ? router.push(nextPage) : translate < 0 ? 0 : translate + carouselSpeed;

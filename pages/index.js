@@ -31,6 +31,7 @@ export default function Home() {
   const router = useRouter()
 
   useEffect(()=>{
+    document.body.style.background = '#fff'
     if (!isBrowser) {
       router.push('/architecture')
     }

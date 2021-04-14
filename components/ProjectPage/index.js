@@ -133,6 +133,10 @@ export default function ProjectPage({project_items, category}) {
   
   }, intervalDelay);
 
+  useEffect(()=>{
+    document.body.style.background = '#fff'
+  }, [])
+
   return (
     <>
       <div ref={containerRef} className={styles.container} onWheel={(e)=>isBrowser && handleWheel(e)}>

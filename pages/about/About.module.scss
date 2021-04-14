@@ -1,6 +1,15 @@
 @import "variables.scss";
 @import "mixins.scss";
 
+@keyframes slideInTop {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
 .container, .title_style, .address_info, .footer {
   color: $white;
 }
@@ -61,9 +70,11 @@
   background-color: $about-page-color;
   overflow-x: scroll;
   scroll-snap-type: x mandatory;
+  animation: slideInTop 1s;
 
   @include media('small') {
     display: block;
+    animation: none;
   }
 }
 
