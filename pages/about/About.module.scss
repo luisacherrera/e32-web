@@ -70,7 +70,6 @@
   background-color: $about-page-color;
   overflow-x: scroll;
   scroll-snap-type: x mandatory;
-  animation: slideInTop 1s;
 
   @include media('small') {
     display: block;
@@ -80,6 +79,11 @@
 
 .block_container {
   min-width: 100vw;
+  animation: slideInTop 1s;
+
+  @include media('small') {
+    animation: none;
+  }
 
   &__about {
     display: flex;
