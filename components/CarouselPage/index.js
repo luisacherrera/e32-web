@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { isBrowser } from 'react-device-detect';
 import CarouselItem from '../CarouselItem';
 import styles from './CarouselPage.module.scss';
@@ -31,6 +31,8 @@ export default function CarouselPage({
     expedient: carousel_data[0].expedient
   })
   const [translate, setTranslate] = useState(0)
+  const [pageLeave, setPageLeave] = useState(false)
+  const [intervalDelay, setIntervalDelay] = useState(15)
 
   // styles
 
@@ -39,6 +41,7 @@ export default function CarouselPage({
   const footerBuildingVariant = category === 'building' ? styles.footer__building_variant : ''
   const footerLightingVariant = category === 'lighting' ? styles.footer__lighting_variant : ''
   const titleLightingVariant = category === 'lighting' ? styles.header_logo__page_variant__lighting : ''
+  const leaveAnimation = pageLeave ? styles.leave_animation : ''
 
   // DOM events handlers
 
@@ -64,20 +67,28 @@ export default function CarouselPage({
   const handleNewVisibleItem = (item) => {
     updateItemInformation(item)
   }
+  
+  const handleNavigationToNextPage = () => {
+    setPageLeave(true)
+
+    isBrowser ?
+      setTimeout(()=>{
+        router.push(nextPage)
+      }, 500)
+      :
+      router.push(nextPage)
+  }
 
   const translateMaxValue = category === 'architecture' ? 95 : 80
 
-  useEffect(() => {
-    let timer = isBrowser && setInterval(() => {
-        setTranslate(translate => {
-            const updatedTranslate = translate >= translateMaxValue ? router.push(nextPage) : translate < 0 ? 0 : translate + carouselSpeed;
+  isBrowser && useInterval(() => {
+    setTranslate(translate => {
+        const updatedTranslate = translate >= translateMaxValue ? (handleNavigationToNextPage(), translate + carouselSpeed) : translate < 0 ? 0 : translate + carouselSpeed;
 
-            return updatedTranslate;
-        });
+        return updatedTranslate;
+    });
 
-    }, 15);
-    return () => clearInterval(timer);
-  }, []);
+}, intervalDelay);
 
   return (
     <>
@@ -100,6 +111,7 @@ export default function CarouselPage({
         <div className={`
           ${styles.header_logo__page_variant}
           ${titleLightingVariant}
+          ${leaveAnimation}
           `}>
           <h1 className={styles.title_style}>{
             category === 'architecture' ? 'A' :
@@ -168,4 +180,24 @@ export default function CarouselPage({
       `}</style>
     </>
   )
+}
+
+function useInterval (callback, delay) {
+  const savedCallback = useRef();
+
+  // Remember the latest callback.
+  useEffect(() => {
+    savedCallback.current = callback;
+  }, [callback]);
+
+  // Set up the interval.
+  useEffect(() => {
+    function tick() {
+      savedCallback.current();
+    }
+    if (delay !== null) {
+      let id = setInterval(tick, delay);
+      return () => clearInterval(id);
+    }
+  }, [delay]);
 }

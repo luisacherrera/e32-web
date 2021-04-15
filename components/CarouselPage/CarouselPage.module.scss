@@ -10,6 +10,15 @@
   }
 }
 
+@keyframes slideOutFromLeft {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
 .container {
   display: flex;
   height: 96vh;
@@ -199,4 +208,12 @@
 
 .footer__lighting_variant {
   background-color: $lighting-page-color;
+}
+
+.leave_animation {
+  animation: slideOutFromLeft 1s;
+
+  @include media('small') {
+    animation: none;
+  }
 }
