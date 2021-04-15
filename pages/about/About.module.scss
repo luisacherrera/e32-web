@@ -10,6 +10,15 @@
   }
 }
 
+@keyframes slideInBottom {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
 .container, .title_style, .address_info, .footer {
   color: $white;
 }
@@ -358,5 +367,13 @@
     p {
       font-size: 2rem;
     }
+  }
+}
+
+.leave_animation {
+  animation: slideInBottom 1s;
+
+  @include media('small') {
+    animation: none;
   }
 }

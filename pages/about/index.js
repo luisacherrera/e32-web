@@ -22,6 +22,7 @@ export default function About() {
   })
   const [emailSuccess, setEmailSuccess] = useState(false)
   const [emailFailure, setEmailFailure] = useState(false)
+  const [leavePage, setLeavePage] = useState(false)
 
   // DOM events handlers
 
@@ -76,6 +77,17 @@ export default function About() {
     }
   }
 
+  const handlePageClose = () => {
+    setLeavePage(true)
+
+    isBrowser ?
+      setTimeout(()=>{
+        router.back()
+      }, 900)
+      :
+      router.back()
+  }
+
   const resetBodyOverflownOnClose = () => {
     document.body.style.overflow = 'auto'
   }
@@ -103,13 +115,13 @@ export default function About() {
         </address>
       </div>
       <div className={styles.header_closing_button}>
-        <img onClick={()=>router.back()} src="/cursor/SeeMore.png"/>
+        <img onClick={()=>handlePageClose()} src="/cursor/SeeMore.png"/>
       </div>
 
       <div className={styles.container}
            ref={container}
            onWheel={(e)=>isBrowser && handleWheelMovement(e)}>
-        <div className={`${styles.block_container} ${styles.block_container__about}`}>
+        <div className={leavePage ? `${styles.leave_animation} ${styles.block_container} ${styles.block_container__about}` : `${styles.block_container} ${styles.block_container__about}`}>
           <h1 className={styles.block_container__about_title__mobile}>E32</h1>
           <ul className={styles.block_container__about_list}>
             <li onClick={()=>router.push('/architecture')}>Architecture projects</li>
@@ -132,10 +144,10 @@ export default function About() {
             <img src="/photos/projects_architecture/01.PDG/PDG_9.jpg"></img>
           </div>
         </div>
-        <div className={`${styles.block_container} ${styles.block_container__keep}`}>
+        <div className={leavePage ? `${styles.leave_animation} ${styles.block_container} ${styles.block_container__keep}` : `${styles.block_container} ${styles.block_container__keep}`}>
           <h2>Need some<br/>info? Keep in<br/>touch!</h2>
         </div>
-        <div className={`${styles.block_container} ${styles.block_container__form}`}>
+        <div className={leavePage ? `${styles.leave_animation} ${styles.block_container} ${styles.block_container__form}` : `${styles.block_container} ${styles.block_container__form}`}>
           <h2 className={styles.block_container__form__title_mobile}>Email us!</h2>
           <div className={styles.contact_form}>
             {
