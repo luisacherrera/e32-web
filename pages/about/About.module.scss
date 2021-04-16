@@ -1,6 +1,24 @@
 @import "variables.scss";
 @import "mixins.scss";
 
+@keyframes slideInTop {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInBottom {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
 .container, .title_style, .address_info, .footer {
   color: $white;
 }
@@ -64,11 +82,17 @@
 
   @include media('small') {
     display: block;
+    animation: none;
   }
 }
 
 .block_container {
   min-width: 100vw;
+  animation: slideInTop 1s;
+
+  @include media('small') {
+    animation: none;
+  }
 
   &__about {
     display: flex;
@@ -343,5 +367,13 @@
     p {
       font-size: 2rem;
     }
+  }
+}
+
+.leave_animation {
+  animation: slideInBottom 1s;
+
+  @include media('small') {
+    animation: none;
   }
 }
