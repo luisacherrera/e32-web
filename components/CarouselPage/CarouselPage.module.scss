@@ -13,9 +13,14 @@
 @keyframes slideOutFromLeft {
   0% {
     transform: translateX(0);
+    filter: opacity(1);
+  }
+  90% {
+    filter: opacity(0);
   }
   100% {
     transform: translateX(-100%);
+    filter: opacity(0);
   }
 }
 
@@ -55,7 +60,7 @@
   position: fixed;
   top: -8px;
   right: 20px;
-  animation: slideInFromLeft 1s;
+  animation: slideInFromLeft 0.5s;
 
   @include media('small') {
     position: fixed;
@@ -211,7 +216,7 @@
 }
 
 .leave_animation {
-  animation: slideOutFromLeft 1s;
+  animation: slideOutFromLeft 0.5s;
 
   @include media('small') {
     animation: none;
