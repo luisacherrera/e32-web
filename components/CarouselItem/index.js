@@ -63,6 +63,9 @@ export default function CarouselItem({
              `} 
              src={item.imageURL}
              ref={imageRef}/>
+          <img className={styles.see_more__mobile} 
+               src="/cursor/SeeMore.png" 
+               alt="See more"/>
       </div>
     </>
   )
