@@ -24,6 +24,36 @@
   }
 }
 
+@keyframes colorChangeLighting {
+  from {
+    background-color: $white;
+  }
+
+  to {
+    background-color: $lighting-page-color;
+  }
+}
+
+@keyframes colorChangeBuilding {
+  from {
+    background-color: $lighting-page-color;
+  }
+
+  to {
+    background-color: $building-page-color;
+  }
+}
+
+@keyframes colorChangeArchitecture {
+  from {
+    background-color: $building-page-color;
+  }
+
+  to {
+    background-color: $white;
+  }
+}
+
 .container {
   display: flex;
   height: 96vh;
@@ -217,6 +247,29 @@
 
 .leave_animation {
   animation: slideOutFromLeft 0.5s;
+
+  @include media('small') {
+    animation: none;
+  }
+}
+.change_color_animation__lighting {
+  animation: colorChangeLighting 1s;
+
+  @include media('small') {
+    animation: none;
+  }
+}
+
+.change_color_animation__building {
+  animation: colorChangeBuilding 1s;
+
+  @include media('small') {
+    animation: none;
+  }
+}
+
+.change_color_animation__architecture {
+  animation: colorChangeArchitecture 1s;
 
   @include media('small') {
     animation: none;

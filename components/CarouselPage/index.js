@@ -42,6 +42,13 @@ export default function CarouselPage({
   const footerLightingVariant = category === 'lighting' ? styles.footer__lighting_variant : ''
   const titleLightingVariant = category === 'lighting' ? styles.header_logo__page_variant__lighting : ''
   const leaveAnimation = pageLeave ? styles.leave_animation : ''
+  const colorChangeAnimation = pageLeave && category === 'architecture' 
+    ? styles.change_color_animation__lighting 
+    : pageLeave && category === 'lighting' 
+      ? styles.change_color_animation__building 
+      : pageLeave && category === 'building'
+        ? styles.change_color_animation__architecture
+        : ''
 
   // DOM events handlers
 
@@ -96,6 +103,7 @@ export default function CarouselPage({
         ${styles.container}
         ${containerLightingVariant}
         ${containerBuildingVariant}
+        ${colorChangeAnimation}
         `}
         onWheel={(e)=>isBrowser && handleWheel(e)}>
         <div className={styles.header_logo}>
@@ -123,6 +131,7 @@ export default function CarouselPage({
           ${styles.footer}
           ${footerBuildingVariant}
           ${footerLightingVariant}
+          ${colorChangeAnimation}
         `}>
           <div className={styles.footer__project_title_container}>
             <h3>{ itemInformation.title }</h3>
