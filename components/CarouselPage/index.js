@@ -33,6 +33,7 @@ export default function CarouselPage({
   const [translate, setTranslate] = useState(0)
   const [pageLeave, setPageLeave] = useState(false)
   const [intervalDelay, setIntervalDelay] = useState(15)
+  const [showMobileOverlay, setShowMobileOverlay] = useState(true)
 
   // styles
 
@@ -95,10 +96,25 @@ export default function CarouselPage({
         return updatedTranslate;
     });
 
-}, intervalDelay);
+  }, intervalDelay);
+
+  useEffect(()=>{
+    setTimeout(()=>{
+      setShowMobileOverlay(false)
+    }, 3900)
+  }, [])
 
   return (
     <>
+      {
+        showMobileOverlay && 
+          <div className={styles.overlay_animation__mobile}>
+            <img className={styles.overlay_animation__mobile__moving} 
+                 src="/animation/movimiento.png" 
+                 alt="stopped"/>
+            <h2>Drag left to navigate</h2>
+          </div>
+      }
       <div className={`
         ${styles.container}
         ${containerLightingVariant}
