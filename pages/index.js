@@ -5,6 +5,12 @@ import styles from './Home.module.scss'
 
 export default function Home() {
   const blocks = {
+    default: {
+      route: "/architecture",
+      title: "A",
+      image: "/photos/StudioImage.jpg",
+      default: true   
+    },
     architecture: {
       route: "/architecture",
       title: "A",
@@ -22,7 +28,7 @@ export default function Home() {
     },
   }
 
-  const [currentBlock, updateBlock] = useState(blocks.architecture)
+  const [currentBlock, updateBlock] = useState(blocks.default)
 
   const setBlock = (block) => {
     updateBlock(blocks[block])
@@ -44,9 +50,10 @@ export default function Home() {
         </div>
         <p className={styles.intro_text}>E32 is a trans-disciplinary studio that strives to enhance integrated projects with a «Human centric» approach.</p>
         <div className={styles.image_container}>
-          <img onClick={()=>router.push(currentBlock.route)} className={currentBlock.title === "A" ? "" : styles.image__hidden } src={blocks['architecture'].image}/>
-          <img onClick={()=>router.push(currentBlock.route)} className={currentBlock.title === "L" ? styles.image__lighting_variant : styles.image__hidden} src={blocks['lighting'].image}/>
-          <img onClick={()=>router.push(currentBlock.route)} className={currentBlock.title === "B" ? styles.image__building_variant : styles.image__hidden} src={blocks['building'].image}/>
+          <img onClick={()=>router.push(currentBlock.route)} className={currentBlock.default ? "" : styles.image__hidden } src={blocks['default'].image}/>
+          <img onClick={()=>router.push(currentBlock.route)} className={(!currentBlock.default && currentBlock.title === "A") ? "" : styles.image__hidden } src={blocks['architecture'].image}/>
+          <img onClick={()=>router.push(currentBlock.route)} className={(!currentBlock.default && currentBlock.title === "L") ? styles.image__lighting_variant : styles.image__hidden} src={blocks['lighting'].image}/>
+          <img onClick={()=>router.push(currentBlock.route)} className={(!currentBlock.default && currentBlock.title === "B") ? styles.image__building_variant : styles.image__hidden} src={blocks['building'].image}/>
         </div>
         <address className={styles.address_info_container}>
           Nº02 C/Energía, 32 Planta 1<br/>
