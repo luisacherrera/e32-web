@@ -35,6 +35,10 @@
 
   &:hover {
     filter: grayscale(100%);
+
+    @include media('small') {
+      filter: none;
+    }
   }
 }
 
