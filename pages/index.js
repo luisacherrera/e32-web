@@ -9,32 +9,69 @@ export default function Home() {
       route: "/architecture",
       title: "A",
       image: "/photos/StudioImage.jpg",
-      default: true   
+      name: "default"   
     },
     architecture: {
       route: "/architecture",
       title: "A",
-      image: "/photos/projects_architecture/01.PDG/PDG_9.jpg"
+      image: "/photos/projects_architecture/01.PDG/PDG_9.jpg",
+      name: "architecture"
     },
     building: {
       route: "/building",
       title: "B",
-      image: "/photos/shapes/building_home.png"
+      image: "/photos/shapes/building_home.png",
+      name: "building"
     },
     lighting: {
       route: "/lighting",
       title: "L",
-      image: "/photos/shapes/lighting_home.png"
+      image: "/photos/shapes/lighting_home.png",
+      name: "lighting"
     },
   }
 
   const [currentBlock, updateBlock] = useState(blocks.default)
+  const [translationAnimation, setTranslationAnimation] = useState(null)
+
+  const lightingVariant = currentBlock.name === "lighting" ? styles.container_lighting : ""
+  const buildingVariant = currentBlock.name === "building" ? styles.container_building : ""
 
   const setBlock = (block) => {
     updateBlock(blocks[block])
   }
 
   const router = useRouter()
+
+  const handleSetBlock = (newBlock) => {
+    if (currentBlock.name === "architecture") {
+      newBlock === "lighting" 
+        ? setTranslationAnimation(styles.architectureToLighting) 
+        : newBlock === "building"
+          ? setTranslationAnimation(styles.architectureToBuilding)
+          : setTranslationAnimation("")
+    } else if (currentBlock.name === "lighting") {
+      newBlock === "architecture" 
+      ? setTranslationAnimation(styles.lightingToArchitecture) 
+      : newBlock === "building"
+        ? setTranslationAnimation(styles.lightingToBuilding)
+        : setTranslationAnimation("")
+    } else if (currentBlock.name === "building") {
+      newBlock === "architecture" 
+      ? setTranslationAnimation(styles.buildingToArchitecture) 
+      : newBlock === "lighting"
+        ? setTranslationAnimation(styles.buildingToLighting)
+        : setTranslationAnimation("")
+    } else if (currentBlock.name === "default") {
+      newBlock === "lighting" 
+        ? setTranslationAnimation(styles.architectureToLighting) 
+        : newBlock === "building"
+          ? setTranslationAnimation(styles.architectureToBuilding)
+          : setTranslationAnimation("")
+    }
+
+    setBlock(newBlock)
+  }
 
   useEffect(()=>{
     if (!isBrowser) {
@@ -44,16 +81,21 @@ export default function Home() {
 
   return (
     <>
-      <div className={currentBlock.title === "L" ? `${styles.container} ${styles.container_lighting}`: (currentBlock.title === "B" ? `${styles.container} ${styles.container_building}` : styles.container)}>
+      <div className={`
+        ${styles.container}
+        ${lightingVariant}
+        ${buildingVariant}
+        ${translationAnimation}
+      `}>
         <div className={styles.header_logo}>
           <h1 className={styles.title_style}>E32</h1>
         </div>
         <p className={styles.intro_text}>E32 is a trans-disciplinary studio that strives to enhance integrated projects with a «Human centric» approach.</p>
         <div className={styles.image_container}>
-          <img onClick={()=>router.push(currentBlock.route)} className={currentBlock.default ? "" : styles.image__hidden } src={blocks['default'].image}/>
-          <img onClick={()=>router.push(currentBlock.route)} className={(!currentBlock.default && currentBlock.title === "A") ? "" : styles.image__hidden } src={blocks['architecture'].image}/>
-          <img onClick={()=>router.push(currentBlock.route)} className={(!currentBlock.default && currentBlock.title === "L") ? styles.image__lighting_variant : styles.image__hidden} src={blocks['lighting'].image}/>
-          <img onClick={()=>router.push(currentBlock.route)} className={(!currentBlock.default && currentBlock.title === "B") ? styles.image__building_variant : styles.image__hidden} src={blocks['building'].image}/>
+          <img onClick={()=>router.push(currentBlock.route)} className={currentBlock.name === "default" ? "" : styles.image__hidden } src={blocks['default'].image}/>
+          <img onClick={()=>router.push(currentBlock.route)} className={currentBlock.name === "architecture" ? "" : styles.image__hidden } src={blocks['architecture'].image}/>
+          <img onClick={()=>router.push(currentBlock.route)} className={currentBlock.name === "lighting" ? styles.image__lighting_variant : styles.image__hidden} src={blocks['lighting'].image}/>
+          <img onClick={()=>router.push(currentBlock.route)} className={currentBlock.name === "building" ? styles.image__building_variant : styles.image__hidden} src={blocks['building'].image}/>
         </div>
         <address className={styles.address_info_container}>
           Nº02 C/Energía, 32 Planta 1<br/>
@@ -69,9 +111,9 @@ export default function Home() {
           </h3>
         <p className={styles.footer_middle} onClick={()=>router.push('/about')}>About</p>
         <ul className={styles.footer_home__navbar}>
-          <li onClick={()=>router.push('/architecture')} onMouseEnter={()=>setBlock("architecture")}>Architecture</li>
-          <li onClick={()=>router.push('/lighting')} onMouseEnter={()=>setBlock("lighting")}>Lighting</li>
-          <li onClick={()=>router.push('/building')} onMouseEnter={()=>setBlock("building")}>Building</li>
+          <li onClick={()=>router.push('/architecture')} onMouseEnter={()=>handleSetBlock("architecture")}>Architecture</li>
+          <li onClick={()=>router.push('/lighting')} onMouseEnter={()=>handleSetBlock("lighting")}>Lighting</li>
+          <li onClick={()=>router.push('/building')} onMouseEnter={()=>handleSetBlock("building")}>Building</li>
         </ul>
       </div>
       <div className={styles.footer_about__mobile} onClick={()=>router.push('/about')}>
