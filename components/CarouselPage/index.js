@@ -34,6 +34,7 @@ export default function CarouselPage({
   const [pageLeave, setPageLeave] = useState(false)
   const [intervalDelay, setIntervalDelay] = useState(15)
   const [showMobileOverlay, setShowMobileOverlay] = useState(true)
+  const [toggleDragIcon, setToggleDragIcon] = useState(false)
 
   // styles
 
@@ -99,6 +100,10 @@ export default function CarouselPage({
   }, intervalDelay);
 
   useEffect(()=>{
+
+      setTimeout(()=>{
+        setToggleDragIcon(true)
+      }, 800)
     setTimeout(()=>{
       setShowMobileOverlay(false)
     }, 3900)
@@ -109,9 +114,15 @@ export default function CarouselPage({
       {
         showMobileOverlay && 
           <div className={styles.overlay_animation__mobile}>
-            <img className={styles.overlay_animation__mobile__moving} 
-                 src="/animation/movimiento.png" 
-                 alt="stopped"/>
+            {
+              toggleDragIcon ? 
+                <img className={styles.overlay_animation__mobile__moving} 
+                src="/animation/movimiento.png" 
+                alt="moving"/> 
+                :
+                <img src="/animation/parado.png" alt="stopped"/> 
+            }
+
             <h2>Drag left to navigate</h2>
           </div>
       }
