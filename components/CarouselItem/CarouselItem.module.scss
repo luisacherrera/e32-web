@@ -42,6 +42,12 @@
   }
 }
 
+.image_item__overlay {
+  @include media('small') {
+    filter: blur(3px);
+  }
+}
+
 .image_item__single_spaced {
   margin-right: 200px;
 
@@ -83,20 +89,5 @@
 
   @include media('small') {
     width: 75vh;
-  }
-}
-
-.see_more__mobile {
-  display: none; 
-
-  @include media('small') {
-    display: block;
-    position: absolute;
-    z-index: 100;
-    width: 3em;
-    height: 3em;
-    top: 50%;
-    left: 45%;
-    filter: invert(1);
   }
 }

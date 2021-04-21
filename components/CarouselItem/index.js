@@ -5,6 +5,7 @@ import styles from './CarouselItem.module.scss';
 
 export default function CarouselItem({
   category,
+  imageOverlay,
   isBuildingVariant, 
   isFirstElement, 
   isLandscape,
@@ -23,6 +24,7 @@ export default function CarouselItem({
   const doubleSpaced = item.spaced === 2 ? styles.image_item__double_spaced : ''
   const firstElement = isFirstElement ? styles.first_image_container : ''
   const imageOrientation = isLandscape ? styles.image_item__horizontal_variant : styles.image_item__vertical_variant
+  const imageHasOverlay = imageOverlay ? styles.image_item__overlay : ''
   const lightingVariant = isLightingVariant ? styles.image_item__lighting_variant : ''
   const singleSpaced = item.spaced === 1 ? styles.image_item__single_spaced: ''
 
@@ -58,14 +60,12 @@ export default function CarouselItem({
              className={`
               ${styles.image_item}
               ${imageOrientation}
+              ${imageHasOverlay}
               ${buildingVariant}
               ${lightingVariant}
              `} 
              src={item.imageURL}
              ref={imageRef}/>
-          <img className={styles.see_more__mobile} 
-               src="/cursor/SeeMore.png" 
-               alt="See more"/>
       </div>
     </>
   )

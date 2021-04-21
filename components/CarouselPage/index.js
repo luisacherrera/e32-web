@@ -179,6 +179,7 @@ export default function CarouselPage({
                 <CarouselItem
                   key={i}
                   category={category}
+                  imageOverlay={showMobileOverlay}
                   isFirstElement={i === 0}
                   isLandscape={data.isLandscape}
                   isLightingVariant={data.isLightingVariant}
