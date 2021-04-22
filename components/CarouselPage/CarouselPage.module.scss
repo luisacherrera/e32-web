@@ -24,6 +24,105 @@
   }
 }
 
+@keyframes colorChangeLighting {
+  from {
+    background-color: $white;
+  }
+
+  to {
+    background-color: $lighting-page-color;
+  }
+}
+
+@keyframes colorChangeBuilding {
+  from {
+    background-color: $lighting-page-color;
+  }
+
+  to {
+    background-color: $building-page-color;
+  }
+}
+
+@keyframes colorChangeArchitecture {
+  from {
+    background-color: $building-page-color;
+  }
+
+  to {
+    background-color: $white;
+  }
+}
+
+@keyframes showDragIcon {
+  0% {
+    display: none;
+    opacity: 0;
+  }
+
+  100% {
+    display: block;
+    opacity: 1;
+  }
+}
+
+@keyframes hideDragIcon {
+  0% {
+    display: block;
+    opacity: 1;
+  }
+
+  100% {
+    display: none;
+    opacity: 0;
+  }
+}
+
+@keyframes moveDragIcon {
+  0% {
+    transform: translateX(0%);
+  }
+
+  100% {
+    transform: translateX(-400%);
+  }
+}
+
+.overlay_animation__mobile {
+  display: none;
+
+  @include media('small') {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 200;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.25);
+
+    img {
+      width: 15vw;
+      margin-right: 15vw;
+    }
+
+    &__moving {
+      animation: moveDragIcon 1.8s infinite;
+
+    }
+
+    h2 {
+      color: white;
+      margin: 40px 0;
+      text-align: center;
+      width: 100%;
+    }
+  }
+}
+
 .container {
   display: flex;
   height: 96vh;
@@ -133,8 +232,11 @@
 }
 
 .footer__project_title_container {
-  width: 40%;
+  width: 35%;
+  padding-top: 15px;
+
   @include media('small') {
+    padding: 0;
     width: 50vw;
 
     h3 {
@@ -144,12 +246,15 @@
 }
 
 .footer__info_container {
-  width: 20%;
+  width: 25%;
   font-size: 10px;
+  padding-right: 20px;
+  padding-top: 15px;
 
   @include media('small') {
     width: 50vw;
     text-align: right;
+    padding: 0;
   }
 }
 
@@ -217,6 +322,29 @@
 
 .leave_animation {
   animation: slideOutFromLeft 0.5s;
+
+  @include media('small') {
+    animation: none;
+  }
+}
+.change_color_animation__lighting {
+  animation: colorChangeLighting 1s;
+
+  @include media('small') {
+    animation: none;
+  }
+}
+
+.change_color_animation__building {
+  animation: colorChangeBuilding 1s;
+
+  @include media('small') {
+    animation: none;
+  }
+}
+
+.change_color_animation__architecture {
+  animation: colorChangeArchitecture 1s;
 
   @include media('small') {
     animation: none;

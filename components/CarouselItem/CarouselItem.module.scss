@@ -31,26 +31,36 @@
 
 .image_item {
   padding: 0 5px;
-  cursor: url('/cursor/Project.png'), auto;
+  cursor: url('/cursor/Full_Project.png'), auto;
 
   &:hover {
     filter: grayscale(100%);
+
+    @include media('small') {
+      filter: none;
+    }
+  }
+}
+
+.image_item__overlay {
+  @include media('small') {
+    filter: blur(3px);
   }
 }
 
 .image_item__single_spaced {
-  padding-right: 200px;
+  margin-right: 200px;
 
   @include media('small') {
-    padding-right: 100px;
+    margin-right: 100px;
   }
 }
 
 .image_item__double_spaced {
-  padding-right: 400px;
+  margin-right: 400px;
 
   @include media('small') {
-    padding-right: 200px;
+    margin-right: 200px;
   }
 }
 

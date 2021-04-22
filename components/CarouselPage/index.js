@@ -33,6 +33,8 @@ export default function CarouselPage({
   const [translate, setTranslate] = useState(0)
   const [pageLeave, setPageLeave] = useState(false)
   const [intervalDelay, setIntervalDelay] = useState(15)
+  const [showMobileOverlay, setShowMobileOverlay] = useState(true)
+  const [toggleDragIcon, setToggleDragIcon] = useState(false)
 
   // styles
 
@@ -42,6 +44,13 @@ export default function CarouselPage({
   const footerLightingVariant = category === 'lighting' ? styles.footer__lighting_variant : ''
   const titleLightingVariant = category === 'lighting' ? styles.header_logo__page_variant__lighting : ''
   const leaveAnimation = pageLeave ? styles.leave_animation : ''
+  const colorChangeAnimation = pageLeave && category === 'architecture' 
+    ? styles.change_color_animation__lighting 
+    : pageLeave && category === 'lighting' 
+      ? styles.change_color_animation__building 
+      : pageLeave && category === 'building'
+        ? styles.change_color_animation__architecture
+        : ''
 
   // DOM events handlers
 
@@ -88,14 +97,40 @@ export default function CarouselPage({
         return updatedTranslate;
     });
 
-}, intervalDelay);
+  }, intervalDelay);
+
+  useEffect(()=>{
+    setTimeout(()=>{
+      setToggleDragIcon(true)
+    }, 800)
+    
+    setTimeout(()=>{
+      setShowMobileOverlay(false)
+    }, 3900)
+  }, [])
 
   return (
     <>
+      {
+        showMobileOverlay && 
+          <div className={styles.overlay_animation__mobile}>
+            {
+              toggleDragIcon ? 
+                <img className={styles.overlay_animation__mobile__moving} 
+                src="/animation/movimiento.png" 
+                alt="moving"/> 
+                :
+                <img src="/animation/parado.png" alt="stopped"/> 
+            }
+
+            <h2>Drag left to navigate</h2>
+          </div>
+      }
       <div className={`
         ${styles.container}
         ${containerLightingVariant}
         ${containerBuildingVariant}
+        ${colorChangeAnimation}
         `}
         onWheel={(e)=>isBrowser && handleWheel(e)}>
         <div className={styles.header_logo}>
@@ -123,6 +158,7 @@ export default function CarouselPage({
           ${styles.footer}
           ${footerBuildingVariant}
           ${footerLightingVariant}
+          ${colorChangeAnimation}
         `}>
           <div className={styles.footer__project_title_container}>
             <h3>{ itemInformation.title }</h3>
@@ -154,6 +190,7 @@ export default function CarouselPage({
                 <CarouselItem
                   key={i}
                   category={category}
+                  imageOverlay={showMobileOverlay}
                   isFirstElement={i === 0}
                   isLandscape={data.isLandscape}
                   isLightingVariant={data.isLightingVariant}

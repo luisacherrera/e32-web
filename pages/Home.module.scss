@@ -1,6 +1,66 @@
 @import "variables.scss";
 @import "mixins.scss";
 
+@keyframes colorChangeArchitectureToLighting {
+    from {
+        background-color: $white;
+    }
+
+    to {
+        background-color: $lighting-page-color;
+    }
+}
+
+@keyframes colorChangeArchitectureToBuilding {
+    from {
+        background-color: $white;
+    }
+
+    to {
+        background-color: $building-page-color;
+    }
+}
+
+@keyframes colorChangeLightingToArchitecture {
+    from {
+        background-color: $lighting-page-color;
+    }
+
+    to {
+        background-color: $white;
+    }
+}
+
+@keyframes colorChangeLightingToBuilding {
+    from {
+        background-color: $lighting-page-color;
+    }
+
+    to {
+        background-color: $building-page-color;
+    }
+}
+
+@keyframes colorChangeBuildingToArchitecture {
+    from {
+        background-color: $building-page-color;
+    }
+
+    to {
+        background-color: $white;
+    }
+}
+
+@keyframes colorChangeBuildingToLighting {
+    from {
+        background-color: $building-page-color;
+    }
+
+    to {
+        background-color: $lighting-page-color;
+    }
+}
+
 .container {
     display: grid;
     grid-template-columns: 2.5fr calc(100%/3) 2fr;
@@ -193,4 +253,28 @@
             margin-top: 3px;
         }
     }
+}
+
+.architectureToLighting {
+    animation: colorChangeArchitectureToLighting 0.5s;
+}
+
+.architectureToBuilding {
+    animation: colorChangeArchitectureToBuilding 0.5s;
+}
+
+.lightingToArchitecture {
+    animation: colorChangeLightingToArchitecture 0.5s;
+}
+
+.lightingToBuilding {
+    animation: colorChangeLightingToBuilding 0.5s;
+}
+
+.buildingToArchitecture {
+    animation: colorChangeBuildingToArchitecture 0.5s;
+}
+
+.buildingToLighting {
+    animation: colorChangeBuildingToLighting 0.5s;
 }
