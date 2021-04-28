@@ -44,6 +44,7 @@ export default function ProjectPage({project_items, category}) {
   const [translate, setTranslate] = useState(0)
   const [showSeeAll, setSeeAllVisibility] = useState(false)
   const [intervalDelay, setIntervalDelay] = useState(15)
+  const [listItemIsHighlighted, setListItemHighlight] = useState(true)
 
   //DOM events handlers
 
@@ -237,9 +238,11 @@ export default function ProjectPage({project_items, category}) {
               </div>
               <ul>
                 { project_items.map((block, i)=>
-                    <li className={ projectInformation.id - 1 === i ? `${styles.highlighted__project}` : '' }
+                    <li className={ projectInformation.id - 1 === i && listItemIsHighlighted ? styles.highlighted__project : '' }
                         key={i}
-                        onClick={()=>setElementToCall(i+1)}>
+                        onClick={()=>setElementToCall(i+1)}
+                        onMouseOver={()=>setListItemHighlight(false)}
+                        onMouseLeave={()=>setListItemHighlight(true)}>
                       { 
                         i < 9 ? 
                           `0${i + 1}` 

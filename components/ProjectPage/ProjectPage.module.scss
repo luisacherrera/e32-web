@@ -209,6 +209,10 @@
         li {
             padding: 10px;
             margin: 0 auto;
+
+            &:hover {
+                text-decoration: underline;
+            }
         }
 
         .highlighted__project {
