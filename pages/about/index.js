@@ -32,7 +32,7 @@ export default function About() {
 
   const handleWheelMovement = (e) => {
     if (e.deltaX === -0 || e.deltaX === -1.25 || e.deltaX === 1.25) {
-      container.current.scrollLeft += e.deltaY*5
+      container.current.scrollLeft += e.deltaY*2.5
     }
   }
 
