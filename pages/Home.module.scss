@@ -150,6 +150,7 @@
 
     img {
         width: 57.5vh;
+        filter: grayscale(1);
 
         @include media('small') { object-fit: cover; }
     }
@@ -219,6 +220,10 @@
     font-size: 1.25em;
 
     li:not(:last-of-type) { margin-right: 10px; }
+
+    &_inactive {
+        filter: opacity(0.2);
+    }
 
     @include media('medium') { font-size: 2.5vw; }
 

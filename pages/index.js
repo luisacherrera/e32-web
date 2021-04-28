@@ -5,16 +5,10 @@ import styles from './Home.module.scss'
 
 export default function Home() {
   const blocks = {
-    default: {
-      route: "/architecture",
-      title: "A",
-      image: "/photos/StudioImage.jpg",
-      name: "default"   
-    },
     architecture: {
       route: "/architecture",
       title: "A",
-      image: "/photos/projects_architecture/01.PDG/PDG_9.jpg",
+      image: "/photos/projects_architecture/Home_Architecture.jpg",
       name: "architecture"
     },
     building: {
@@ -31,7 +25,7 @@ export default function Home() {
     },
   }
 
-  const [currentBlock, updateBlock] = useState(blocks.default)
+  const [currentBlock, updateBlock] = useState(blocks.architecture)
   const [translationAnimation, setTranslationAnimation] = useState(null)
 
   const lightingVariant = currentBlock.name === "lighting" ? styles.container_lighting : ""
@@ -62,13 +56,7 @@ export default function Home() {
       : newBlock === "lighting"
         ? setTranslationAnimation(styles.buildingToLighting)
         : setTranslationAnimation("")
-    } else if (currentBlock.name === "default") {
-      newBlock === "lighting" 
-        ? setTranslationAnimation(styles.architectureToLighting) 
-        : newBlock === "building"
-          ? setTranslationAnimation(styles.architectureToBuilding)
-          : setTranslationAnimation("")
-    }
+    } 
 
     setBlock(newBlock)
   }
@@ -92,7 +80,6 @@ export default function Home() {
         </div>
         <p className={styles.intro_text}>E32 is a trans-disciplinary studio that strives to enhance integrated projects with a «Human centric» approach.</p>
         <div className={styles.image_container}>
-          <img onClick={()=>router.push(currentBlock.route)} className={currentBlock.name === "default" ? "" : styles.image__hidden } src={blocks['default'].image}/>
           <img onClick={()=>router.push(currentBlock.route)} className={currentBlock.name === "architecture" ? "" : styles.image__hidden } src={blocks['architecture'].image}/>
           <img onClick={()=>router.push(currentBlock.route)} className={currentBlock.name === "lighting" ? styles.image__lighting_variant : styles.image__hidden} src={blocks['lighting'].image}/>
           <img onClick={()=>router.push(currentBlock.route)} className={currentBlock.name === "building" ? styles.image__building_variant : styles.image__hidden} src={blocks['building'].image}/>
@@ -111,9 +98,9 @@ export default function Home() {
           </h3>
         <p className={styles.footer_middle} onClick={()=>router.push('/about')}>About</p>
         <ul className={styles.footer_home__navbar}>
-          <li onClick={()=>router.push('/architecture')} onMouseEnter={()=>handleSetBlock("architecture")}>Architecture</li>
-          <li onClick={()=>router.push('/lighting')} onMouseEnter={()=>handleSetBlock("lighting")}>Lighting</li>
-          <li onClick={()=>router.push('/building')} onMouseEnter={()=>handleSetBlock("building")}>Building</li>
+          <li className={currentBlock.name === "architecture" ? "" : styles.footer_home__navbar_inactive} onClick={()=>router.push('/architecture')} onMouseEnter={()=>handleSetBlock("architecture")}>Architecture</li>
+          <li className={currentBlock.name === "lighting" ? "" : styles.footer_home__navbar_inactive} onClick={()=>router.push('/lighting')} onMouseEnter={()=>handleSetBlock("lighting")}>Lighting</li>
+          <li className={currentBlock.name === "building" ? "" : styles.footer_home__navbar_inactive} onClick={()=>router.push('/building')} onMouseEnter={()=>handleSetBlock("building")}>Building</li>
         </ul>
       </div>
       <div className={styles.footer_about__mobile} onClick={()=>router.push('/about')}>
