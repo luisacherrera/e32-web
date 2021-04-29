@@ -99,23 +99,20 @@
     display: block;
     position: absolute;
     width: 30px;
-    right: 12px;
+    right: 16px;
 
     &_horizontal {
-      top: 72px;
+      padding-top: 10vh;
+      top: 12px;
     }
 
     &_vertical {
-      top: 7px;
+      padding-top: 1.5vh;
+      top: 0px;
     }
 
-    &_lighting {
-      top: 150px;
-      right: 12px;
-    }
-
-    &_building {
-      top: 130px;
+    &_lighting, &_building {
+      display: none;
     }
   }
 }

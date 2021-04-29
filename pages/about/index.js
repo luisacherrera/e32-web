@@ -106,7 +106,7 @@ export default function About() {
       <h1 className={styles.title_style} onClick={()=>router.push('/')}>E32</h1>
       <div className={styles.address_info}>
         <p>
-          <a href="https://goo.gl/maps/fDdTYNgfMrgtNWCS8">Maps</a>
+          <a target="_blank" href="https://goo.gl/maps/fDdTYNgfMrgtNWCS8">Maps</a>
         </p>
         <address>
           Nº02 C/Energía, 32 Planta 1<br/>
@@ -204,10 +204,10 @@ export default function About() {
           </div>
           <div className={styles.footer__mobile}>        
             <p className={styles.footer_middle}>
-              <a href="https://www.instagram.com/e32studio/">IG</a>
+              <a target="_blank" href="https://www.instagram.com/e32studio/">IG</a>
             </p>
             <p>
-              <a href="https://goo.gl/maps/fDdTYNgfMrgtNWCS8">Maps</a>
+              <a target="_blank" href="https://goo.gl/maps/fDdTYNgfMrgtNWCS8">Maps</a>
             </p>
             <h3 className={styles.footer_home__address_container}>
               Tlf: 938 326 741 <br/>
