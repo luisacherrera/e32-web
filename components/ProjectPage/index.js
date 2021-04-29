@@ -134,6 +134,30 @@ export default function ProjectPage({project_items, category}) {
   
   }, intervalDelay);
 
+  useEffect(()=>{
+    if (isBrowser && category === 'architecture') {
+      setSeeAllVisibility(true)
+
+      const visibilityTimeout = setTimeout(()=>{
+        setSeeAllVisibility(false)
+      }, 1800)
+      
+      const visibilityInterval = setInterval(()=>{
+        setSeeAllVisibility(true)
+        setTimeout(()=>{
+          setSeeAllVisibility(false)
+        }, 1800)
+      }, 30000)
+
+      return () => {
+        if (isBrowser && category === 'architecture') {
+          clearTimeout(visibilityTimeout)
+          clearInterval(visibilityInterval)
+        }
+      }
+    }
+  }, [])
+
   return (
     <>
       <div ref={containerRef} className={styles.container} onWheel={(e)=>isBrowser && handleWheel(e)}>

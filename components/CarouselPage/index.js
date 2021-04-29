@@ -100,13 +100,18 @@ export default function CarouselPage({
   }, intervalDelay);
 
   useEffect(()=>{
-    setTimeout(()=>{
+    const timeoutDrag = setTimeout(()=>{
       setToggleDragIcon(true)
     }, 800)
     
-    setTimeout(()=>{
+    const timeoutOverlay = setTimeout(()=>{
       setShowMobileOverlay(false)
     }, 3900)
+
+    return () => {
+      clearTimeout(timeoutDrag)
+      clearTimeout(timeoutOverlay)
+    }
   }, [])
 
   return (
