@@ -135,7 +135,7 @@ export default function ProjectPage({project_items, category}) {
   }, intervalDelay);
 
   useEffect(()=>{
-    if (isBrowser && category === 'architecture') {
+    if (category === 'architecture') {
       setSeeAllVisibility(true)
 
       const visibilityTimeout = setTimeout(()=>{
@@ -150,7 +150,7 @@ export default function ProjectPage({project_items, category}) {
       }, 30000)
 
       return () => {
-        if (isBrowser && category === 'architecture') {
+        if (category === 'architecture') {
           clearTimeout(visibilityTimeout)
           clearInterval(visibilityInterval)
         }
@@ -181,7 +181,7 @@ export default function ProjectPage({project_items, category}) {
             category === 'architecture' ? 
             <div className={styles.footer__project_counter_block}>
             {          
-              !showSeeAll && 
+              !showSeeAll ?
                 <p onClick={()=>toggleNavigationMenuVisibility(!navigationMenuVisibility)}
                    className={styles.footer__project_counter}
                    onMouseOver={()=>isBrowser && setSeeAllVisibility(true)}>
@@ -192,14 +192,16 @@ export default function ProjectPage({project_items, category}) {
                         : project_items.length
                   }
                 </p>
-            }
-            {
-              isBrowser && showSeeAll && 
-                <img onClick={()=>toggleNavigationMenuVisibility(!navigationMenuVisibility)}
-                     onMouseOut={()=>setSeeAllVisibility(false)}
-                     className={styles.footer__see_all} 
-                     src="/cursor/Cursor_projects.png" 
-                     alt="See all projects"/>
+                :
+                isBrowser ?
+                  <img onClick={()=>toggleNavigationMenuVisibility(!navigationMenuVisibility)}
+                       onMouseOut={()=>setSeeAllVisibility(false)}
+                       className={styles.footer__see_all} 
+                       src="/cursor/Cursor_projects.png" 
+                       alt="See all projects"/>
+                  :
+                  <p onClick={()=>toggleNavigationMenuVisibility(!navigationMenuVisibility)}
+                     className={styles.footer__project_counter}>See All</p>
             }
             </div>
             :

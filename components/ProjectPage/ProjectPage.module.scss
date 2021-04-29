@@ -153,6 +153,12 @@
     }
 }
 
+.footer__project_counter {
+    @include media('small') {
+        padding-top: 16px;
+    } 
+}
+
 .footer_home__navbar {
     width: 20%;
     display: flex;
