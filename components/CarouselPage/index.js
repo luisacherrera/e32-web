@@ -35,6 +35,7 @@ export default function CarouselPage({
   const [intervalDelay, setIntervalDelay] = useState(15)
   const [showMobileOverlay, setShowMobileOverlay] = useState(true)
   const [toggleDragIcon, setToggleDragIcon] = useState(false)
+  const [canMove, setCanMove] = useState(false)
 
   // styles
 
@@ -101,6 +102,7 @@ export default function CarouselPage({
 
   useEffect(()=>{
     const timeoutDrag = setTimeout(()=>{
+      setCanMove(true)
       setToggleDragIcon(true)
     }, 800)
     
@@ -137,7 +139,7 @@ export default function CarouselPage({
         ${containerBuildingVariant}
         ${colorChangeAnimation}
         `}
-        onWheel={(e)=>isBrowser && handleWheel(e)}>
+        onWheel={(e)=>isBrowser && canMove && handleWheel(e)}>
         <div className={styles.header_logo}>
           <h1 className={styles.title_style} onClick={()=>router.push('/')}>E32</h1>
         </div>
