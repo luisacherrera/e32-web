@@ -27,6 +27,9 @@ export default function CarouselItem({
   const imageHasOverlay = imageOverlay ? styles.image_item__overlay : ''
   const lightingVariant = isLightingVariant ? styles.image_item__lighting_variant : ''
   const singleSpaced = item.spaced === 1 ? styles.image_item__single_spaced: ''
+  const seeMoreMobileOrientation = isLandscape ? styles.see_more__mobile_horizontal : styles.see_more__mobile_vertical
+  const seeMoreBuildingVariant = isBuildingVariant ? styles.see_more__mobile_building : ''
+  const seeMoreLightingVariant = isLightingVariant ? styles.see_more__mobile_lighting : ''
 
   const handleItemVisibility = () => {
     onItemVisible({
@@ -66,6 +69,14 @@ export default function CarouselItem({
              `} 
              src={item.imageURL}
              ref={imageRef}/>
+        <img className={`
+              ${styles.see_more__mobile}
+              ${seeMoreMobileOrientation}
+              ${seeMoreBuildingVariant}
+              ${seeMoreLightingVariant}
+             `}
+             src="/cursor/mas.png" 
+             alt="see more mobile"/>
       </div>
     </>
   )

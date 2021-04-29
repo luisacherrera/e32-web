@@ -91,3 +91,31 @@
     width: 75vh;
   }
 }
+
+.see_more__mobile {
+  display: none;
+
+  @include media('small') {
+    display: block;
+    position: absolute;
+    width: 30px;
+    right: 12px;
+
+    &_horizontal {
+      top: 72px;
+    }
+
+    &_vertical {
+      top: 7px;
+    }
+
+    &_lighting {
+      top: 150px;
+      right: 12px;
+    }
+
+    &_building {
+      top: 130px;
+    }
+  }
+}
