@@ -140,14 +140,14 @@ export default function ProjectPage({project_items, category}) {
 
       const visibilityTimeout = setTimeout(()=>{
         setSeeAllVisibility(false)
-      }, 1800)
+      }, 4900)
       
       const visibilityInterval = setInterval(()=>{
         setSeeAllVisibility(true)
         setTimeout(()=>{
           setSeeAllVisibility(false)
-        }, 1800)
-      }, 30000)
+        }, 4900)
+      }, 45000)
 
       return () => {
         if (isBrowser && category === 'architecture') {
