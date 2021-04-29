@@ -150,8 +150,7 @@
 
     img {
         width: 57.5vh;
-        filter: grayscale(1);
-
+        
         @include media('small') { object-fit: cover; }
     }
 
