@@ -75,7 +75,7 @@ export default function CarouselItem({
               ${seeMoreBuildingVariant}
               ${seeMoreLightingVariant}
              `}
-             src="/cursor/mas_OK.png" 
+             src="/cursor/mas.png" 
              alt="see more mobile"/>
       </div>
     </>
