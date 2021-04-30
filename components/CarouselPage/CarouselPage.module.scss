@@ -194,6 +194,10 @@
 .title_style {
   font-size: 18em;
   font-weight: 100;
+
+  &:hover {
+    cursor: url('/cursor/Back.png'), auto;
+  }
   
   @include media('medium') { font-size: 25vw; }
   @include media('small') { font-size: 30vw; }

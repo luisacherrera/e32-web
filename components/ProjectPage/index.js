@@ -44,6 +44,7 @@ export default function ProjectPage({project_items, category}) {
   const [translate, setTranslate] = useState(0)
   const [showSeeAll, setSeeAllVisibility] = useState(false)
   const [intervalDelay, setIntervalDelay] = useState(15)
+  const [listItemIsHighlighted, setListItemHighlight] = useState(true)
 
   //DOM events handlers
 
@@ -133,6 +134,30 @@ export default function ProjectPage({project_items, category}) {
   
   }, intervalDelay);
 
+  useEffect(()=>{
+    if (category === 'architecture') {
+      setSeeAllVisibility(true)
+
+      const visibilityTimeout = setTimeout(()=>{
+        setSeeAllVisibility(false)
+      }, 5000)
+      
+      const visibilityInterval = setInterval(()=>{
+        setSeeAllVisibility(true)
+        setTimeout(()=>{
+          setSeeAllVisibility(false)
+        }, 5000)
+      }, 30000)
+
+      return () => {
+        if (category === 'architecture') {
+          clearTimeout(visibilityTimeout)
+          clearInterval(visibilityInterval)
+        }
+      }
+    }
+  }, [])
+
   return (
     <>
       <div ref={containerRef} className={styles.container} onWheel={(e)=>isBrowser && handleWheel(e)}>
@@ -152,29 +177,38 @@ export default function ProjectPage({project_items, category}) {
             </div>
           </div>
           <h2 onClick={()=>router.push('/')} className={styles.footer__title}>E32</h2>
-          <div className={styles.footer__project_counter_block}>
-          {          
-            !showSeeAll && 
-              <p onClick={()=>toggleNavigationMenuVisibility(!navigationMenuVisibility)}
-                 className={styles.footer__project_counter}
-                 onMouseOver={()=>isBrowser && setSeeAllVisibility(true)}>
-                { projectInformation.id < 10 
-                    ? `0${projectInformation.id}` 
-                    : projectInformation.id }/{ project_items.length < 10 
-                      ? `0${project_items.length}` 
-                      : project_items.length
-                }
-              </p>
-          }
           {
-            isBrowser && showSeeAll && 
-              <img onClick={()=>toggleNavigationMenuVisibility(!navigationMenuVisibility)}
-                   onMouseOut={()=>setSeeAllVisibility(false)}
-                   className={styles.footer__see_all} 
-                   src="/cursor/Cursor_projects.png" 
-                   alt="See all projects"/>
+            category === 'architecture' ? 
+            <div className={styles.footer__project_counter_block}>
+            {          
+              !showSeeAll ?
+                <p onClick={()=>toggleNavigationMenuVisibility(!navigationMenuVisibility)}
+                   className={styles.footer__project_counter}
+                   onMouseOver={()=>isBrowser && setSeeAllVisibility(true)}>
+                  { projectInformation.id < 10 
+                      ? `0${projectInformation.id}` 
+                      : projectInformation.id }/{ project_items.length < 10 
+                        ? `0${project_items.length}` 
+                        : project_items.length
+                  }
+                </p>
+                :
+                isBrowser ?
+                  <img onClick={()=>toggleNavigationMenuVisibility(!navigationMenuVisibility)}
+                       onMouseOut={()=>setSeeAllVisibility(false)}
+                       className={styles.footer__see_all} 
+                       src="/cursor/Cursor_projects.png" 
+                       alt="See all projects"/>
+                  :
+                  <p onClick={()=>toggleNavigationMenuVisibility(!navigationMenuVisibility)}
+                     className={styles.footer__project_counter}>See All</p>
+            }
+            </div>
+            :
+            <div className={styles.footer__project_counter_block}>
+              <p className={styles.footer__project_counter}>Various</p>
+            </div>
           }
-          </div>
           <h2 onClick={()=>{
             category === 'architecture' ? router.push('/architecture') : 
               category === 'lighting' ? router.push('/lighting') : 
@@ -237,9 +271,11 @@ export default function ProjectPage({project_items, category}) {
               </div>
               <ul>
                 { project_items.map((block, i)=>
-                    <li className={ projectInformation.id - 1 === i ? `${styles.highlighted__project}` : '' }
+                    <li className={ projectInformation.id - 1 === i && listItemIsHighlighted ? styles.highlighted__project : '' }
                         key={i}
-                        onClick={()=>setElementToCall(i+1)}>
+                        onClick={()=>setElementToCall(i+1)}
+                        onMouseOver={()=>setListItemHighlight(false)}
+                        onMouseLeave={()=>setListItemHighlight(true)}>
                       { 
                         i < 9 ? 
                           `0${i + 1}` 

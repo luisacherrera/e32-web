@@ -91,3 +91,28 @@
     width: 75vh;
   }
 }
+
+.see_more__mobile {
+  display: none;
+
+  @include media('small') {
+    display: block;
+    position: absolute;
+    width: 30px;
+    right: 16px;
+
+    &_horizontal {
+      padding-top: 10vh;
+      top: 12px;
+    }
+
+    &_vertical {
+      padding-top: 1.5vh;
+      top: 0px;
+    }
+
+    &_lighting, &_building {
+      display: none;
+    }
+  }
+}
