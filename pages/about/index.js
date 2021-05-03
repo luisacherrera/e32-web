@@ -27,7 +27,7 @@ export default function About() {
   // DOM events handlers
 
   const bringFormIntoView = () => {
-    contactForm.current.scrollIntoView()
+    container.current.scrollLeft += 10000
   }
 
   const handleWheelMovement = (e) => {
