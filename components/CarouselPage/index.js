@@ -139,6 +139,7 @@ export default function CarouselPage({
         ${containerLightingVariant}
         ${containerBuildingVariant}
         ${colorChangeAnimation}
+        ${tabletOverflow}
         `}
         onWheel={(e)=>isBrowser && canMove && handleWheel(e)}>
         <div className={styles.header_logo}>
