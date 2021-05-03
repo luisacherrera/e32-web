@@ -197,7 +197,7 @@ export default function ProjectPage({project_items, category}) {
                   <img onClick={()=>toggleNavigationMenuVisibility(!navigationMenuVisibility)}
                        onMouseOut={()=>setSeeAllVisibility(false)}
                        className={styles.footer__see_all} 
-                       src="/cursor/Cursor_projects.png" 
+                       src={require("../../public/cursor/Cursor_projects.png")} 
                        alt="See all projects"/>
                   :
                   <p onClick={()=>toggleNavigationMenuVisibility(!navigationMenuVisibility)}
@@ -220,7 +220,7 @@ export default function ProjectPage({project_items, category}) {
                     'B'
               }</h2>
           <p className={styles.footer__about} onClick={()=>router.push('/about')}>About</p>
-          <img className={styles.footer__about__mobile} onClick={()=>router.push('/about')} src="/cursor/SeeMore.png"/>
+          <img className={styles.footer__about__mobile} onClick={()=>router.push('/about')} src={require("../../public/cursor/SeeMore.png")}/>
           <ul className={styles.footer_home__navbar}>
             {
               category === 'architecture' ? 
@@ -293,7 +293,7 @@ export default function ProjectPage({project_items, category}) {
               </ul>
               <img className={styles.projects_navigation_menu__close}
                    onClick={()=>toggleNavigationMenuVisibility(false)} 
-                   src="/cursor/SeeMore.png"/>
+                   src={require("../../public/cursor/SeeMore.png")}/>
             </div>
             :
             null
@@ -315,7 +315,7 @@ export default function ProjectPage({project_items, category}) {
                   ? `${styles.fullscreen_mobile} ${styles.fullscreen_mobile__full_landscape}`
                   : `${styles.fullscreen_mobile}`}>
               <img onClick={()=>handleFullscreenClose()} 
-                   src="/cursor/SeeMore.png" 
+                   src={require("../../public/cursor/SeeMore.png")} 
                    className={styles.fullscreen_mobile__close}
                    alt="close"/>
               <img src={ fullscreenImage } 
