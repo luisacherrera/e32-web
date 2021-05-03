@@ -14,7 +14,6 @@ export default function ProjectPage({project_items, category}) {
     : '/architecture'
 
   const footerLightingVariant = category === "lighting" ? styles.footer__title__lighting_variant : ''
-  const tabletOverflow = isTablet ? styles.container__tablet_overflow : ''
 
   const projectsLength = project_items.reduce((acc,val)=> acc + val.data.length, 0)
   const projectsMove = 5 / projectsLength
@@ -46,6 +45,7 @@ export default function ProjectPage({project_items, category}) {
   const [showSeeAll, setSeeAllVisibility] = useState(false)
   const [intervalDelay, setIntervalDelay] = useState(15)
   const [listItemIsHighlighted, setListItemHighlight] = useState(true)
+  const [tabletOverflow, setDeviceType] = useState(null)
 
   //DOM events handlers
 
@@ -136,6 +136,9 @@ export default function ProjectPage({project_items, category}) {
   }, intervalDelay);
 
   useEffect(()=>{
+    if (isTablet) {
+      setDeviceType(styles.container__tablet_overflow)
+    }
     if (category === 'architecture') {
       setSeeAllVisibility(true)
 

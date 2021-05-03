@@ -36,6 +36,7 @@ export default function CarouselPage({
   const [showMobileOverlay, setShowMobileOverlay] = useState(true)
   const [toggleDragIcon, setToggleDragIcon] = useState(false)
   const [canMove, setCanMove] = useState(false)
+  const [tabletOverflow, setDeviceType] = useState(null)
 
   // styles
 
@@ -51,7 +52,6 @@ export default function CarouselPage({
   const footerBuildingVariant = category === 'building' ? styles.footer__building_variant : ''
   const footerLightingVariant = category === 'lighting' ? styles.footer__lighting_variant : ''
   const leaveAnimation = pageLeave ? styles.leave_animation : ''
-  const tabletOverflow = isTablet ? styles.container__tablet_overflow : ''
   const titleLightingVariant = category === 'lighting' ? styles.header_logo__page_variant__lighting : ''
 
   // DOM events handlers
@@ -102,6 +102,10 @@ export default function CarouselPage({
   }, intervalDelay);
 
   useEffect(()=>{
+    if (isTablet) {
+      setDeviceType(styles.container__tablet_overflow)
+    }
+
     const timeoutDrag = setTimeout(()=>{
       setCanMove(true)
       setToggleDragIcon(true)
