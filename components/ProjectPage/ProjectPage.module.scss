@@ -15,6 +15,10 @@
     }
 }
 
+.container__tablet_overflow {
+    overflow-x: auto;
+}
+
 .projects_blocks__container_mobile {
     @include media('small') {
         position: sticky;

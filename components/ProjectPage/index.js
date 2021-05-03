@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 import { useEffect, useRef, useState } from 'react'
-import { isBrowser } from 'react-device-detect'
+import { isBrowser, isTablet } from 'react-device-detect'
 import ProjectBlock from '../ProjectBlock'
 import styles from './ProjectPage.module.scss'
 
@@ -14,6 +14,7 @@ export default function ProjectPage({project_items, category}) {
     : '/architecture'
 
   const footerLightingVariant = category === "lighting" ? styles.footer__title__lighting_variant : ''
+  const tabletOverflow = isTablet ? styles.container__tablet_overflow : ''
 
   const projectsLength = project_items.reduce((acc,val)=> acc + val.data.length, 0)
   const projectsMove = 5 / projectsLength

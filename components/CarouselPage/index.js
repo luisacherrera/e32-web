@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import { useEffect, useRef, useState } from 'react';
-import { isBrowser } from 'react-device-detect';
+import { isBrowser, isTablet } from 'react-device-detect';
 import CarouselItem from '../CarouselItem';
 import styles from './CarouselPage.module.scss';
 
@@ -41,10 +41,6 @@ export default function CarouselPage({
 
   const containerBuildingVariant = category === 'building' ? styles.container_building : ''
   const containerLightingVariant = category === 'lighting' ? styles.container_lighting : ''
-  const footerBuildingVariant = category === 'building' ? styles.footer__building_variant : ''
-  const footerLightingVariant = category === 'lighting' ? styles.footer__lighting_variant : ''
-  const titleLightingVariant = category === 'lighting' ? styles.header_logo__page_variant__lighting : ''
-  const leaveAnimation = pageLeave ? styles.leave_animation : ''
   const colorChangeAnimation = pageLeave && category === 'architecture' 
     ? styles.change_color_animation__lighting 
     : pageLeave && category === 'lighting' 
@@ -52,6 +48,11 @@ export default function CarouselPage({
       : pageLeave && category === 'building'
         ? styles.change_color_animation__architecture
         : ''
+  const footerBuildingVariant = category === 'building' ? styles.footer__building_variant : ''
+  const footerLightingVariant = category === 'lighting' ? styles.footer__lighting_variant : ''
+  const leaveAnimation = pageLeave ? styles.leave_animation : ''
+  const tabletOverflow = isTablet ? styles.container__tablet_overflow : ''
+  const titleLightingVariant = category === 'lighting' ? styles.header_logo__page_variant__lighting : ''
 
   // DOM events handlers
 

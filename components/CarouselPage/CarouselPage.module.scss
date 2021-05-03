@@ -137,6 +137,10 @@
   }
 }
 
+.container__tablet_overflow {
+  overflow-x: auto;
+}
+
 .container_building {
   background-color: $building-page-color;
 }
