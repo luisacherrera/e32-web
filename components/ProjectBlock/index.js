@@ -63,7 +63,7 @@ export default function ProjectBlock({
             }
           </div>
           <div className={styles.project_intro__mobile_arrow}>
-            <img src="/cursor/Flecha.svg" alt="arrow"/>
+            <img src={require("../../public/cursor/Flecha.svg")} alt="arrow"/>
           </div>
         </div>
         {

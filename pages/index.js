@@ -8,19 +8,19 @@ export default function Home() {
     architecture: {
       route: "/architecture",
       title: "A",
-      image: "/photos/projects_architecture/Home_Architecture.jpg",
+      image: require("../public/photos/projects_architecture/Home_Architecture.jpg"),
       name: "architecture"
     },
     building: {
       route: "/building",
       title: "B",
-      image: "/photos/shapes/building_home.png",
+      image: require("../public/photos/shapes/building_home.png"),
       name: "building"
     },
     lighting: {
       route: "/lighting",
       title: "L",
-      image: "/photos/shapes/lighting_home.png",
+      image: require("../public/photos/shapes/lighting_home.png"),
       name: "lighting"
     },
   }
@@ -105,7 +105,7 @@ export default function Home() {
       </div>
       <div className={styles.footer_about__mobile} onClick={()=>router.push('/about')}>
         <h2 className={styles.footer_about__mobile_claim}>See more</h2>
-        <img onClick={()=>router.push('/about')} src="/cursor/SeeMore.png"/>
+        <img onClick={()=>router.push('/about')} src={require('../public/cursor/SeeMore.png')}/>
       </div>
     </>
   )

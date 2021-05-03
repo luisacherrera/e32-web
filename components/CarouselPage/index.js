@@ -124,10 +124,10 @@ export default function CarouselPage({
             {
               toggleDragIcon ? 
                 <img className={styles.overlay_animation__mobile__moving} 
-                src="/animation/movimiento.png" 
+                src={require("../../public/animation/movimiento.png")} 
                 alt="moving"/> 
                 :
-                <img src="/animation/parado.png" alt="stopped"/> 
+                <img src={require("../../public/animation/parado.png")} alt="stopped"/> 
             }
 
             <h2>Drag left to navigate</h2>
@@ -215,7 +215,7 @@ export default function CarouselPage({
         ${footerLightingVariant}
       `} onClick={()=>router.push('/about')}>
         <h2 className={styles.footer_about__mobile_claim}>See more</h2>
-        <img onClick={()=>router.push('/about')} src="/cursor/SeeMore.png"/>
+        <img onClick={()=>router.push('/about')} src={require("../../public/cursor/SeeMore.png")}/>
       </div>
 
       <style jsx>{`

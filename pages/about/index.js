@@ -115,7 +115,7 @@ export default function About() {
         </address>
       </div>
       <div className={styles.header_closing_button}>
-        <img onClick={()=>handlePageClose()} src="/cursor/SeeMore.png"/>
+        <img onClick={()=>handlePageClose()} src={require("../../public/cursor/SeeMore.png")}/>
       </div>
 
       <div className={styles.container}
@@ -130,7 +130,7 @@ export default function About() {
           </ul>
           <div className={styles.block_container__about_page_title__mobile}><p>About</p></div>
           <div className={styles.block_container__about_image}>
-            <img src="/photos/StudioImage.jpg"></img>
+            <img src={require("../../public/photos/StudioImage.jpg")}/>
           </div>
           <div className={styles.block_container__about_claims}>
             <div className={styles.block_container__about_claims__info}>
@@ -141,7 +141,7 @@ export default function About() {
             </div>
           </div>
           <div className={styles.block_container__about_image__mobile}>
-            <img src="/photos/StudioImage.jpg"></img>
+            <img src={require("../../public/photos/StudioImage.jpg")}/>
           </div>
         </div>
         <div className={leavePage ? `${styles.leave_animation} ${styles.block_container} ${styles.block_container__keep}` : `${styles.block_container} ${styles.block_container__keep}`}>
