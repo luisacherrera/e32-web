@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 import { useEffect, useRef, useState } from 'react'
-import { isBrowser, isTablet } from 'react-device-detect'
+import { isBrowser } from 'react-device-detect'
 import ProjectBlock from '../ProjectBlock'
 import styles from './ProjectPage.module.scss'
 
@@ -136,9 +136,6 @@ export default function ProjectPage({project_items, category}) {
   }, intervalDelay);
 
   useEffect(()=>{
-    if (isTablet) {
-      setDeviceType(styles.container__tablet_overflow)
-    }
     if (category === 'architecture') {
       setSeeAllVisibility(true)
 

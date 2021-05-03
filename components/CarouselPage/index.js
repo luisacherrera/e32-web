@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import { useEffect, useRef, useState } from 'react';
-import { isBrowser, isTablet } from 'react-device-detect';
+import { isBrowser } from 'react-device-detect';
 import CarouselItem from '../CarouselItem';
 import styles from './CarouselPage.module.scss';
 
@@ -102,10 +102,6 @@ export default function CarouselPage({
   }, intervalDelay);
 
   useEffect(()=>{
-    if (isTablet) {
-      setDeviceType(styles.container__tablet_overflow)
-    }
-
     const timeoutDrag = setTimeout(()=>{
       setCanMove(true)
       setToggleDragIcon(true)
