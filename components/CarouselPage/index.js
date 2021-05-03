@@ -36,15 +36,12 @@ export default function CarouselPage({
   const [showMobileOverlay, setShowMobileOverlay] = useState(true)
   const [toggleDragIcon, setToggleDragIcon] = useState(false)
   const [canMove, setCanMove] = useState(false)
+  const [tabletOverflow, setDeviceType] = useState(null)
 
   // styles
 
   const containerBuildingVariant = category === 'building' ? styles.container_building : ''
   const containerLightingVariant = category === 'lighting' ? styles.container_lighting : ''
-  const footerBuildingVariant = category === 'building' ? styles.footer__building_variant : ''
-  const footerLightingVariant = category === 'lighting' ? styles.footer__lighting_variant : ''
-  const titleLightingVariant = category === 'lighting' ? styles.header_logo__page_variant__lighting : ''
-  const leaveAnimation = pageLeave ? styles.leave_animation : ''
   const colorChangeAnimation = pageLeave && category === 'architecture' 
     ? styles.change_color_animation__lighting 
     : pageLeave && category === 'lighting' 
@@ -52,6 +49,10 @@ export default function CarouselPage({
       : pageLeave && category === 'building'
         ? styles.change_color_animation__architecture
         : ''
+  const footerBuildingVariant = category === 'building' ? styles.footer__building_variant : ''
+  const footerLightingVariant = category === 'lighting' ? styles.footer__lighting_variant : ''
+  const leaveAnimation = pageLeave ? styles.leave_animation : ''
+  const titleLightingVariant = category === 'lighting' ? styles.header_logo__page_variant__lighting : ''
 
   // DOM events handlers
 
@@ -138,6 +139,7 @@ export default function CarouselPage({
         ${containerLightingVariant}
         ${containerBuildingVariant}
         ${colorChangeAnimation}
+        ${tabletOverflow}
         `}
         onWheel={(e)=>isBrowser && canMove && handleWheel(e)}>
         <div className={styles.header_logo}>

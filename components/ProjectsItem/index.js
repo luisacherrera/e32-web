@@ -1,5 +1,4 @@
 import { useEffect } from 'react'
-import { isBrowser } from 'react-device-detect'
 import { useInView } from 'react-intersection-observer'
 import styles from './ProjectsItem.module.scss'
 

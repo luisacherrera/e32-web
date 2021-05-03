@@ -45,6 +45,7 @@ export default function ProjectPage({project_items, category}) {
   const [showSeeAll, setSeeAllVisibility] = useState(false)
   const [intervalDelay, setIntervalDelay] = useState(15)
   const [listItemIsHighlighted, setListItemHighlight] = useState(true)
+  const [tabletOverflow, setDeviceType] = useState(null)
 
   //DOM events handlers
 
@@ -160,7 +161,12 @@ export default function ProjectPage({project_items, category}) {
 
   return (
     <>
-      <div ref={containerRef} className={styles.container} onWheel={(e)=>isBrowser && handleWheel(e)}>
+      <div ref={containerRef} 
+           className={`
+            ${styles.container}
+            ${tabletOverflow}
+           `} 
+           onWheel={(e)=>isBrowser && handleWheel(e)}>
         <div className={styles.footer}>
           <div className={styles.footer__project_data}>
             <div className={styles.footer__project_data__title_container}>
