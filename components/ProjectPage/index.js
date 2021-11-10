@@ -282,16 +282,8 @@ export default function ProjectPage({project_items, category}) {
                         onClick={()=>setElementToCall(i+1)}
                         onMouseOver={()=>setListItemHighlight(false)}
                         onMouseLeave={()=>setListItemHighlight(true)}>
-                      { 
-                        i < 9 ? 
-                          `0${i + 1}` 
-                          : 
-                          i + 1 
-                      }/{ 
-                          project_items.length < 10 ? 
-                            `0${project_items.length}` 
-                            : 
-                            project_items.length
+                        { 
+                          block.data[0].title.toUpperCase()
                         }
                     </li>
                   ) 
