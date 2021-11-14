@@ -1,21 +1,27 @@
 import { useRouter } from 'next/router';
 import { useEffect, useRef, useState } from 'react';
 import { isBrowser } from 'react-device-detect';
-import CarouselItem from '../CarouselItem';
-import styles from './CarouselPage.module.scss';
+import CarouselDetailedItem from '../CarouselDetailedItem';
+import styles from './CarouselDetailedPage.module.scss';
 
-export default function CarouselPage({
+export default function CarouselDetailedPage({
   carousel_data, 
   category
 }) {
   const router = useRouter();
 
-  const nextPage = '/lighting' 
+  const nextPage = category ==='lighting' 
+    ? '/building' 
+    : '/architecture'
+
 
   // carousel move values
   const carouselLength = carousel_data.length
   const carouselMove = 7.5 / carouselLength
   const carouselSpeed = 0.13 / carouselLength
+
+  // refs
+  const fullScreenRef = useRef(null)
 
   // states
 
@@ -32,6 +38,9 @@ export default function CarouselPage({
   const [toggleDragIcon, setToggleDragIcon] = useState(false)
   const [canMove, setCanMove] = useState(false)
   const [tabletOverflow, setDeviceType] = useState(null)
+  const [fullScreen, toggleFullscreen] = useState(false)
+  const [fullscreenImage, setFullscreenImage] = useState()
+  const [fullscreenLandscape, setFullscreenLandscape] = useState(false)
 
   // styles
 
@@ -68,7 +77,35 @@ export default function CarouselPage({
     }
   }
 
+  const handleMouseMove = (e) => {
+    const xAxis = fullScreenRef.current
+    const yAxis = fullScreenRef.current 
+    
+    xAxis.style.backgroundPositionX = -e.nativeEvent.offsetX + "px"
+    yAxis.style.backgroundPositionY = fullscreenLandscape 
+                                        ? -(e.nativeEvent.offsetY*1.6) + "px" 
+                                        : -(e.nativeEvent.offsetY*4) + "px"
+  }
+
   // general handlers
+
+  const handleFullscreenImage = (image, size) => {
+    document.body.style.overflow = 'unset' 
+
+    setFullscreenImage(image)
+    setFullscreenLandscape(size)
+    setIntervalDelay(150000)
+    toggleFullscreen(true)
+  }
+
+  const handleFullscreenClose = () => {
+    if (isBrowser) {
+      document.body.style.overflow = 'hidden'
+    }
+    toggleFullscreen(false)
+    setFullscreenLandscape(false)
+    setIntervalDelay(15)
+  }
 
   const handleNewVisibleItem = (item) => {
     updateItemInformation(item)
@@ -191,17 +228,18 @@ export default function CarouselPage({
         <div className={`${styles.horizontal_container} animation__container`}>
             {
               carousel_data.map((data, i)=>
-                <CarouselItem
+                <CarouselDetailedItem
                   key={i}
-                  category={category}
                   imageOverlay={showMobileOverlay}
                   isFirstElement={i === 0}
                   isBuildingVariant={data.isBuildingVariant}
                   isLandscape={data.isLandscape}
                   isLightingVariant={data.isLightingVariant}
                   item={data}
-                  onItemVisible={handleNewVisibleItem}>
-                </CarouselItem>
+                  onItemVisible={handleNewVisibleItem}
+                  onFullscreenMode={handleFullscreenImage}
+                  >
+                </CarouselDetailedItem>
               )
             }
         </div>
@@ -215,9 +253,46 @@ export default function CarouselPage({
         <img onClick={()=>router.push('/about')} src={require("../../public/cursor/SeeMore.png")}/>
       </div>
 
+      {
+        fullScreen ? 
+          isBrowser ?
+            <div ref={fullScreenRef}
+                 onMouseMove={(e)=>handleMouseMove(e)}
+                 onClick={()=>handleFullscreenClose()} 
+                 className="fullscreen_image">
+            </div>
+            :
+            <div className={
+              fullscreenLandscape 
+                ? `${styles.fullscreen_mobile} ${styles.fullscreen_mobile__landscape}`
+                : `${styles.fullscreen_mobile}`}>
+              <img onClick={()=>handleFullscreenClose()} 
+                   src={require("../../public/cursor/SeeMore.png")} 
+                   className={styles.fullscreen_mobile__close}
+                   alt="close"/>
+              <img src={ fullscreenImage } 
+                   alt="full screen image"/>
+            </div>
+          : 
+          null 
+      }
+
       <style jsx>{`
         .animation__container {
           transform: translateX(-${translate}%);  
+        }
+
+        .fullscreen_image {
+          cursor: url('/cursor/Close.png'), auto;
+          background-image: url(${fullscreenImage});
+          background-size: 200%;
+          background-position: center;
+          position: absolute;
+          z-index: 100;
+          height: 100vh;
+          width: 100vw;
+          top: 0;
+          left: 0;
         }
       `}</style>
     </>
