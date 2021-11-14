@@ -203,9 +203,14 @@ export default function About() {
             }
           </div>
           <div className={styles.footer__mobile}>        
-            <p className={styles.footer_middle}>
-              <a target="_blank" href="https://www.instagram.com/e32studio/">IG</a>
-            </p>
+            <a className={styles.footer_middle} href="https://www.instagram.com/e32studio/">
+                <img src={require("../../public/logos/ig-icon.png")} 
+                     alt="instagram"/>        
+            </a>
+            <a className={styles.footer_middle} href="https://www.linkedin.com/company/e32-studio/">
+                <img src={require("../../public/logos/linkedin-icon.png")} 
+                     alt="instagram"/>        
+            </a>
             <p>
               <a target="_blank" href="https://goo.gl/maps/fDdTYNgfMrgtNWCS8">Maps</a>
             </p>
@@ -223,9 +228,14 @@ export default function About() {
           <a href="mailto:info@e32.studio?subject=Request information">info@e32.studio</a>
         </h3>
         <p className={styles.footer_middle} onClick={()=>bringFormIntoView()}>Email us!</p>
-        <p className={styles.footer_middle}>
-          <a href="https://www.instagram.com/e32studio/">IG</a>
-        </p>
+        <a className={styles.footer_middle} href="https://www.instagram.com/e32studio/">
+            <img src={require("../../public/logos/ig-icon.png")} 
+                 alt="instagram"/>        
+        </a>
+        <a className={styles.footer_middle} href="https://www.linkedin.com/company/e32-studio/">
+            <img src={require("../../public/logos/linkedin-icon.png")} 
+                 alt="instagram"/>        
+        </a>
         <ul className={styles.footer_home__navbar}>
           <li onClick={()=>router.push('/architecture')}>Architecture</li>
           <li onClick={()=>router.push('/lighting')}>Lighting</li>
