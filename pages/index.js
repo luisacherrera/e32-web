@@ -1,9 +1,9 @@
 import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { isBrowser } from 'react-device-detect'
 import styles from './Home.module.scss'
 
-export default function Home() {
+export default function Home() {  
   const blocks = {
     architecture: {
       route: "/architecture",
@@ -25,8 +25,11 @@ export default function Home() {
     },
   }
 
+  const categories = ["architecture", "lighting", "building"]
+
   const [currentBlock, updateBlock] = useState(blocks.architecture)
   const [translationAnimation, setTranslationAnimation] = useState(null)
+  const [arrayPosition, updateArrayPosition] = useState(0)
 
   const lightingVariant = currentBlock.name === "lighting" ? styles.container_lighting : ""
   const buildingVariant = currentBlock.name === "building" ? styles.container_building : ""
@@ -66,6 +69,16 @@ export default function Home() {
       router.push('/architecture')
     }
   },[])
+
+  isBrowser && useInterval(()=>{
+    if (arrayPosition !== 2) {
+      handleSetBlock(categories[arrayPosition])
+      updateArrayPosition(arrayPosition + 1)
+    } else {
+      handleSetBlock(categories[arrayPosition])
+      updateArrayPosition(0)
+    }
+  }, 5000)
 
   return (
     <>
@@ -109,4 +122,24 @@ export default function Home() {
       </div>
     </>
   )
+}
+
+function useInterval (callback, delay) {
+  const savedCallback = useRef();
+
+  // Remember the latest callback.
+  useEffect(() => {
+    savedCallback.current = callback;
+  }, [callback]);
+
+  // Set up the interval.
+  useEffect(() => {
+    function tick() {
+      savedCallback.current();
+    }
+    if (delay !== null) {
+      let id = setInterval(tick, delay);
+      return () => clearInterval(id);
+    }
+  }, [delay]);
 }
