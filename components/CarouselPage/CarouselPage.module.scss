@@ -241,11 +241,19 @@
 
   @include media('small') {
     padding: 0;
-    width: 50vw;
+    width: 40vw;
 
     h3 {
       font-size: 1em;
     }
+  }
+}
+
+.footer__project_see_all__mobile {
+  @include media('small') {
+    width: 20vw;
+    padding-top: 10px;
+    text-align: right;
   }
 }
 
@@ -256,10 +264,18 @@
   padding-top: 15px;
 
   @include media('small') {
-    width: 50vw;
+    width: 40vw;
     text-align: right;
     padding: 0;
   }
+}
+
+.footer__see_all {
+  position: fixed;
+  bottom: 5px;
+  right: 40vw;
+  height: 75px;
+  width: 75px;
 }
 
 .footer_middle {
@@ -271,7 +287,7 @@
 }
 
 .footer_home__navbar {
-  width: 40%;
+  width: 20%;
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
@@ -352,6 +368,84 @@
 
   @include media('small') {
     animation: none;
+  }
+}
+
+.projects_navigation_menu {
+  position: absolute;
+  top: 0;
+  background-color: white;
+  width: 100%;
+  height: 100%;
+  display: flex;
+
+  .projects_navigation_menu__image_container {
+      width: 60%;
+      height: 85vh;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+
+      .projects_navigation_menu__image__portrait {
+          width: 50vh;
+          height: auto;
+          padding-top: 10vh;
+      }
+
+      .projects_navigation_menu__image__landscape {
+          width: 70%;
+          height: 80%;
+          padding-top: 20vh;
+      }
+  }
+
+  ul {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 40%;
+      height: 90%;
+      padding: 40px 10vw 40px 0;;
+
+      li {
+          padding: 10px;
+          padding-left: 20px;
+          margin: 0 10px 0 0;
+
+          &:hover {
+              text-decoration: underline;
+          }
+      }
+
+      .highlighted__project {
+          text-decoration: underline;
+      }
+  }
+
+  .projects_navigation_menu__close {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      height: 3em;
+      width: 3em;
+      transform: rotate(45deg);
+  }
+
+  @include media('small') {
+      position: fixed;
+
+      .projects_navigation_menu__image_container {
+          display: none;
+      }
+      
+      ul {
+          width: 100%;
+          padding: 0;
+
+          li {
+              font-size: 1.25em;
+          }
+      }
   }
 }
 

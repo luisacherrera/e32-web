@@ -32,6 +32,8 @@ export default function CarouselPage({
   const [toggleDragIcon, setToggleDragIcon] = useState(false)
   const [canMove, setCanMove] = useState(false)
   const [tabletOverflow, setDeviceType] = useState(null)
+  const [navigationMenuVisibility, toggleNavigationMenuVisibility] = useState(false)
+  const [listItemIsHighlighted, setListItemHighlight] = useState(true)
 
   // styles
 
@@ -83,6 +85,10 @@ export default function CarouselPage({
       }, 500)
       :
       router.push(nextPage)
+  }
+
+  const navigateToProject = (el) => {
+    router.push('architecture/projects?project=' + el)
   }
 
   const translateMaxValue = category === 'architecture' ? 95 : 80
@@ -165,12 +171,25 @@ export default function CarouselPage({
           ${colorChangeAnimation}
         `}>
           <div className={styles.footer__project_title_container}>
-            <h3>{ itemInformation.title }</h3>
+            <h3>{ !navigationMenuVisibility ? itemInformation.title : 'Architecture Projects' }</h3>
           </div>
+          {
+            !isBrowser 
+              && <p onClick={()=>toggleNavigationMenuVisibility(!navigationMenuVisibility)}
+                    className={styles.footer__project_see_all__mobile}>See All</p>
+          }
           <div className={styles.footer__info_container}>
             <h3>Year: { itemInformation.year }</h3>
             <h3>Location: { itemInformation.location }</h3>
             {/* <h3>NºEXP: { itemInformation.expedient }</h3> */}
+          </div>
+          <div>
+            {          
+              isBrowser && <img onClick={()=>toggleNavigationMenuVisibility(!navigationMenuVisibility)}
+                     className={styles.footer__see_all} 
+                     src={require("../../public/cursor/Cursor_projects.png")} 
+                     alt="See all projects"/>
+            }
           </div>
           <p className={styles.footer_middle} onClick={()=>router.push('/about')}>About</p>
           <ul className={styles.footer_home__navbar}>
@@ -214,6 +233,39 @@ export default function CarouselPage({
         <h2 className={styles.footer_about__mobile_claim}>See more</h2>
         <img onClick={()=>router.push('/about')} src={require("../../public/cursor/SeeMore.png")}/>
       </div>
+
+      {
+        navigationMenuVisibility ?
+          <div className={styles.projects_navigation_menu}>
+            <div className={styles.projects_navigation_menu__image_container}>
+              <img className={styles.projects_navigation_menu__image__landscape} src={carousel_data[0].imageURL} alt=""/>
+            </div>
+            <ul>
+              { carousel_data
+                  .filter((data, index, self) =>
+                    index === self.findIndex((t) => (
+                      t.project_id === data.project_id && t.title === data.title
+                  ))
+                ).map((block, i)=>
+                  <li className={i === 0 && listItemIsHighlighted ? styles.highlighted__project : ''}
+                      key={i}
+                      onClick={()=>navigateToProject(block.project_id)}
+                      onMouseOver={()=>setListItemHighlight(false)}
+                      onMouseLeave={()=>setListItemHighlight(true)}>
+                      { 
+                        block.title.toUpperCase()
+                      }
+                  </li>
+                ) 
+              }
+            </ul>
+            <img className={styles.projects_navigation_menu__close}
+                 onClick={()=>toggleNavigationMenuVisibility(false)} 
+                 src={require("../../public/cursor/SeeMore.png")}/>
+          </div>
+          :
+          null
+      }
 
       <style jsx>{`
         .animation__container {
