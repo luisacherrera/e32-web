@@ -42,7 +42,6 @@ export default function ProjectPage({project_items, category}) {
   })
   const [selectedElement, setSelectedElement] = useState(0)
   const [translate, setTranslate] = useState(0)
-  const [showSeeAll, setSeeAllVisibility] = useState(false)
   const [intervalDelay, setIntervalDelay] = useState(15)
   const [listItemIsHighlighted, setListItemHighlight] = useState(true)
   const [tabletOverflow, setDeviceType] = useState(null)
@@ -135,30 +134,6 @@ export default function ProjectPage({project_items, category}) {
   
   }, intervalDelay);
 
-  useEffect(()=>{
-    if (category === 'architecture') {
-      setSeeAllVisibility(true)
-
-      const visibilityTimeout = setTimeout(()=>{
-        setSeeAllVisibility(false)
-      }, 5000)
-      
-      const visibilityInterval = setInterval(()=>{
-        setSeeAllVisibility(true)
-        setTimeout(()=>{
-          setSeeAllVisibility(false)
-        }, 5000)
-      }, 30000)
-
-      return () => {
-        if (category === 'architecture') {
-          clearTimeout(visibilityTimeout)
-          clearInterval(visibilityInterval)
-        }
-      }
-    }
-  }, [])
-
   return (
     <>
       <div ref={containerRef} 
@@ -187,27 +162,14 @@ export default function ProjectPage({project_items, category}) {
             category === 'architecture' ? 
             <div className={styles.footer__project_counter_block}>
             {          
-              !showSeeAll ?
-                <p onClick={()=>toggleNavigationMenuVisibility(!navigationMenuVisibility)}
-                   className={styles.footer__project_counter}
-                   onMouseOver={()=>isBrowser && setSeeAllVisibility(true)}>
-                  { projectInformation.id < 10 
-                      ? `0${projectInformation.id}` 
-                      : projectInformation.id }/{ project_items.length < 10 
-                        ? `0${project_items.length}` 
-                        : project_items.length
-                  }
-                </p>
+              isBrowser ?
+                <img onClick={()=>toggleNavigationMenuVisibility(!navigationMenuVisibility)}
+                     className={styles.footer__see_all} 
+                     src={require("../../public/cursor/Cursor_projects.png")} 
+                     alt="See all projects"/>
                 :
-                isBrowser ?
-                  <img onClick={()=>toggleNavigationMenuVisibility(!navigationMenuVisibility)}
-                       onMouseOut={()=>setSeeAllVisibility(false)}
-                       className={styles.footer__see_all} 
-                       src={require("../../public/cursor/Cursor_projects.png")} 
-                       alt="See all projects"/>
-                  :
-                  <p onClick={()=>toggleNavigationMenuVisibility(!navigationMenuVisibility)}
-                     className={styles.footer__project_counter}>See All</p>
+                <p onClick={()=>toggleNavigationMenuVisibility(!navigationMenuVisibility)}
+                   className={styles.footer__project_counter}>See All</p>
             }
             </div>
             :
