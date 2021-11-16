@@ -11,5 +11,10 @@ module.exports = withPlugins([
     sassOptions: {
       includePaths: [path.join(__dirname, 'styles')],
     }
+  },
+  {
+    images: {
+      disableStaticImages: true
+    }
   }
 ])

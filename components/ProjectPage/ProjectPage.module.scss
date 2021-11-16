@@ -211,13 +211,14 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        width: 30%;
+        width: 40%;
         height: 90%;
         padding: 40px 10vw 40px 0;;
 
         li {
             padding: 10px;
-            margin: 0 auto;
+            padding-left: 20px;
+            margin: 0 10px 0 0;
 
             &:hover {
                 text-decoration: underline;

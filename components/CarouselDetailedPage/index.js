@@ -1,21 +1,27 @@
 import { useRouter } from 'next/router';
 import { useEffect, useRef, useState } from 'react';
 import { isBrowser } from 'react-device-detect';
-import CarouselItem from '../CarouselItem';
-import styles from './CarouselPage.module.scss';
+import CarouselDetailedItem from '../CarouselDetailedItem';
+import styles from './CarouselDetailedPage.module.scss';
 
-export default function CarouselPage({
+export default function CarouselDetailedPage({
   carousel_data, 
   category
 }) {
   const router = useRouter();
 
-  const nextPage = '/lighting' 
+  const nextPage = category ==='lighting' 
+    ? '/building' 
+    : '/architecture'
+
 
   // carousel move values
   const carouselLength = carousel_data.length
   const carouselMove = 7.5 / carouselLength
   const carouselSpeed = 0.13 / carouselLength
+
+  // refs
+  const fullScreenRef = useRef(null)
 
   // states
 
@@ -32,8 +38,9 @@ export default function CarouselPage({
   const [toggleDragIcon, setToggleDragIcon] = useState(false)
   const [canMove, setCanMove] = useState(false)
   const [tabletOverflow, setDeviceType] = useState(null)
-  const [navigationMenuVisibility, toggleNavigationMenuVisibility] = useState(false)
-  const [listItemIsHighlighted, setListItemHighlight] = useState(true)
+  const [fullScreen, toggleFullscreen] = useState(false)
+  const [fullscreenImage, setFullscreenImage] = useState()
+  const [fullscreenLandscape, setFullscreenLandscape] = useState(false)
 
   // styles
 
@@ -70,7 +77,35 @@ export default function CarouselPage({
     }
   }
 
+  const handleMouseMove = (e) => {
+    const xAxis = fullScreenRef.current
+    const yAxis = fullScreenRef.current 
+    
+    xAxis.style.backgroundPositionX = -e.nativeEvent.offsetX + "px"
+    yAxis.style.backgroundPositionY = fullscreenLandscape 
+                                        ? -(e.nativeEvent.offsetY*1.6) + "px" 
+                                        : -(e.nativeEvent.offsetY*4) + "px"
+  }
+
   // general handlers
+
+  const handleFullscreenImage = (image, size) => {
+    document.body.style.overflow = 'unset' 
+
+    setFullscreenImage(image)
+    setFullscreenLandscape(size)
+    setIntervalDelay(150000)
+    toggleFullscreen(true)
+  }
+
+  const handleFullscreenClose = () => {
+    if (isBrowser) {
+      document.body.style.overflow = 'hidden'
+    }
+    toggleFullscreen(false)
+    setFullscreenLandscape(false)
+    setIntervalDelay(15)
+  }
 
   const handleNewVisibleItem = (item) => {
     updateItemInformation(item)
@@ -85,10 +120,6 @@ export default function CarouselPage({
       }, 500)
       :
       router.push(nextPage)
-  }
-
-  const navigateToProject = (el) => {
-    router.push('architecture/projects?project=' + el)
   }
 
   const translateMaxValue = category === 'architecture' ? 95 : 80
@@ -171,25 +202,12 @@ export default function CarouselPage({
           ${colorChangeAnimation}
         `}>
           <div className={styles.footer__project_title_container}>
-            <h3>{ !navigationMenuVisibility ? itemInformation.title : 'Architecture Projects' }</h3>
+            <h3>{ itemInformation.title }</h3>
           </div>
-          {
-            !isBrowser 
-              && <p onClick={()=>toggleNavigationMenuVisibility(!navigationMenuVisibility)}
-                    className={styles.footer__project_see_all__mobile}>See All</p>
-          }
           <div className={styles.footer__info_container}>
             <h3>Year: { itemInformation.year }</h3>
             <h3>Location: { itemInformation.location }</h3>
             {/* <h3>NºEXP: { itemInformation.expedient }</h3> */}
-          </div>
-          <div>
-            {          
-              isBrowser && <img onClick={()=>toggleNavigationMenuVisibility(!navigationMenuVisibility)}
-                     className={styles.footer__see_all} 
-                     src={require("../../public/cursor/Cursor_projects.png")} 
-                     alt="See all projects"/>
-            }
           </div>
           <p className={styles.footer_middle} onClick={()=>router.push('/about')}>About</p>
           <ul className={styles.footer_home__navbar}>
@@ -210,17 +228,18 @@ export default function CarouselPage({
         <div className={`${styles.horizontal_container} animation__container`}>
             {
               carousel_data.map((data, i)=>
-                <CarouselItem
+                <CarouselDetailedItem
                   key={i}
-                  category={category}
                   imageOverlay={showMobileOverlay}
                   isFirstElement={i === 0}
                   isBuildingVariant={data.isBuildingVariant}
                   isLandscape={data.isLandscape}
                   isLightingVariant={data.isLightingVariant}
                   item={data}
-                  onItemVisible={handleNewVisibleItem}>
-                </CarouselItem>
+                  onItemVisible={handleNewVisibleItem}
+                  onFullscreenMode={handleFullscreenImage}
+                  >
+                </CarouselDetailedItem>
               )
             }
         </div>
@@ -235,41 +254,45 @@ export default function CarouselPage({
       </div>
 
       {
-        navigationMenuVisibility ?
-          <div className={styles.projects_navigation_menu}>
-            <div className={styles.projects_navigation_menu__image_container}>
-              <img className={styles.projects_navigation_menu__image__landscape} src={carousel_data[0].imageURL} alt=""/>
+        fullScreen ? 
+          isBrowser ?
+            <div ref={fullScreenRef}
+                 onMouseMove={(e)=>handleMouseMove(e)}
+                 onClick={()=>handleFullscreenClose()} 
+                 className="fullscreen_image">
             </div>
-            <ul>
-              { carousel_data
-                  .filter((data, index, self) =>
-                    index === self.findIndex((t) => (
-                      t.project_id === data.project_id && t.title === data.title
-                  ))
-                ).map((block, i)=>
-                  <li className={i === 0 && listItemIsHighlighted ? styles.highlighted__project : ''}
-                      key={i}
-                      onClick={()=>navigateToProject(block.project_id)}
-                      onMouseOver={()=>setListItemHighlight(false)}
-                      onMouseLeave={()=>setListItemHighlight(true)}>
-                      { 
-                        block.title.toUpperCase()
-                      }
-                  </li>
-                ) 
-              }
-            </ul>
-            <img className={styles.projects_navigation_menu__close}
-                 onClick={()=>toggleNavigationMenuVisibility(false)} 
-                 src={require("../../public/cursor/SeeMore.png")}/>
-          </div>
-          :
-          null
+            :
+            <div className={
+              fullscreenLandscape 
+                ? `${styles.fullscreen_mobile} ${styles.fullscreen_mobile__landscape}`
+                : `${styles.fullscreen_mobile}`}>
+              <img onClick={()=>handleFullscreenClose()} 
+                   src={require("../../public/cursor/SeeMore.png")} 
+                   className={styles.fullscreen_mobile__close}
+                   alt="close"/>
+              <img src={ fullscreenImage } 
+                   alt="full screen image"/>
+            </div>
+          : 
+          null 
       }
 
       <style jsx>{`
         .animation__container {
           transform: translateX(-${translate}%);  
+        }
+
+        .fullscreen_image {
+          cursor: url('/cursor/Close.png'), auto;
+          background-image: url(${fullscreenImage});
+          background-size: 200%;
+          background-position: center;
+          position: absolute;
+          z-index: 100;
+          height: 100vh;
+          width: 100vw;
+          top: 0;
+          left: 0;
         }
       `}</style>
     </>
