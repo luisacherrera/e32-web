@@ -25,7 +25,7 @@ export default function Home() {
     },
   }
 
-  const categories = ["architecture", "lighting", "building"]
+  const categories = ["lighting", "building", "architecture"]
 
   const [currentBlock, updateBlock] = useState(blocks.architecture)
   const [translationAnimation, setTranslationAnimation] = useState(null)
@@ -78,7 +78,7 @@ export default function Home() {
       handleSetBlock(categories[arrayPosition])
       updateArrayPosition(0)
     }
-  }, 5000)
+  }, 4000)
 
   return (
     <>
