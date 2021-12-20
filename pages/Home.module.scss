@@ -132,6 +132,10 @@
     font-family: $title-font;
   }
 
+  @include media("extralarge") {
+    font-size: 20vw;
+  }
+
   @include media("medium") {
     font-size: 25vw;
   }
@@ -163,6 +167,7 @@
 
   img {
     width: 57.5vh;
+    margin: 0 10% 0 10%;
 
     @include media("small") {
       object-fit: cover;
@@ -189,7 +194,7 @@
 .image__ {
   &lighting_variant {
     width: 65vh !important;
-    margin-left: -15%;
+    margin: 0 10% 0 0 !important;
   }
 
   &hidden {
