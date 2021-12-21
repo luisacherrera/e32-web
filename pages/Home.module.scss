@@ -2,283 +2,313 @@
 @import "mixins.scss";
 
 @keyframes colorChangeArchitectureToLighting {
-    from {
-        background-color: $white;
-    }
+  from {
+    background-color: $white;
+  }
 
-    to {
-        background-color: $lighting-page-color;
-    }
+  to {
+    background-color: $lighting-page-color;
+  }
 }
 
 @keyframes colorChangeArchitectureToBuilding {
-    from {
-        background-color: $white;
-    }
+  from {
+    background-color: $white;
+  }
 
-    to {
-        background-color: $building-page-color;
-    }
+  to {
+    background-color: $building-page-color;
+  }
 }
 
 @keyframes colorChangeLightingToArchitecture {
-    from {
-        background-color: $lighting-page-color;
-    }
+  from {
+    background-color: $lighting-page-color;
+  }
 
-    to {
-        background-color: $white;
-    }
+  to {
+    background-color: $white;
+  }
 }
 
 @keyframes colorChangeLightingToBuilding {
-    from {
-        background-color: $lighting-page-color;
-    }
+  from {
+    background-color: $lighting-page-color;
+  }
 
-    to {
-        background-color: $building-page-color;
-    }
+  to {
+    background-color: $building-page-color;
+  }
 }
 
 @keyframes colorChangeBuildingToArchitecture {
-    from {
-        background-color: $building-page-color;
-    }
+  from {
+    background-color: $building-page-color;
+  }
 
-    to {
-        background-color: $white;
-    }
+  to {
+    background-color: $white;
+  }
 }
 
 @keyframes colorChangeBuildingToLighting {
-    from {
-        background-color: $building-page-color;
-    }
+  from {
+    background-color: $building-page-color;
+  }
 
-    to {
-        background-color: $lighting-page-color;
-    }
+  to {
+    background-color: $lighting-page-color;
+  }
 }
 
 .container {
-    display: grid;
-    grid-template-columns: 2.5fr calc(100%/3) 2fr;
-    grid-template-rows: 3fr 4fr 1fr;
-    grid-template-areas: 
-        "header-logo . header-title"
-        "main-left main-middle . "
-        "footer-left footer-middle footer-right";
-    padding: $site-spacing;
-    height: 100vh;
+  display: grid;
+  grid-template-columns: 2.5fr calc(100% / 3) 2fr;
+  grid-template-rows: 3fr 4fr 1fr;
+  grid-template-areas:
+    "header-logo . header-title"
+    "main-left main-middle . "
+    "footer-left footer-middle footer-right";
+  padding: $site-spacing;
+  height: 100vh;
 
-    &_building { background-color: $building-page-color; }
+  &_building {
+    background-color: $building-page-color;
+  }
 
-    &_lighting { background-color: $lighting-page-color; }
+  &_lighting {
+    background-color: $lighting-page-color;
+  }
 
-    @include media('medium') {
-        grid-template-columns: 2fr 2fr;
-        grid-template-rows: 3fr 3fr 1fr;
-        grid-template-areas: 
-            "header-logo header-title"
-            "main-left main-middle"
-            "footer-left footer-right";
-    }
+  @include media("medium") {
+    grid-template-columns: 2fr 2fr;
+    grid-template-rows: 3fr 3fr 1fr;
+    grid-template-areas:
+      "header-logo header-title"
+      "main-left main-middle"
+      "footer-left footer-right";
+  }
 
-    @include media('small') {
-        display: none;
-        grid-template-columns: 2fr 1fr;
-        grid-template-rows: 1fr 5fr 1fr 1fr;
-        grid-template-areas: 
-            "header-logo header-title"
-            "main-middle main-middle"
-            "main-left main-left"
-            "footer-menu footer-menu";
-    }
+  @include media("small") {
+    display: none;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 1fr 5fr 1fr 1fr;
+    grid-template-areas:
+      "header-logo header-title"
+      "main-middle main-middle"
+      "main-left main-left"
+      "footer-menu footer-menu";
+  }
 }
 
 .header_logo {
-    grid-area: header-logo;
-    min-width: 0;
-    padding-top: 4px;
-    margin-left: -11px;
+  grid-area: header-logo;
+  min-width: 0;
+  padding-top: 4px;
+  margin-left: -11px;
 }
 
 .address_info_container {
-    grid-area: header-title;
-    padding-left: 20px;
+  grid-area: header-title;
+  padding-left: 20px;
 
-    @include media('medium') { 
-        justify-self: center; 
-        padding: 0;
-    }
+  @include media("medium") {
+    justify-self: center;
+    padding: 0;
+  }
 
-    @include media('small') { display: none; }
+  @include media("small") {
+    display: none;
+  }
 }
 
 .title_style {
-    font-size: 18em;
-    font-weight: 100;
-    line-height: 0.9;
+  font-size: 18em;
+  font-weight: 100;
+  line-height: 0.9;
 
-    &_lighting {
-        margin-top: -30px; 
-        font-family: $title-font; 
-    }
+  &_lighting {
+    margin-top: -30px;
+    font-family: $title-font;
+  }
 
-    @include media('medium') { font-size: 25vw; }
+  @include media("extralarge") {
+    font-size: 20vw;
+  }
 
-    @include media('small') { font-size: 30vw; }
+  @include media("medium") {
+    font-size: 25vw;
+  }
+
+  @include media("small") {
+    font-size: 30vw;
+  }
 }
 
 .intro_text {
-    grid-area: main-left;
-    align-self: end;
-    font-size: 2.75vw;
-    line-height: 40px;
-    width: 80%;
+  grid-area: main-left;
+  align-self: end;
+  font-size: 2.75vw;
+  line-height: 40px;
+  width: 80%;
 
-    @include media('small') { font-size: 1rem; }
+  @include media("small") {
+    font-size: 1rem;
+  }
 }
 
 .image_container {
-    grid-area: header-logo-start / main-middle-start / main-middle-end / main-middle-end;
-    align-self: end;
-    width: 33vw;
-    min-height: 0;
-    padding: 10px 10px 0;
+  grid-area: header-logo-start / main-middle-start / main-middle-end /
+    main-middle-end;
+  align-self: end;
+  width: 33vw;
+  min-height: 0;
+  padding: 10px 10px 0;
 
-    img {
-        width: 57.5vh;
-        
-        @include media('small') { object-fit: cover; }
-    }
+  img {
+    width: 57.5vh;
+    margin: 0 10% 0 10%;
 
-    @include media('medium') {
-        grid-area: main-middle;
-        justify-self: end;
-        width: 50vw;
-        padding: 10px 0 0 10px;
+    @include media("small") {
+      object-fit: cover;
     }
+  }
 
-    @include media('small') {
-        overflow: hidden;
-        grid-area: main-middle;
-        width: 100%;
-        padding: 0;
-        contain: content;
-        height: calc((100vh/9)*5);
-    }
+  @include media("medium") {
+    grid-area: main-middle;
+    justify-self: end;
+    width: 50vw;
+    padding: 10px 0 0 10px;
+  }
+
+  @include media("small") {
+    overflow: hidden;
+    grid-area: main-middle;
+    width: 100%;
+    padding: 0;
+    contain: content;
+    height: calc((100vh / 9) * 5);
+  }
 }
 
 .image__ {
-    &lighting_variant {
-        width: 65vh !important;
-        margin-left: -15%;
-    }
+  &lighting_variant {
+    width: 65vh !important;
+    margin: 0 10% 0 0 !important;
+  }
 
-    &hidden {
-        display: none;
-    }
+  &hidden {
+    display: none;
+  }
 }
 
 .block_sign_container {
-    grid-area: header-title;
-    justify-self: end;
-    padding-top: 3.5px;
+  grid-area: header-title;
+  justify-self: end;
+  padding-top: 3.5px;
 }
 
 .footer_home__address_container {
-    grid-area: footer-left;
-    align-self: end;
-    font-size: 1.25em;
+  grid-area: footer-left;
+  align-self: end;
+  font-size: 1.25em;
 
-    @include media('small') { display: none; }
+  @include media("small") {
+    display: none;
+  }
 }
 
 .footer_middle {
-    grid-area: footer-middle;
-    place-self: end;
-    font-size: 1.25em;
+  grid-area: footer-middle;
+  place-self: end;
+  font-size: 1.25em;
 
-    @include media('medium') {
-        grid-area: footer-right;
-        justify-self: initial;
-        align-self: end;
-        font-size: 2.5vw;
-    }
+  @include media("medium") {
+    grid-area: footer-right;
+    justify-self: initial;
+    align-self: end;
+    font-size: 2.5vw;
+  }
 
-    @include media('small') { display: none; }
+  @include media("small") {
+    display: none;
+  }
 }
 
 .footer_home__navbar {
-    grid-area: footer-right;
-    display: flex;
-    justify-content: flex-end;
-    align-items: flex-end;
-    font-size: 1.25em;
+  grid-area: footer-right;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  font-size: 1.25em;
 
-    li:not(:last-of-type) { margin-right: 10px; }
+  li:not(:last-of-type) {
+    margin-right: 10px;
+  }
 
-    &_inactive {
-        filter: opacity(0.2);
-    }
+  &_inactive {
+    filter: opacity(0.2);
+  }
 
-    @include media('medium') { font-size: 2.5vw; }
+  @include media("medium") {
+    font-size: 2.5vw;
+  }
 
-    @include media('small') { display: none; }
-} 
+  @include media("small") {
+    display: none;
+  }
+}
 
 .footer_about__mobile {
-    display: none;
+  display: none;
 
-    @include media('small') {    
-        position: fixed;
-        bottom: 0;
-        display: flex;
-        justify-content: space-between;
-        width: 100vw;
-        height: 65px;
-        padding: 10px;
-        border-top: 1px solid black;
-        background-color: white;
+  @include media("small") {
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    width: 100vw;
+    height: 65px;
+    padding: 10px;
+    border-top: 1px solid black;
+    background-color: white;
 
-        .footer_about__mobile_claim {
-            padding-top: 5px;
-        }
-
-        h2 {
-            font-size: 2em;
-        }
-
-        img {
-            height: 2em;
-            width: 2em;
-            margin-top: 3px;
-        }
+    .footer_about__mobile_claim {
+      padding-top: 5px;
     }
+
+    h2 {
+      font-size: 2em;
+    }
+
+    img {
+      height: 2em;
+      width: 2em;
+      margin-top: 3px;
+    }
+  }
 }
 
 .architectureToLighting {
-    animation: colorChangeArchitectureToLighting 0.5s;
+  animation: colorChangeArchitectureToLighting 0.5s;
 }
 
 .architectureToBuilding {
-    animation: colorChangeArchitectureToBuilding 0.5s;
+  animation: colorChangeArchitectureToBuilding 0.5s;
 }
 
 .lightingToArchitecture {
-    animation: colorChangeLightingToArchitecture 0.5s;
+  animation: colorChangeLightingToArchitecture 0.5s;
 }
 
 .lightingToBuilding {
-    animation: colorChangeLightingToBuilding 0.5s;
+  animation: colorChangeLightingToBuilding 0.5s;
 }
 
 .buildingToArchitecture {
-    animation: colorChangeBuildingToArchitecture 0.5s;
+  animation: colorChangeBuildingToArchitecture 0.5s;
 }
 
 .buildingToLighting {
-    animation: colorChangeBuildingToLighting 0.5s;
+  animation: colorChangeBuildingToLighting 0.5s;
 }

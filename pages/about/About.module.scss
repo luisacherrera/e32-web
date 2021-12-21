@@ -19,7 +19,10 @@
   }
 }
 
-.container, .title_style, .address_info, .footer {
+.container,
+.title_style,
+.address_info,
+.footer {
   color: $white;
 }
 
@@ -31,7 +34,7 @@
   font-weight: 100;
   line-height: 0.9;
 
-  @include media('small') {
+  @include media("small") {
     display: none;
   }
 }
@@ -48,11 +51,10 @@
     font-size: 1.25rem;
   }
 
-  @include media('small') {
+  @include media("small") {
     display: none;
   }
 }
-
 
 .header_closing_button {
   position: fixed;
@@ -67,7 +69,7 @@
     transform: rotate(45deg);
   }
 
-  @include media('small') {
+  @include media("small") {
     top: 10px;
     z-index: 100;
   }
@@ -80,7 +82,7 @@
   overflow-x: scroll;
   scroll-snap-type: x mandatory;
 
-  @include media('small') {
+  @include media("small") {
     display: block;
     animation: none;
   }
@@ -90,21 +92,21 @@
   min-width: 100vw;
   animation: slideInTop 1s;
 
-  @include media('small') {
+  @include media("small") {
     animation: none;
   }
 
   &__about {
     display: flex;
 
-    @include media('small') {
+    @include media("small") {
       display: block;
     }
 
     &_title__mobile {
       display: none;
 
-      @include media('small') {
+      @include media("small") {
         display: block;
         font-size: 30vw;
         font-weight: 100;
@@ -116,13 +118,13 @@
     &_list {
       display: none;
 
-      @include media('small') {
+      @include media("small") {
         display: block;
         padding-left: 80px;
 
         li {
           line-height: 0.8;
-          font-size: 9vw;
+          font-size: 7.5vw;
           margin: 20px 0;
         }
       }
@@ -130,8 +132,8 @@
 
     &_page_title__mobile {
       display: none;
-      
-      @include media('small') {
+
+      @include media("small") {
         display: block;
         font-size: 1.5rem;
         padding-left: 80px;
@@ -154,7 +156,7 @@
         filter: grayscale(100%);
       }
 
-      @include media('small') {
+      @include media("small") {
         display: none;
       }
     }
@@ -162,7 +164,7 @@
     &_image__mobile {
       display: none;
 
-      @include media('small') {
+      @include media("small") {
         display: block;
         overflow: hidden;
 
@@ -185,12 +187,18 @@
           padding-left: 50px;
         }
 
+        &_intro_text_detail {
+          font-size: 1.25rem;
+          padding-top: 25px;
+          padding-left: 50px;
+        }
+
         &_mobile_text {
           display: none;
         }
       }
 
-      @include media('small') {
+      @include media("small") {
         width: 100%;
         padding: 60px 20px 150px 80px;
 
@@ -201,7 +209,11 @@
             font-size: 1rem;
             padding: 0 0 20px 0;
           }
-  
+
+          &_intro_text_detail {
+            display: none;
+          }
+
           &_mobile_text {
             display: block;
             font-size: 1.65rem;
@@ -211,7 +223,8 @@
     }
   }
 
-  &__keep, &__form {
+  &__keep,
+  &__form {
     display: flex;
     justify-content: center;
     align-items: flex-end;
@@ -223,7 +236,7 @@
       font-size: 5.25rem;
     }
 
-    @include media('small') {
+    @include media("small") {
       display: none;
     }
   }
@@ -233,7 +246,7 @@
       display: none;
     }
 
-    @include media('small') {
+    @include media("small") {
       flex-direction: column;
       align-items: center;
       padding-bottom: 0px;
@@ -248,68 +261,70 @@
 
     .contact_form {
       width: 35vw;
-  
+
       .contact_form__delivery_message {
-          font-size: 4em;
-          
-          span {
-              text-decoration: underline;
-          }
+        font-size: 4em;
+
+        span {
+          text-decoration: underline;
+        }
       }
-  
+
       &_input {
-          border: 1px solid $white;
-          padding: 20px;
-          display: flex;
-          justify-content: space-between;
-  
-          &:last-child { display: block; }
-  
-          input {
-              width: 80%;
-              background-color: $about-page-color;
-              color: $white;
-              border: none;
-  
-              &:focus {
-                  outline: none;
-              }
+        border: 1px solid $white;
+        padding: 20px;
+        display: flex;
+        justify-content: space-between;
+
+        &:last-child {
+          display: block;
+        }
+
+        input {
+          width: 80%;
+          background-color: $about-page-color;
+          color: $white;
+          border: none;
+
+          &:focus {
+            outline: none;
           }
-  
-          textarea {
-              width: 100%;
-              height: 35vh;
-              background-color: $about-page-color;
-              color: $white;
-              border: none;
-  
-              &:focus {
-                  outline: none;
-              }
-  
-              @include media('small') {
-                  height: 30vh;
-              }
+        }
+
+        textarea {
+          width: 100%;
+          height: 35vh;
+          background-color: $about-page-color;
+          color: $white;
+          border: none;
+
+          &:focus {
+            outline: none;
           }
-  
-          button {
-              border: none;
-              background: black;
-              color: white;
-              font-size: 1.5em;
-              padding-top: 10px;
-              padding-left: 85%;
-  
-              @include media('small') {
-                  padding-left: 75%;
-              }
+
+          @include media("small") {
+            height: 30vh;
           }
+        }
+
+        button {
+          border: none;
+          background: black;
+          color: white;
+          font-size: 1.5em;
+          padding-top: 10px;
+          padding-left: 85%;
+
+          @include media("small") {
+            padding-left: 75%;
+          }
+        }
       }
-  
-      @include media('small') {
+
+      @include media("small") {
         width: 90vw;
         padding-bottom: 10vh;
-        
+
         .contact_form__delivery_message {
           font-size: 2em;
           text-align: center;
@@ -346,14 +361,16 @@
     align-items: flex-end;
     font-size: 1.25em;
     text-decoration: line-through;
-    li:not(:last-of-type) { margin-right: 10px; }
+    li:not(:last-of-type) {
+      margin-right: 10px;
+    }
   }
 
   &_home__navbar_mobile {
     display: none;
   }
 
-  @include media('small') {
+  @include media("small") {
     display: none;
   }
 }
@@ -361,7 +378,7 @@
 .footer__mobile {
   display: none;
 
-  @include media('small') {
+  @include media("small") {
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
@@ -377,7 +394,7 @@
 .leave_animation {
   animation: slideInBottom 1s;
 
-  @include media('small') {
+  @include media("small") {
     animation: none;
   }
 }
