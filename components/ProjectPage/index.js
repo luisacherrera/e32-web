@@ -125,14 +125,14 @@ export default function ProjectPage({project_items, category}) {
 
   // on page load actions
   
-  isBrowser && useInterval(() => {
-    setTranslate(translate => {
-      const updatedTranslate = translate >= 95 ? router.push(nextPage) : translate < 0 ? 0 : translate + projectsSpeed;
+  // isBrowser && useInterval(() => {
+  //   setTranslate(translate => {
+  //     const updatedTranslate = translate >= 95 ? router.push(nextPage) : translate < 0 ? 0 : translate + projectsSpeed;
       
-      return updatedTranslate;
-    });
+  //     return updatedTranslate;
+  //   });
   
-  }, intervalDelay);
+  // }, intervalDelay);
 
   return (
     <>
