@@ -1,0 +1,15 @@
+@import "variables.scss";
+
+.see_more_container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 110;
+  width: 100vw;
+  height: 100vh;
+  background-color: $white;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 50px 120px 80px 120px;
+  overflow: auto;
+}

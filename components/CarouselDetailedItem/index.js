@@ -54,7 +54,7 @@ export default function CarouselDetailedItem({
             ${isLightingLandscapeContainer}
             ${singleSpaced}
            `}>
-        <img onClick={()=>setFullscreen(item.imageURL)}
+        <img onClick={()=>setFullscreen(item.image)}
              className={`
               ${styles.image_item}
               ${imageOrientation}
@@ -62,7 +62,7 @@ export default function CarouselDetailedItem({
               ${buildingVariant}
               ${lightingVariant}
              `} 
-             src={item.imageURL}
+             src={item.image}
              ref={imageRef}/>
       </div>
     </>

@@ -2,6 +2,7 @@ import { useRouter } from 'next/router';
 import { useEffect, useRef, useState } from 'react';
 import { isBrowser } from 'react-device-detect';
 import CarouselItem from '../CarouselItem';
+import SeeMoreMenu from '../SeeMoreMenu';
 import BackButton from '../BackButton';
 import styles from './CarouselPage.module.scss';
 
@@ -94,14 +95,14 @@ export default function CarouselPage({
 
   const translateMaxValue = category === 'architecture' ? 95 : 80
 
-  isBrowser && useInterval(() => {
-    setTranslate(translate => {
-        const updatedTranslate = translate >= translateMaxValue ? (handleNavigationToNextPage(), translate + carouselSpeed) : translate < 0 ? 0 : translate + carouselSpeed;
+  // isBrowser && useInterval(() => {
+  //   setTranslate(translate => {
+  //       const updatedTranslate = translate >= translateMaxValue ? (handleNavigationToNextPage(), translate + carouselSpeed) : translate < 0 ? 0 : translate + carouselSpeed;
 
-        return updatedTranslate;
-    });
+  //       return updatedTranslate;
+  //   });
 
-  }, intervalDelay);
+  // }, intervalDelay);
 
   useEffect(()=>{
     const timeoutDrag = setTimeout(()=>{
@@ -245,33 +246,34 @@ export default function CarouselPage({
 
       {
         navigationMenuVisibility ?
-          <div className={styles.projects_navigation_menu}>
-            <div className={styles.projects_navigation_menu__image_container}>
-              <img className={styles.projects_navigation_menu__image__landscape} src={carousel_data[0].imageURL} alt=""/>
-            </div>
-            <ul>
-              { carousel_data
-                  .filter((data, index, self) =>
-                    index === self.findIndex((t) => (
-                      t.project_id === data.project_id && t.title === data.title
-                  ))
-                ).map((block, i)=>
-                  <li className={i === 0 && listItemIsHighlighted ? styles.highlighted__project : ''}
-                      key={i}
-                      onClick={()=>navigateToProject(block.project_id)}
-                      onMouseOver={()=>setListItemHighlight(false)}
-                      onMouseLeave={()=>setListItemHighlight(true)}>
-                      { 
-                        block.title.toUpperCase()
-                      }
-                  </li>
-                ) 
-              }
-            </ul>
-            <img className={styles.projects_navigation_menu__close}
-                 onClick={()=>toggleNavigationMenuVisibility(false)} 
-                 src={require("../../public/cursor/SeeMore.png")}/>
-          </div>
+          <SeeMoreMenu items={carousel_data}></SeeMoreMenu>
+          // <div className={styles.projects_navigation_menu}>
+          //   <div className={styles.projects_navigation_menu__image_container}>
+          //     <img className={styles.projects_navigation_menu__image__landscape} src={carousel_data[0].image} alt=""/>
+          //   </div>
+          //   <ul>
+          //     { carousel_data
+          //         .filter((data, index, self) =>
+          //           index === self.findIndex((t) => (
+          //             t.project_id === data.project_id && t.title === data.title
+          //         ))
+          //       ).map((block, i)=>
+          //         <li className={i === 0 && listItemIsHighlighted ? styles.highlighted__project : ''}
+          //             key={i}
+          //             onClick={()=>navigateToProject(block.project_id)}
+          //             onMouseOver={()=>setListItemHighlight(false)}
+          //             onMouseLeave={()=>setListItemHighlight(true)}>
+          //             { 
+          //               block.title.toUpperCase()
+          //             }
+          //         </li>
+          //       ) 
+          //     }
+          //   </ul>
+          //   <img className={styles.projects_navigation_menu__close}
+          //        onClick={()=>toggleNavigationMenuVisibility(false)} 
+          //        src={require("../../public/cursor/SeeMore.png")}/>
+          // </div>
           :
           null
       }

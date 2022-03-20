@@ -13,7 +13,7 @@ export default function ProjectsItem({
     year: item_data.year,
     location: item_data.location,
     expedient: item_data.expedient,
-    imageUrl: item_data.image,
+    image: item_data.image,
     isLandscape: item_data.isLandscape,
     isExtraLandscape: item_data.extraLandscape ? true : false,
     isSpecialPortrait: item_data.isSpecialPortrait,
@@ -64,7 +64,7 @@ export default function ProjectsItem({
   return (
     <>
       <div ref={ref} className={ styles.item_container }
-        onClick={()=>setFullscreen(data.imageUrl)}>
+        onClick={()=>setFullscreen(data.image)}>
         <img
           className={`
             ${ styles.image_item } 
@@ -80,7 +80,7 @@ export default function ProjectsItem({
             ${isMediumThumbnail}
             ${isLargeThumbnail}
           `} 
-          src={ data.imageUrl } />
+          src={ data.image } />
       </div>
       {
           data.text ? 

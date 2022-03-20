@@ -82,7 +82,7 @@ export default function CarouselItem({
               ${smallPortrait}
               ${mediumLandscape}
              `} 
-             src={item.imageURL}
+             src={item.image}
              ref={imageRef}/>
         <img className={`
               ${styles.see_more__mobile}
