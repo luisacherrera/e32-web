@@ -1,4 +1,19 @@
 @import "variables.scss";
+@import "mixins.scss";
+
+.thumbnail {
+  position: relative;
+  width: 20vw;
+  height: 25vh;
+  margin: 5px;
+  border: 1px solid black;
+  cursor: pointer;
+
+  @include media("small") {
+    width: 45vw;
+    height: 20vh;
+  }
+}
 
 .menu_item_title {
   position: absolute;

@@ -95,14 +95,14 @@ export default function CarouselPage({
 
   const translateMaxValue = category === 'architecture' ? 95 : 80
 
-  // isBrowser && useInterval(() => {
-  //   setTranslate(translate => {
-  //       const updatedTranslate = translate >= translateMaxValue ? (handleNavigationToNextPage(), translate + carouselSpeed) : translate < 0 ? 0 : translate + carouselSpeed;
+  isBrowser && useInterval(() => {
+    setTranslate(translate => {
+        const updatedTranslate = translate >= translateMaxValue ? (handleNavigationToNextPage(), translate + carouselSpeed) : translate < 0 ? 0 : translate + carouselSpeed;
 
-  //       return updatedTranslate;
-  //   });
+        return updatedTranslate;
+    });
 
-  // }, intervalDelay);
+  }, intervalDelay);
 
   useEffect(()=>{
     const timeoutDrag = setTimeout(()=>{
