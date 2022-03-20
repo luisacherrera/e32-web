@@ -2,6 +2,7 @@ import { useRouter } from 'next/router';
 import { useEffect, useRef, useState } from 'react';
 import { isBrowser } from 'react-device-detect';
 import CarouselItem from '../CarouselItem';
+import BackButton from '../BackButton';
 import styles from './CarouselPage.module.scss';
 
 export default function CarouselPage({
@@ -134,6 +135,9 @@ export default function CarouselPage({
 
             <h2>Drag left to navigate</h2>
           </div>
+      }
+      {
+        isBrowser && <BackButton category={category}></BackButton>
       }
       <div className={`
         ${styles.container}

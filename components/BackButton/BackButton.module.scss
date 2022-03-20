@@ -1,0 +1,30 @@
+@import "variables.scss";
+
+.button_wrapper {
+  position: fixed;
+  z-index: 100;
+  width: 115px;
+  height: 40px;
+  padding: 5px;
+  bottom: 20vh;
+  border: solid;
+  border-left: none;
+  cursor: pointer;
+
+  img {
+    width: 90%;
+    margin-left: 10px;
+  }
+
+  &_architecture {
+    background-color: $white;
+  }
+
+  &_lighting {
+    background-color: $lighting-page-color;
+  }
+
+  &_building {
+    background-color: $building-page-color;
+  }
+}
