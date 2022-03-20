@@ -93,6 +93,10 @@ export default function CarouselPage({
     router.push('architecture/projects?project=' + el)
   }
 
+  const toggleNavigationMenu = (stat) => {
+    toggleNavigationMenuVisibility(stat)
+  }
+
   const translateMaxValue = category === 'architecture' ? 95 : 80
 
   isBrowser && useInterval(() => {
@@ -246,7 +250,9 @@ export default function CarouselPage({
 
       {
         navigationMenuVisibility ?
-          <SeeMoreMenu items={carousel_data}></SeeMoreMenu>
+          <SeeMoreMenu category={category}
+                       items={carousel_data}
+                       toggleNavigationView={toggleNavigationMenu}></SeeMoreMenu>
           // <div className={styles.projects_navigation_menu}>
           //   <div className={styles.projects_navigation_menu__image_container}>
           //     <img className={styles.projects_navigation_menu__image__landscape} src={carousel_data[0].image} alt=""/>

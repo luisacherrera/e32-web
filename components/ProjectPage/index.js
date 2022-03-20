@@ -2,6 +2,7 @@ import { useRouter } from 'next/router'
 import { useEffect, useRef, useState } from 'react'
 import { isBrowser } from 'react-device-detect'
 import ProjectBlock from '../ProjectBlock'
+import SeeMoreMenu from '../SeeMoreMenu'
 import styles from './ProjectPage.module.scss'
 
 export default function ProjectPage({project_items, category}) {
@@ -19,6 +20,14 @@ export default function ProjectPage({project_items, category}) {
   const projectsMove = 5 / projectsLength
   const projectsSpeed = 0.10 / projectsLength
   const projectFraction = 95 / project_items.length
+
+  const menuItems = project_items.map((item)=>{
+    return {    
+      project_id: item.projectId,
+      title: item.data[0].title,
+      image: item.data[0].image
+    }
+  })
 
   // refs
 
@@ -121,6 +130,15 @@ export default function ProjectPage({project_items, category}) {
 
   const handleNewItemInformation = (information) => {
     updateProjectInformation(information)
+  }
+
+  const handleNavigationMenuVisibility = (stat, item) => {
+    if (item) {
+      const itemIndex = menuItems.findIndex((el)=>el.project_id === item.project_id)
+      setElementToCall(itemIndex + 1)
+    }
+    
+    toggleNavigationMenuVisibility(stat)
   }
 
   // on page load actions
@@ -229,32 +247,35 @@ export default function ProjectPage({project_items, category}) {
         </div>
         {
           navigationMenuVisibility ?
-            <div className={styles.projects_navigation_menu}>
-              <div className={styles.projects_navigation_menu__image_container}>
-                {
-                  project_items[projectInformation.id - 1].data[0].isLandscape
-                    ? <img className={styles.projects_navigation_menu__image__landscape} src={project_items[projectInformation.id - 1].data[0].image} alt=""/>
-                    : <img className={styles.projects_navigation_menu__image__portrait} src={project_items[projectInformation.id - 1].data[0].image} alt=""/>
-                }
-              </div>
-              <ul>
-                { project_items.map((block, i)=>
-                    <li className={ projectInformation.id - 1 === i && listItemIsHighlighted ? styles.highlighted__project : '' }
-                        key={i}
-                        onClick={()=>setElementToCall(i+1)}
-                        onMouseOver={()=>setListItemHighlight(false)}
-                        onMouseLeave={()=>setListItemHighlight(true)}>
-                        { 
-                          block.data[0].title.toUpperCase()
-                        }
-                    </li>
-                  ) 
-                }
-              </ul>
-              <img className={styles.projects_navigation_menu__close}
-                   onClick={()=>toggleNavigationMenuVisibility(false)} 
-                   src={require("../../public/cursor/SeeMore.png")}/>
-            </div>
+            <SeeMoreMenu category={category} 
+                         items={menuItems}
+                         toggleNavigationView={handleNavigationMenuVisibility}></SeeMoreMenu>
+            // <div className={styles.projects_navigation_menu}>
+            //   <div className={styles.projects_navigation_menu__image_container}>
+            //     {
+            //       project_items[projectInformation.id - 1].data[0].isLandscape
+            //         ? <img className={styles.projects_navigation_menu__image__landscape} src={project_items[projectInformation.id - 1].data[0].image} alt=""/>
+            //         : <img className={styles.projects_navigation_menu__image__portrait} src={project_items[projectInformation.id - 1].data[0].image} alt=""/>
+            //     }
+            //   </div>
+            //   <ul>
+            //     { project_items.map((block, i)=>
+            //         <li className={ projectInformation.id - 1 === i && listItemIsHighlighted ? styles.highlighted__project : '' }
+            //             key={i}
+            //             onClick={()=>setElementToCall(i+1)}
+            //             onMouseOver={()=>setListItemHighlight(false)}
+            //             onMouseLeave={()=>setListItemHighlight(true)}>
+            //             { 
+            //               block.data[0].title.toUpperCase()
+            //             }
+            //         </li>
+            //       ) 
+            //     }
+            //   </ul>
+            //   <img className={styles.projects_navigation_menu__close}
+            //        onClick={()=>toggleNavigationMenuVisibility(false)} 
+            //        src={require("../../public/cursor/SeeMore.png")}/>
+            // </div>
             :
             null
         }
@@ -297,7 +318,7 @@ export default function ProjectPage({project_items, category}) {
           background-size: 200%;
           background-position: center;
           position: absolute;
-          z-index: 100;
+          z-index: 150;
           height: 100vh;
           width: 100vw;
           top: 0;

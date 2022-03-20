@@ -2,14 +2,21 @@ import { useRouter } from 'next/router'
 import styles from './SeeMoreMenuItem.module.scss'
 
 export default function SeeMoreMenuItem({
-  item
+  category,
+  item,
+  handleNavigationView
 }) {
   const router = useRouter();
+
+  const navigateToProject = () => {
+    router.push(`/${category}/projects?project=${item.project_id}`);
+    handleNavigationView(false, item)
+  }
 
   return (
     <>
       <div className={`${styles.thumbnail} thumbnail_background`}
-           onClick={()=>router.push(`architecture/projects?project=${item.project_id}`)}>
+           onClick={()=>navigateToProject()}>
         <p className={styles.menu_item_title}>{item.title}</p>
       </div>
 
