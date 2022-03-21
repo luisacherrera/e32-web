@@ -3,6 +3,8 @@
 
 .thumbnail {
   position: relative;
+  background-size: cover;
+  background-position: center;
   width: 20vw;
   height: 25vh;
   margin: 5px;
@@ -12,6 +14,10 @@
   @include media("small") {
     width: 45vw;
     height: 20vh;
+  }
+
+  &:hover {
+    background-size: contain;
   }
 }
 

@@ -24,7 +24,6 @@ export default function SeeMoreMenuItem({
         .thumbnail_background {
           background-image: url(${item.image});
           background-repeat: no-repeat;
-          background-size: cover;
         }
       `}</style>
     </>
