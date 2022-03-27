@@ -8,7 +8,7 @@
 .container__landscape_variant {
   padding-top: 15vh;
 
-  @include media('small') {
+  @include media("small") {
     padding-top: 10vh;
   }
 }
@@ -17,10 +17,18 @@
   padding-top: 8vh;
 }
 
+.container__square_portrait_variant {
+  padding-top: 15vh;
+
+  @include media("small") {
+    padding-top: 20.75vh;
+  }
+}
+
 .first_image_container {
   padding-left: 35vw;
 
-  @include media('small') {
+  @include media("small") {
     padding-left: 0;
 
     img {
@@ -31,19 +39,19 @@
 
 .image_item {
   padding: 0 5px;
-  cursor: url('/cursor/Open.png'), auto;
+  cursor: url("/cursor/Open.png"), auto;
 
   &:hover {
     filter: grayscale(100%);
 
-    @include media('small') {
+    @include media("small") {
       filter: none;
     }
   }
 }
 
 .image_item__overlay {
-  @include media('small') {
+  @include media("small") {
     filter: blur(3px);
   }
 }
@@ -51,7 +59,7 @@
 .image_item__single_spaced {
   margin-right: 200px;
 
-  @include media('small') {
+  @include media("small") {
     margin-right: 100px;
   }
 }
@@ -59,7 +67,7 @@
 .image_item__double_spaced {
   margin-right: 400px;
 
-  @include media('small') {
+  @include media("small") {
     margin-right: 200px;
   }
 }
@@ -67,7 +75,7 @@
 .image_item__vertical_variant {
   width: 52.8vh;
 
-  @include media('small') {
+  @include media("small") {
     width: 52vh;
   }
 }
@@ -75,7 +83,7 @@
 .image_item__horizontal_variant {
   width: 80vh;
 
-  @include media('small') {
+  @include media("small") {
     width: 85vh;
   }
 }
@@ -86,8 +94,31 @@
 }
 
 .image_item__lighting_variant {
-
-  @include media('small') {
+  @include media("small") {
     width: 75vh;
+  }
+}
+
+.image_item__medium_landscape {
+  width: 86.7vh;
+
+  @include media("small") {
+    width: 91.7vh;
+  }
+}
+
+.image_item__small_portrait {
+  width: 49.2vh;
+
+  @include media("small") {
+    width: 48.2vh;
+  }
+}
+
+.image_item__square_portrait {
+  width: 55.65vh;
+
+  @include media("small") {
+    width: 48.2vh;
   }
 }

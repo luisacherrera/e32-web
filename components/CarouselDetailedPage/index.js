@@ -123,7 +123,7 @@ export default function CarouselDetailedPage({
       router.push(nextPage)
   }
 
-  const translateMaxValue = category === 'architecture' ? 95 : 80
+  const translateMaxValue = category === 'architecture' ? 95 : 90
 
   isBrowser && useInterval(() => {
     setTranslate(translate => {
@@ -239,6 +239,9 @@ export default function CarouselDetailedPage({
                   isBuildingVariant={data.isBuildingVariant}
                   isLandscape={data.isLandscape}
                   isLightingVariant={data.isLightingVariant}
+                  isMediumLandscape={data.isMediumLandscape}
+                  isSmallPortrait={data.isSmallPortrait}
+                  isSquarePortrait={data.isSquarePortrait}
                   item={data}
                   onItemVisible={handleNewVisibleItem}
                   onFullscreenMode={handleFullscreenImage}
