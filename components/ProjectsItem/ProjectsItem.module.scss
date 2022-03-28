@@ -4,17 +4,17 @@
 .item_container {
   position: relative;
 
-  @include media('small') {
-      padding-right: 5px;
+  @include media("small") {
+    padding-right: 5px;
   }
 }
 
 .image_item {
   padding: 0 5px;
-  cursor: url('/cursor/Open.png'), auto;
+  cursor: url("/cursor/Open.png"), auto;
 
-  @include media('small') {
-      padding: 0;
+  @include media("small") {
+    padding: 0;
   }
 }
 
@@ -25,19 +25,19 @@
     width: 63vh;
   }
 
-  @include media('small') {
+  @include media("small") {
     width: 56vh;
   }
 }
 
 .image_item__horizontal_variant {
   width: 114.5vh;
-  
+
   @media all and (min-height: 700px) {
     width: 120.65vh;
   }
 
-  @include media('small') {
+  @include media("small") {
     width: 108.15vh;
   }
 }
@@ -45,8 +45,80 @@
 .image_item__extra_variant {
   width: 240vh;
 
-  @include media('small') {
+  @include media("small") {
     width: 217vh;
+  }
+}
+
+.image_item__special_portrait {
+  width: 58.5vh;
+
+  @include media("small") {
+    width: 52vh;
+  }
+}
+
+.image_item__cropped_thumbnail {
+  width: 86.5vh;
+
+  @include media("small") {
+    width: 77.5vh;
+  }
+}
+
+.image_item__special_landscape {
+  width: 130vh;
+
+  @include media("small") {
+    width: 117vh;
+  }
+}
+
+.image_item__thumbnail {
+  width: 91.6vh;
+
+  @include media("small") {
+    width: 82vh;
+  }
+}
+
+.image_item__special_thumbnail {
+  width: 95.2vh;
+
+  @include media("small") {
+    width: 85.2vh;
+  }
+}
+
+.image_item__extra_small_thumbnail {
+  width: 105.7vh;
+
+  @include media("small") {
+    width: 94.7vh;
+  }
+}
+
+.image_item__small_thumbnail {
+  width: 92.4vh;
+
+  @include media("small") {
+    width: 82.4vh;
+  }
+}
+
+.image_item__medium_thumbnail {
+  width: 82.7vh;
+
+  @include media("small") {
+    width: 73.7vh;
+  }
+}
+
+.image_item__large_thumbnail {
+  width: 80.7vh;
+
+  @include media("small") {
+    width: 72vh;
   }
 }
 
@@ -57,21 +129,21 @@
   padding: 10px 40px;
 
   p {
-      overflow-y: scroll;
-      font-size: 1.5em;
-      line-height: 1;
-      width: 400px;
-      margin-bottom: 30px;
+    overflow-y: scroll;
+    font-size: 1.5em;
+    line-height: 1;
+    width: 400px;
+    margin-bottom: 30px;
   }
 
-  @include media('small') {
-      height: 80%;
-      padding: 10px 30px;
+  @include media("small") {
+    height: 80%;
+    padding: 10px 30px;
 
-      p {
-          font-size: 1.25em;
-          width: 80vw;
-          margin-bottom: 16px;
-      }
+    p {
+      font-size: 1.25em;
+      width: 80vw;
+      margin-bottom: 16px;
+    }
   }
 }

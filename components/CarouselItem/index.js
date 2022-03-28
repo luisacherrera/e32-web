@@ -10,6 +10,11 @@ export default function CarouselItem({
   isFirstElement, 
   isLandscape,
   isLightingVariant,
+  isPortrait,
+  isMediumLandscape,
+  isMediumPortrait,
+  isLargePortrait,
+  isSmallPortrait,
   item,
   onItemVisible
 }) {
@@ -19,11 +24,16 @@ export default function CarouselItem({
   const [imageRef, inView] = useInView({threshold: 0.5})
 
   const buildingVariant = isBuildingVariant ? styles.image_item__building_variant : ''
-  const isLandscapeContainer = isLandscape ? styles.container__landscape_variant : ''
+  const isLandscapeContainer = isLandscape || isMediumLandscape ? styles.container__landscape_variant : ''
   const isLightingLandscapeContainer = isLightingVariant ? styles.container__landscape_variant__lighting : ''
   const doubleSpaced = item.spaced === 2 ? styles.image_item__double_spaced : ''
   const firstElement = isFirstElement ? styles.first_image_container : ''
   const imageOrientation = isLandscape ? styles.image_item__horizontal_variant : styles.image_item__vertical_variant
+  const portraitSquare = isPortrait ? styles.image_item__square_portrait : ''
+  const mediumPortraitSquare = isMediumPortrait ? styles.image_item__square_medium_portrait : ''
+  const largePortraitSquare = isLargePortrait ? styles.image_item__square_large_portrait : ''
+  const smallPortrait = isSmallPortrait ? styles.image_item__small_portrait : ''
+  const mediumLandscape = isMediumLandscape ? styles.image_item__medium_landscape : ''
   const imageHasOverlay = imageOverlay ? styles.image_item__overlay : ''
   const lightingVariant = isLightingVariant ? styles.image_item__lighting_variant : ''
   const singleSpaced = item.spaced === 1 ? styles.image_item__single_spaced: ''
@@ -66,8 +76,13 @@ export default function CarouselItem({
               ${imageHasOverlay}
               ${buildingVariant}
               ${lightingVariant}
+              ${portraitSquare}
+              ${mediumPortraitSquare}
+              ${largePortraitSquare}
+              ${smallPortrait}
+              ${mediumLandscape}
              `} 
-             src={item.imageURL}
+             src={item.image}
              ref={imageRef}/>
         <img className={`
               ${styles.see_more__mobile}

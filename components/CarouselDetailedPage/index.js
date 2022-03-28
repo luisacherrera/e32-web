@@ -2,6 +2,7 @@ import { useRouter } from 'next/router';
 import { useEffect, useRef, useState } from 'react';
 import { isBrowser } from 'react-device-detect';
 import CarouselDetailedItem from '../CarouselDetailedItem';
+import BackButton from '../BackButton';
 import styles from './CarouselDetailedPage.module.scss';
 
 export default function CarouselDetailedPage({
@@ -122,7 +123,7 @@ export default function CarouselDetailedPage({
       router.push(nextPage)
   }
 
-  const translateMaxValue = category === 'architecture' ? 95 : 80
+  const translateMaxValue = category === 'architecture' ? 95 : 90
 
   isBrowser && useInterval(() => {
     setTranslate(translate => {
@@ -165,6 +166,9 @@ export default function CarouselDetailedPage({
 
             <h2>Drag left to navigate</h2>
           </div>
+      }
+      {
+        isBrowser && <BackButton category={category}></BackButton>
       }
       <div className={`
         ${styles.container}
@@ -235,6 +239,9 @@ export default function CarouselDetailedPage({
                   isBuildingVariant={data.isBuildingVariant}
                   isLandscape={data.isLandscape}
                   isLightingVariant={data.isLightingVariant}
+                  isMediumLandscape={data.isMediumLandscape}
+                  isSmallPortrait={data.isSmallPortrait}
+                  isSquarePortrait={data.isSquarePortrait}
                   item={data}
                   onItemVisible={handleNewVisibleItem}
                   onFullscreenMode={handleFullscreenImage}

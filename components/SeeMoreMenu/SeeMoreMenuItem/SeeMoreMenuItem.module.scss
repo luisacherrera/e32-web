@@ -1,0 +1,31 @@
+@import "variables.scss";
+@import "mixins.scss";
+
+.thumbnail {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  width: 20vw;
+  height: 25vh;
+  margin: 5px;
+  cursor: pointer;
+
+  @include media("small") {
+    width: 45vw;
+    height: 20vh;
+  }
+
+  &:hover {
+    background-size: contain;
+  }
+}
+
+.menu_item_title {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: $white;
+  font-size: 0.85em;
+  text-align: center;
+  padding: 2px;
+}

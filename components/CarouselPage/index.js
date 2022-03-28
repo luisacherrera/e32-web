@@ -2,6 +2,8 @@ import { useRouter } from 'next/router';
 import { useEffect, useRef, useState } from 'react';
 import { isBrowser } from 'react-device-detect';
 import CarouselItem from '../CarouselItem';
+import SeeMoreMenu from '../SeeMoreMenu';
+import BackButton from '../BackButton';
 import styles from './CarouselPage.module.scss';
 
 export default function CarouselPage({
@@ -91,6 +93,10 @@ export default function CarouselPage({
     router.push('architecture/projects?project=' + el)
   }
 
+  const toggleNavigationMenu = (stat) => {
+    toggleNavigationMenuVisibility(stat)
+  }
+
   const translateMaxValue = category === 'architecture' ? 95 : 80
 
   isBrowser && useInterval(() => {
@@ -134,6 +140,9 @@ export default function CarouselPage({
 
             <h2>Drag left to navigate</h2>
           </div>
+      }
+      {
+        isBrowser && <BackButton category={category}></BackButton>
       }
       <div className={`
         ${styles.container}
@@ -218,6 +227,11 @@ export default function CarouselPage({
                   isBuildingVariant={data.isBuildingVariant}
                   isLandscape={data.isLandscape}
                   isLightingVariant={data.isLightingVariant}
+                  isPortrait={data.isPortrait}
+                  isMediumLandscape={data.isMediumLandscape}
+                  isMediumPortrait={data.isMediumPortrait}
+                  isLargePortrait={data.isLargePortrait}
+                  isSmallPortrait={data.isSmallPortrait}
                   item={data}
                   onItemVisible={handleNewVisibleItem}>
                 </CarouselItem>
@@ -236,33 +250,36 @@ export default function CarouselPage({
 
       {
         navigationMenuVisibility ?
-          <div className={styles.projects_navigation_menu}>
-            <div className={styles.projects_navigation_menu__image_container}>
-              <img className={styles.projects_navigation_menu__image__landscape} src={carousel_data[0].imageURL} alt=""/>
-            </div>
-            <ul>
-              { carousel_data
-                  .filter((data, index, self) =>
-                    index === self.findIndex((t) => (
-                      t.project_id === data.project_id && t.title === data.title
-                  ))
-                ).map((block, i)=>
-                  <li className={i === 0 && listItemIsHighlighted ? styles.highlighted__project : ''}
-                      key={i}
-                      onClick={()=>navigateToProject(block.project_id)}
-                      onMouseOver={()=>setListItemHighlight(false)}
-                      onMouseLeave={()=>setListItemHighlight(true)}>
-                      { 
-                        block.title.toUpperCase()
-                      }
-                  </li>
-                ) 
-              }
-            </ul>
-            <img className={styles.projects_navigation_menu__close}
-                 onClick={()=>toggleNavigationMenuVisibility(false)} 
-                 src={require("../../public/cursor/SeeMore.png")}/>
-          </div>
+          <SeeMoreMenu category={category}
+                       items={carousel_data}
+                       toggleNavigationView={toggleNavigationMenu}></SeeMoreMenu>
+          // <div className={styles.projects_navigation_menu}>
+          //   <div className={styles.projects_navigation_menu__image_container}>
+          //     <img className={styles.projects_navigation_menu__image__landscape} src={carousel_data[0].image} alt=""/>
+          //   </div>
+          //   <ul>
+          //     { carousel_data
+          //         .filter((data, index, self) =>
+          //           index === self.findIndex((t) => (
+          //             t.project_id === data.project_id && t.title === data.title
+          //         ))
+          //       ).map((block, i)=>
+          //         <li className={i === 0 && listItemIsHighlighted ? styles.highlighted__project : ''}
+          //             key={i}
+          //             onClick={()=>navigateToProject(block.project_id)}
+          //             onMouseOver={()=>setListItemHighlight(false)}
+          //             onMouseLeave={()=>setListItemHighlight(true)}>
+          //             { 
+          //               block.title.toUpperCase()
+          //             }
+          //         </li>
+          //       ) 
+          //     }
+          //   </ul>
+          //   <img className={styles.projects_navigation_menu__close}
+          //        onClick={()=>toggleNavigationMenuVisibility(false)} 
+          //        src={require("../../public/cursor/SeeMore.png")}/>
+          // </div>
           :
           null
       }
