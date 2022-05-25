@@ -28,5 +28,9 @@
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-react": "^7.22.0",
     "eslint-plugin-react-hooks": "^4.2.0"
-  }
+  },
+  "resolutions": {
+    "minimist": "1.2.6",
+    "glob-parent": "5.1.2"
+}
 }
