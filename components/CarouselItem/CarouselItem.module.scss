@@ -120,6 +120,30 @@
   }
 }
 
+.image_item__weird_landscape {
+  width: 110.85vh;
+
+  @include media("small") {
+    width: 97.85vh;
+  }
+}
+
+.image_item__special_landscape {
+  width: 108.75vh;
+
+  @include media("small") {
+    width: 95.75vh;
+  }
+}
+
+.image_item__midsize_landscape {
+  width: 116vh;
+
+  @include media("small") {
+    width: 103vh;
+  }
+}
+
 .image_item__building_variant {
   border-top-left-radius: 250px;
   border-top-right-radius: 250px;

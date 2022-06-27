@@ -15,6 +15,9 @@ export default function CarouselItem({
   isMediumPortrait,
   isLargePortrait,
   isSmallPortrait,
+  isSpecialLandscape,
+  isMidsizeLandscape,
+  isWeirdLandscape,
   item,
   onItemVisible
 }) {
@@ -24,6 +27,9 @@ export default function CarouselItem({
   const [imageRef, inView] = useInView({threshold: 0.5})
 
   const buildingVariant = isBuildingVariant ? styles.image_item__building_variant : ''
+  const specialLandscape = isSpecialLandscape ? styles.image_item__special_landscape : ''
+  const midsizeLandscape = isMidsizeLandscape ? styles.image_item__midsize_landscape : ''
+  const weirdLandscape = isWeirdLandscape ? styles.image_item__weird_landscape : ''
   const isLandscapeContainer = isLandscape || isMediumLandscape ? styles.container__landscape_variant : ''
   const isLightingLandscapeContainer = isLightingVariant ? styles.container__landscape_variant__lighting : ''
   const doubleSpaced = item.spaced === 2 ? styles.image_item__double_spaced : ''
@@ -81,6 +87,9 @@ export default function CarouselItem({
               ${largePortraitSquare}
               ${smallPortrait}
               ${mediumLandscape}
+              ${specialLandscape}
+              ${midsizeLandscape}
+              ${weirdLandscape}
              `} 
              src={item.image}
              ref={imageRef}/>
