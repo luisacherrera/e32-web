@@ -74,6 +74,46 @@
   }
 }
 
+.image_item__CAB_landscape {
+  width: 130vh;
+
+  @include media("small") {
+    width: 117vh;
+  }
+}
+
+.image_item__BCN_landscape {
+  width: 132.75vh;
+
+  @include media("small") {
+    width: 119.75vh;
+  }
+}
+
+.image_item__CAB_special_landscape {
+  width: 138.85vh;
+
+  @include media("small") {
+    width: 125.85vh;
+  }
+}
+
+.image_item__CAB_map_landscape {
+  width: 175vh;
+
+  @include media("small") {
+    width: 161vh;
+  }
+}
+
+.image_item__BDN_map_landscape {
+  width: 150vh;
+
+  @include media("small") {
+    width: 136vh;
+  }
+}
+
 .image_item__thumbnail {
   width: 91.6vh;
 

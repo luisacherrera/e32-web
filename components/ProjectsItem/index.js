@@ -18,6 +18,11 @@ export default function ProjectsItem({
     isExtraLandscape: item_data.extraLandscape ? true : false,
     isSpecialPortrait: item_data.isSpecialPortrait,
     isSpecialLandscape: item_data.isSpecialLandscape,
+    isCABLandscape: item_data.isCABLandscape,
+    isBCNLandscape: item_data.isBCNLandscape,
+    isCABSpecialLandscape: item_data.isCABSpecialLandscape,
+    isCABMapLandscape: item_data.isCABMapLandscape,
+    isBDNMapLandscape: item_data.isBDNMapLandscape,
     isThumbnail: item_data.isThumbnail,
     isCroppedThumbnail: item_data.isCroppedThumbnail,
     isLargeThumbnail: item_data.isLargeThumbnail,
@@ -39,6 +44,12 @@ export default function ProjectsItem({
   const isExtraSmallThumbnail = data.isExtraSmallThumbnail ? styles.image_item__extra_small_thumbnail : ''
   const isMediumThumbnail = data.isMediumThumbnail ? styles.image_item__medium_thumbnail : ''
   const isLargeThumbnail = data.isLargeThumbnail ? styles.image_item__large_thumbnail : ''
+  const isCABLandscape = data.isCABLandscape ? styles.image_item__CAB_landscape : ''
+  const isBCNLandscape = data.isBCNLandscape ? styles.image_item__BCN_landscape : ''
+  const isCABSpecialLandscape = data.isCABSpecialLandscape ? styles.image_item__CAB_special_landscape : ''
+  const isCABMapLandscape = data.isCABMapLandscape ? styles.image_item__CAB_map_landscape : ''
+  const isBDNMapLandscape = data.isBDNMapLandscape ? styles.image_item__BDN_map_landscape : ''
+
 
   const setFullscreen = (image) => {
     onFullscreenMode(image, data.isLandscape, data.isExtraLandscape)
@@ -79,6 +90,11 @@ export default function ProjectsItem({
             ${isSpecialThumbnail}
             ${isMediumThumbnail}
             ${isLargeThumbnail}
+            ${isCABLandscape}
+            ${isBCNLandscape}
+            ${isCABSpecialLandscape}
+            ${isCABMapLandscape}
+            ${isBDNMapLandscape}
           `} 
           src={ data.image } />
       </div>
