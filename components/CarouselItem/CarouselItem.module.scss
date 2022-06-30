@@ -10,6 +10,18 @@
 
   @include media("small") {
     padding-top: 10vh;
+
+    &_special {
+      margin-top: 7vh;
+    }
+
+    &_midsize {
+      margin-top: 6.75vh;
+    }
+
+    &_weird {
+      margin-top: 6.85vh;
+    }
   }
 }
 
@@ -117,6 +129,30 @@
 
   @include media("small") {
     width: 91.7vh;
+  }
+}
+
+.image_item__weird_landscape {
+  width: 110.85vh;
+
+  @include media("small") {
+    width: 97.85vh;
+  }
+}
+
+.image_item__special_landscape {
+  width: 108.75vh;
+
+  @include media("small") {
+    width: 95.75vh;
+  }
+}
+
+.image_item__midsize_landscape {
+  width: 116vh;
+
+  @include media("small") {
+    width: 103vh;
   }
 }
 

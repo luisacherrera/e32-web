@@ -232,6 +232,9 @@ export default function CarouselPage({
                   isMediumPortrait={data.isMediumPortrait}
                   isLargePortrait={data.isLargePortrait}
                   isSmallPortrait={data.isSmallPortrait}
+                  isSpecialLandscape={data.isSpecialLandscape}
+                  isMidsizeLandscape={data.isMidsizeLandscape}
+                  isWeirdLandscape={data.isWeirdLandscape}
                   item={data}
                   onItemVisible={handleNewVisibleItem}>
                 </CarouselItem>
